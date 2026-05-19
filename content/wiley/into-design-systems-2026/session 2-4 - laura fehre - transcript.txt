@@ -1,0 +1,747 @@
+
+[Host] 15:00:07
+All right, folks. I hope you are all back and ready for our next banger talk from the one and only Laura.
+
+[Host] 15:00:17
+on Figma. How are you? Are you with us?
+
+[Laura Fehre] 15:00:17
+Hello! Good!
+
+[Host] 15:00:22
+Nice. So nice to have you here.
+
+[Laura Fehre] 15:00:23
+I must have. Oh, thank you so much. I must admit it feels very funny to give a talk about markdown after hearing from someone.
+
+[Laura Fehre] 15:00:32
+that markdown isn't a thing. I promise you it is.
+
+[Host] 15:00:35
+It is. Also, it is good to have different approaches and different views, so… That's where where the infraction we get the real knowledge.
+
+[Laura Fehre] 15:00:46
+Indeed, indeed. Okay. Yeah, let me… Let me try to share the right window. There are so many.
+
+[Host] 15:00:47
+The stage is yours, and to shorten this up.
+
+[Host] 15:00:53
+Sure. Okay. Then see you in a bit.
+
+[Laura Fehre] 15:00:58
+Okay, perfect. Can you all see my screen?
+
+[Host] 15:01:02
+Yes, we saw the… well, we see the the lovely guy pal there.
+
+[Laura Fehre] 15:01:07
+Amazing. Okay, then let's go. So this talk was supposed to be about. Yeah, why I love markdown so much, and why or how this helped me to, yeah, solve real problems with scripts.
+
+[Host] 15:01:07
+Cool
+
+[Laura Fehre] 15:01:23
+But actually, kinda, it changed a little bit because this talk was kind of planned, I think, like 3 or 4 months ago, like someone asked me if I would like to talk at the conference, and at this point in time, and we all know.
+
+[Laura Fehre] 15:01:38
+3 months in the age of AI is basically five years.
+
+[Laura Fehre] 15:01:43
+Uh, so what I kind of, like, had in mind first kind of, like, two weeks ago, felt already so outdated. So I thought I, uh, yeah, give this talk a little twist, and yeah, go actually a little bit deeper into, uh, yeah.
+
+[Laura Fehre] 15:01:58
+My love for Markdown and still showing you all the things I plan to do, but kind of like giving it a little twist, because I think that's actually a little bit more, uh, yeah.
+
+[Laura Fehre] 15:02:10
+time-sensitive at the moment. But we, before we get started and why I picked this topic, I'm Laura. I'm a designer advocate at Figma, and for this talk and all my kind of like exploration and thought experiment I did.
+
+[Laura Fehre] 15:02:26
+I used a mix of cursor, ChatGPT, Claude code and Figma make aside a little bit of Xcode. But that's something I don't want to get into today.
+
+[Laura Fehre] 15:02:38
+So why I actually had this idea on like turning Figma make code into SwiftUI code was in my day to day business as a designer card, I talked to a lot of our customers and those customers.
+
+[Laura Fehre] 15:02:56
+Obviously, since we have Figma Make ask me all the time, will it support SwiftUI? What is Swift Bootstrap? Figma Mac is just using React, right? Figma is nice, but… So I thought to myself, with like all the new technologies and those possibilities, those unlockets should be possible to turn React into all those different frameworks, right? Just some markdown and some scripts.
+
+[Laura Fehre] 15:03:23
+At least I thought so. And as, like, very back in the days when I worked at HelloFresh, I had the luck to learn actually to write SwiftUI. I was like, okay, you understand the language. This should be possible. You should have done that. Cursor is great. Cloud Code is great.
+
+[Laura Fehre] 15:03:42
+They're doing so much heavy lifting, so that should be possible, right?
+
+[Laura Fehre] 15:03:47
+So I picked one of my favorite iOS apps, which is the Notes app. And thanks to Apple here for all those amazing screenshots in the App Store. And I thought, okay, I really would like to.
+
+[Laura Fehre] 15:04:02
+turn this into, yeah, workable code in Figma make using react, and then kinda, at least in my imagination, easy peasy, write a script. Throw it over the MCP server.
+
+[Laura Fehre] 15:04:17
+and turn it into SwiftUI code, because, yeah, this was like always such a big ask. So I was like, okay, let's dig a little bit into that. And I started to kind of like map out my process, right? It was like, okay.
+
+[Laura Fehre] 15:04:30
+I need to turn doom interface guidelines into an NPM package. I need to create all those guidelines. I definitely need to have a mapping in between the human interface guidelines or the Swift package and what is the kind base training data of.
+
+[Laura Fehre] 15:04:47
+the most, like, large language models, right? And then I can Figma make. It's, as we just also heard, tailwind CSS and ChetCN, and like a wrapper called, like, Redix, so kind of like that was the next point on my, uh, on my route.
+
+[Laura Fehre] 15:05:02
+Then I just need to, like, kind of like redesign the UI. And I was also so sure there must be a Figma community file that already designed those app.
+
+[Laura Fehre] 15:05:10
+Plot twist, there was none. And then, yeah, I just need to like prompt the interactions in Figma make use the MCP server. Claude code needs to write me a script and then I can turn magically react into Swift and you might.
+
+[Laura Fehre] 15:05:27
+Already notice now those are a lot of steps, and we know that like a lot of steps tend to having errors and mistakes, because there's maybe no sync. Some things can't like get updated right? So.
+
+[Laura Fehre] 15:05:42
+That was, like, kind of me at the end of when I was like, oh, AI will kind of like save me now and I can easily do that. I was like so confident and like, yeah, just like with a few clicks and a few prompts, I will, yeah, manage this challenge. And as you kind of like obviously can already guess.
+
+[Laura Fehre] 15:06:00
+I didn't, but I really learned a lot on this journey, and those are the things I would really love. Yeah, to share today. And before we jump deep into AI.
+
+[Laura Fehre] 15:06:12
+I would love to, like, leave a note as, like, I'm a designer by heart, no matter how, like, much I love code. Ai is kind of, like, not live, and there are so many things that we should and will still do without AI. I really believe in.
+
+[Laura Fehre] 15:06:30
+The Power AI has when it comes to design systems, because design systems are really made for AI, right? It's like kind of like structure, systems, like all the things AI loves. But we really need to like look out for some particular things that I would like.
+
+[Laura Fehre] 15:06:47
+Yeah, like to just like pinpoint on and that is, I don't know about you, but the last 20 years of my career, and that sounds so long and I feel so old, like all I always have fighted for, like, as an IC, as a manager.
+
+[Laura Fehre] 15:07:02
+it's kind of like get away from the silos right? But when we kind of like work on our local machines, when we sit in Claude code, when we use cursor, we kind of like siloing ourselves again, and I think, like, we really need to kind of like look out on, like, how we can kind of like take the responsibility and like bring.
+
+[Laura Fehre] 15:07:23
+Kind of like this collaborative workflow, kind of like back into kind of like the AI era. And also, uh, as another point is that I think if you just sit there with your agent, it's like very easy to fall in kind of like this tunnel vision, right? You just, like.
+
+[Laura Fehre] 15:07:43
+Prompt and say yes, no, yes, no, yes, no, but you always kind of, like, focused on one screen, where I think it can be really powerful if you kind of like mix and match. I think we heard that yesterday, right? Like, the thing was not dead, but it has a lot of new, cool collaborators, and I really love that, right? I don't want to, like, live without.
+
+[Laura Fehre] 15:08:02
+like Claude Code and the console MCP and all those great things, they're, like, so amazing. I learned so many things, but I think we really kind of, like, there is no yes or no. I think that's, like, an altogether, right? Like, in the, like, spirit of collaboration.
+
+[Laura Fehre] 15:08:17
+And then I don't know about you, but there are like certain things I really don't want AI to do, right? Like if I, as you can see here, I just maybe want to change the color of a button and find out what may be actually, for example, is the right brand color or.
+
+[Laura Fehre] 15:08:34
+Like what would fit the best in my component set, right? I really love to use the color wheel, right? For me, designing has something to do with emotions, and I don't feel those emotions if I ask, like, a prompt box to change the color of my button. I would prefer to kind of, like, use this color wheel.
+
+[Laura Fehre] 15:08:52
+But that was just some, like, side notes from my deep down designer heart.
+
+[Laura Fehre] 15:08:59
+Because at the end, this talk is still about AI.
+
+[Laura Fehre] 15:09:04
+So I don't know about you, but I really think that, like every relationship has a recurrent argument, and the recurring argument of my relationship is marked down. So for the last 5 years, my partner has insisted.
+
+[Laura Fehre] 15:09:20
+There's just one right way to write things down. Notes, plans, documentation, ideas.
+
+[Laura Fehre] 15:09:29
+And it's Mackdown. Like if I kind of like, yeah, every day we talk about that and there are so many different ways that he already tried to teach me how Markdown could change my life.
+
+[Laura Fehre] 15:09:43
+And he would always say something like, plain text is freedom. And I always felt like, how could, like, a handful of hashtags and dashes can, like, solve life problems?
+
+[Laura Fehre] 15:09:53
+And I really didn't buy it, right? I'm a designer. I like my faults with a little bit of typography, but I really, like, over the time, like, AI has really a funny way of changing of what you value, right? Like, I really have the feeling my values absolutely changed in my profession.
+
+[Laura Fehre] 15:10:12
+When you are a corroborator is like a machine. You can't really say anymore. You know what I mean, right? This really stops working. Like, wipes don't really translate, but structure does. And that's when I kind of finally understood.
+
+[Laura Fehre] 15:10:26
+And it click kind of what he always like wanted to tell me. So Markdown isn't about formatting. It's about communication. It's about like making your intent visible and about building something that both like humans and machine.
+
+[Laura Fehre] 15:10:44
+can actually agree on, right? And that's what we really need if we want to work with large language models.
+
+[Laura Fehre] 15:10:50
+So there are kind of like two kind of relationships in creative work, and you will see I'm kind of always twisting in this like relationship and communication analogy, because I think it really fits when we are working machines. So there are 2 types.
+
+[Laura Fehre] 15:11:06
+and wanna like a little bit more glamorous, expensive, and a little bit chaotic.
+
+[Laura Fehre] 15:11:11
+and then other ones which are quiet and make everything else possible.
+
+[Laura Fehre] 15:11:17
+And Markdown is the second one. It's not like a really sparkly new tool that you can show off at a dinner party. It's also not a visual system. It doesn't ships divide. It definitely doesn't tries to be cute. Markdown, in very, like, simple terms, is just plain text.
+
+[Laura Fehre] 15:11:36
+A tiny set of symbols that tells words how to behave.
+
+[Laura Fehre] 15:11:42
+So this whole talk is kind of my personal love letter to Markdown and also kind of a little bit of a relationship guide because like plain text really taught me how to communicate.
+
+[Laura Fehre] 15:11:56
+better with AI and kind of annoyingly, also with everyone else too, because.
+
+[Laura Fehre] 15:12:02
+AI doesn't understand vibes, as I already said, it really understands structure.
+
+[Laura Fehre] 15:12:09
+So when AI showed up, Markdown was kind of everywhere, right? And not because it got prettier or because of anything else, just because it's legitable like people are skimming, which machines are passing.
+
+[Laura Fehre] 15:12:24
+Team eggs inherit your decisions, like late in the evening, and if you're using Figma Make or like any other design tools, like Markdown really isn't trivia anymore. It's leverage. Like, it's a way to turn good luck and have fun prompts.
+
+[Laura Fehre] 15:12:39
+into repeatable outcomes without turning your creative process into a policy document, and for everyone here who worked with design system or is maintaining design systems, I know this is sometimes something we really kind of like struggling with, right? Like, with this kind of, like, policing and controlling on how to use the design system markdown.
+
+[Laura Fehre] 15:12:59
+can really help us there. But let's get a little bit of a history lesson. And I want to talk about how, like markdown actually kind of like came came to life right? So… Going a little bit before Markdown, like we first had like HTML, right, which really gave the web its bones, like headlines meaning something, paragraphs meant something, links were relationships, and not just pure text.
+
+[Laura Fehre] 15:13:29
+Then there was also YAMLA that made configurations readable and sort of like burying the intended code. And you could kind of declare its clarity and let like really the systems and protect what they were like meant to be for.
+
+[Laura Fehre] 15:13:45
+And then in 2024, Markdown came along, and the philosophy of like markdown was like disarmingly simple, right? Markdown should be easy to read, easy to write, and.
+
+[Laura Fehre] 15:14:01
+A markdown document still like normal text document, even before it's rendered. In other words, the source should still be human-friendly, even if it's, like, made for machines.
+
+[Laura Fehre] 15:14:13
+And formatting, like, really shouldn't… should feel like a light kind of like choreography, and not like like like and kind of like intense like custom change, and that's why markdown, I think, took off that heavily, uh, because it really kind of, like, matched what people were already doing, and like.
+
+[Laura Fehre] 15:14:31
+emails, message boards, asterisks for emphasizing list makers of dashes, links written plainly. It solved like a really 2004 problem. It was written for the web, and in a very timeless way.
+
+[Laura Fehre] 15:14:46
+uh, kind of like don't fight the medium. Uh, and then the world kind of, like, quietly built a lot of infrastructure on top of Markdown.
+
+[Laura Fehre] 15:14:56
+And, um… now that we kind of like know where Markdown came from. I would like to dip a little bit into our, I guess, beloved design system documentation right for like a really long time. Documentation had like a pretty clear primary audience, humans.
+
+[Laura Fehre] 15:15:14
+And mostly tired, skimming for answers, going through documentation boards, slack threads, and so on and so forth.
+
+[Laura Fehre] 15:15:24
+And then, like, at one point, like a couple of years later, like a second audience moved in, right? Machines that read, interpret and act. And AI, sadly, maybe it will come at one point.
+
+[Laura Fehre] 15:15:38
+But at the moment, it doesn't really get the gist, right? It doesn't infer intent from tone in a way that your teammate does, right? They don't hear if you're angry or if you're frustrated, or if you're super excited. It really like works the best when the information.
+
+[Laura Fehre] 15:15:54
+It's kind of like clear and structured. So there is like a very like.
+
+[Laura Fehre] 15:16:01
+clear differentiation in between, like, human readable guideline and then AI readable guideline, right? Ai readable guidelines are really structured, explicit, modular, and predictable. And this is what markdown is especially great in, right?
+
+[Laura Fehre] 15:16:16
+And I think here, really, the shift happened, right? Like documentation isn't just explanation anymore. It's instruction and it's closer to, yeah, as I said, to choreography or maybe even like a cooking like recipe. I already saw there are some people from HelloFresh, so… that might, like, land on your plate.
+
+[Laura Fehre] 15:16:38
+And if we like staying in this relationship metaphor, there is a difference in between like, you know what I mean? And here's what I need. Here's what I don't. And here is what done looks like.
+
+[Laura Fehre] 15:16:54
+So going back to Markdown, like markdown is not any kind of like romance or any like big fuss, right? It's really about, uh, compatibility.
+
+[Laura Fehre] 15:17:05
+And now you kind of like might wonder, but I already have like a design system package that I can give to like an AI agent with like my components, my tokens. That's great. Yeah, if you have your package ready for AI to consume it.
+
+[Laura Fehre] 15:17:21
+But mostly or very often, those packages don't have the knowledge of how to use your design system well, right? And without those guidelines, agent often will skip requirements, maybe ignore your CSS imports.
+
+[Laura Fehre] 15:17:38
+or your built-in configurations there might pick the wrong component variants for the given context. There may be misty icon naming and so on and so forth. And guidelines are there to fix this, right? By providing the same rules.
+
+[Laura Fehre] 15:17:55
+And examples that the design system team documents for human engineers.
+
+[Laura Fehre] 15:18:00
+Um, so here I brought, like, an example structure, and if that's now too small, I already copied this on the slack board. So all the kind of like snippets you will see here, they're all already on the into design system board, and I will later add a couple of more.
+
+[Laura Fehre] 15:18:19
+But if I would need to structure a markdown file now, this is how I kind of would structure it, right? And you might ask yourself, like, why do I need to have multi file? Isn't it enough to… just have, like, one single markdown file, right? I also know, uh, when you open Figma Make, at the moment, there's just one guideline file. I will show you later on how to change that. But you're splitting your guidelines across multiple smaller files enables the agent to recall details better than on a large file.
+
+[Laura Fehre] 15:18:52
+If you have like a single monolith documentation, this really can like overstretch the context window of your agent. And that this can then break the task and kind of like lead to mistakes. So I really would recommend to split this down.
+
+[Laura Fehre] 15:19:09
+in smaller details, but if you set up your markdown documentation in the right way up front, you don't even need to set up the structure yourself.
+
+[Laura Fehre] 15:19:21
+Um, but yeah, let's quickly jump into Figma Make, but also into my cursor in VS Code to first show you how I created those markdown files, and then how you can actually put them.
+
+[Laura Fehre] 15:19:37
+into Figma mega. Now let me see how easily I can switch my windows here.
+
+[Laura Fehre] 15:19:47
+Let me open. There is my VS Code. I have too many tabs open.
+
+[Laura Fehre] 15:19:54
+There we go. Now I just need to find.
+
+[Laura Fehre] 15:20:01
+Where is shell window? And then… there we go.
+
+[Laura Fehre] 15:20:08
+We're switching to my VS Code tab. And here you can see I'm now showing like a very simple example on how I would or how I also try to like create a markdown file in the very first place when I had no idea at all on how to do that.
+
+[Laura Fehre] 15:20:24
+And here I took material design as an example. They have a very great documentation online and actually just like fetch their link and asked Cursor to create a machine readable document for me based on their on their guidelines.
+
+[Laura Fehre] 15:20:41
+And as you can see here, Carla did all the work for me and then created the material design button. So that's one way that you can go. But very often, if you're lucky, you already have like a design system documented in code, and then you can really just like use your repository and form your repository like just ask an agent based on that to create.
+
+[Laura Fehre] 15:21:06
+your design system docs, which also can, yeah, be like way quicker than doing it button by button, uh, by component by component. What I really like to do, um, also just for the mental model for yourself, is using a tool called Obsidian.
+
+[Laura Fehre] 15:21:23
+I think Obsidian is really feels a little bit like a neural network, and there you can, like, really nicely connect all your components with each other. And I think this really helps also to understand how also models work, because, yeah, you kind of, like, create an own network based on your.
+
+[Laura Fehre] 15:21:41
+based on your design system. Okay, and now let me switch my screen again.
+
+[Laura Fehre] 15:21:46
+And let me go to my… Figma to show you how to inject those guidelines into Figma Make.
+
+[Laura Fehre] 15:21:58
+There we go here… Wow.
+
+[Laura Fehre] 15:22:03
+on Corazon. I tell you don't have too many windows open at the same time.
+
+[Laura Fehre] 15:22:10
+I think I'm sharing the wrong window. There we go.
+
+[Laura Fehre] 15:22:18
+There we go. Now, there we have it. Okay, perfect.
+
+[Laura Fehre] 15:22:21
+Figma make. Something I just learned kind of like some days ago. So I thought it would be super nice to share is that you don't need to start with a prompt. You can also just like very easily like switch into the code editor here. I know there's a tab that calls adjust guidelines.
+
+[Laura Fehre] 15:22:41
+that you can also open. What I would say, this is like two kind of like primitive to, like, really build out a proper structure. So what I recommend is to go on the exact code editor tab, and then you directly land in the coding tab without also having used any kind of tokens.
+
+[Laura Fehre] 15:22:59
+And you can build out your documentation structure without like adding any like credit volume. So then when you're in the structure, and I think now I actually need to share my whole screen.
+
+[Laura Fehre] 15:23:13
+Let me close some things so you don't see my messy desktop.
+
+[Laura Fehre] 15:23:19
+There we go. Sharing my whole screen. The beauty of live demos.
+
+[Laura Fehre] 15:23:29
+So I really want to share the whole screen and.
+
+[Laura Fehre] 15:23:34
+This is my messy deck desktop. Welcome to my messy desktop and here you can see here have my locations, right? And I here have all my all my little projects. And as you can see here.
+
+[Laura Fehre] 15:23:50
+I tried to and take this with a grain of salt. I try to create, like, uh, MPN package for the iOS system, but I also created guidelines.
+
+[Laura Fehre] 15:24:02
+So here you can see I have my folder with all the guidelines, very important. Here's my mapping file so I can map the Redex components to the human interface guideline components. And what you can very easily do is that you just select the folder.
+
+[Laura Fehre] 15:24:20
+And then you can just drag and drop the folder into the file, so you don't need to kind of like copy-paste all those guidelines. You can just take the folder and now can I please select the folder?
+
+[Laura Fehre] 15:24:34
+The 10 today 50 times, now it's not working below that. Um… okay, let me try again. Whoop!
+
+[Laura Fehre] 15:24:42
+Maybe I shouldn't use my trackpad. Let me close the folder.
+
+[Laura Fehre] 15:24:48
+Oop. There we go.
+
+[Laura Fehre] 15:24:55
+Why is it not working? I feel like an idiot. Sometimes, you know, you work at Figma and you still feel like an idiot.
+
+[Laura Fehre] 15:25:06
+Uh, let me… I will use my trackpad for my mouse now. Okay, so I take this, and I.
+
+[Laura Fehre] 15:25:16
+Why does this daughter wants to work? Okay, good that I was so smart, and I already did that before. Let me like.
+
+[Laura Fehre] 15:25:26
+Okay, normally you can very easy drag this over.
+
+[Laura Fehre] 15:25:30
+into your fire. And as you can see here, then you can just, as you can see here, just drag the folder in. It should very easily work. I did it several times today. Maybe it's my shitty trackpad.
+
+[Laura Fehre] 15:25:46
+Uh, something my partner is also constantly telling me that using a mouse would be better, and here we are. But yeah, you can very easily normally take the folder and drag it over into your make environment, and then you get all the components that you have created in your guideline files, also compositions, which is very important. So which layout, which pattern.
+
+[Laura Fehre] 15:26:11
+Um, then also the foundations, a setup, and here also my mapping file where I have mapped all the components from the human interface guidelines to the Redex design system. So I can tell the AI it shouldn't use Radix, it should always use the.
+
+[Laura Fehre] 15:26:32
+Apple design system. Okay, perfect. Let me switch back to my talk.
+
+[Laura Fehre] 15:26:39
+And then we later go back into the demo again.
+
+[Laura Fehre] 15:26:45
+There we go… There is the presentation. And here are we. So now we went through how to create those markdown files. I told you how you should best structure them.
+
+[Laura Fehre] 15:27:00
+And in an ideal scenario, you would also have seen how flawlessly and easy I pull my guidelines into my Figma make file.
+
+[Laura Fehre] 15:27:09
+Uh, so now that we have this, like, guidelines in Figma Make, uh, and we tell the AI to kind of like, don't use the next stuff, the next thing I wanted to do is obviously.
+
+[Laura Fehre] 15:27:24
+And now my presentation hangs. Oh, I love that. Why is this not working?
+
+[Laura Fehre] 15:27:34
+And nothing was not friends with me today, as you can see today. Let me try to click here forwards, backwards.
+
+[Laura Fehre] 15:27:43
+Hmm. Okay. I will try to restart my presentation, and then we will see if that works.
+
+[Laura Fehre] 15:27:50
+I quickly need to stop. Am I sharing?
+
+[Laura Fehre] 15:27:56
+And let me reopen that again.
+
+[Laura Fehre] 15:28:02
+There we go. And I was on… Yes, right, nothing can stop me.
+
+[Laura Fehre] 15:28:18
+There we go… Slide and… Share… Okay, here we go again.
+
+[Laura Fehre] 15:28:31
+Shreya, we know presentation. Next try. Great. Okay, let's continue. I'm already short on time and Hester so many slides, so I need to be a little bit faster. So after I created the guidelines, put them into Figma Make, everything worked super easily.
+
+[Laura Fehre] 15:28:52
+I obviously still need to create an NPM package. So I picked out all the components. I found in the community file, pulled them into one page in Figma because I thought, okay, this would make it easier because I already tried that a couple of times.
+
+[Laura Fehre] 15:29:11
+We're creating a react kit from some components I created. So I wrote all the components on a file, and then I took this link, went into planning mode in cursor.
+
+[Laura Fehre] 15:29:23
+And as Kosa to build me an MPM package, React-based, obviously, because it needs to work in Figma Make. And it did a pretty decent job, but the problem was, and this is so funny because I worked in design systems for such a long time.
+
+[Laura Fehre] 15:29:41
+As you all saw on the slide before, I made a super messy file. And if AI doesn't like something, then it's messy files. So what came out at the end was this really, really crappy code repository with inconsistent naming.
+
+[Laura Fehre] 15:29:58
+So I tried again and did a more structured file, and this then already, like, worked a little bit better.
+
+[Laura Fehre] 15:30:08
+Next time I should really put my presentation just in.
+
+[Laura Fehre] 15:30:14
+Just everything in a browser. Uh, but here you can see I skimmed down.
+
+[Laura Fehre] 15:30:23
+No, it didn't change my screen. I wanted to share. Here's Google Chrome. This is what I want to share. Perfect. So I made like a way like skim down a version of the design system, told the AI to create me a storybook. So from that storybook I then also could nicely.
+
+[Laura Fehre] 15:30:42
+create an NPM package. Uh, you can see here's the typography. We have the shadows, material, also fun fact, like liquid glass is really a pain in the ass. I love the effect, but doing it and using it yourself, uh, isn't that easy?
+
+[Laura Fehre] 15:30:59
+Um, but yeah, continuing this experiment, I won't give up, I tell you.
+
+[Laura Fehre] 15:31:05
+And let me go back to my… Tap. So, yeah.
+
+[Laura Fehre] 15:31:13
+went a little bit further, created an MPM package, still wasn't that nice, so I thought… What I actually want to show didn't work that smoothly. So I thought, let's go a little bit more into guidelines. And there are some techniques that you can use that are really good for, like, cross-cutting, like, techniques.
+
+[Laura Fehre] 15:31:35
+which makes guidelines significantly more effective regarding this which section they appear in, and also, like, how the AI is kind of, like, skimming through the documentation. We had that in the talk before when it comes to also token efficiency, it's very important to kind of, like.
+
+[Laura Fehre] 15:31:56
+get out all the errors and flaws. So there are a couple of techniques I prepared that you can… that you can use. Like, one is, like, usage frequency. As you can see here with the percentages I put behind the different spacings.
+
+[Laura Fehre] 15:32:10
+So when it comes to like documenting tokens or like annotating them, it's really helpful to have this like frequency data in like kind of like telling the AI in which percentage and when it should use those like specific spacings or typography. This obviously works.
+
+[Laura Fehre] 15:32:28
+for all your different, um, for all your different foundational elements in the design system.
+
+[Laura Fehre] 15:32:34
+Then I already touched on that alternative names, right? If you want to like map your naming to like default training data, like ChatCN, you might have a name that is not so common. I always have like this dive club video in my head where the Atlassian team is talking about the lozen component. I still don't know what that component is.
+
+[Laura Fehre] 15:32:57
+It would definitely be good to put it in the alternative naming. And then also kind of like curate. So agents really perform the worst when you give them too many options. So it's really good to, like, curate, like, how and when to use those things, and this can, like, really help to again like speed up agents and also.
+
+[Laura Fehre] 15:33:18
+Kind of like use less less tokens. Um, so then, actually, like, after I did some testing with like my npm package and the guidelines. I still wasn't 100% happy, and I think this is really true like the.
+
+[Laura Fehre] 15:33:39
+tool working, not with like native Swift code. You come kind of close, but as I'm also like in like hardcore Apple user, you know how the software feels, right? So it's kind of tricky to, like, really want to mimic that.
+
+[Laura Fehre] 15:33:54
+And just like from putting the package in and the guidelines, the outcome wasn't as nice as I can like hoped for. So what I actually did is kind of like went back to my origin and like recreated the Notes app.
+
+[Laura Fehre] 15:34:09
+With the components in Figma and put them this kind by myself into Figma Make and putting in the Figma components, plus having the guidelines and the package actually then came really close.
+
+[Laura Fehre] 15:34:26
+And let me again try to jump to a demo file and hope that I can get to my presentation back afterwards.
+
+[Laura Fehre] 15:34:37
+Uh, and there we go. Here we are, and let's switch. So here you can see, as I told you, right? Here's the mapping. Here are the components, and it comes kind of close. As you see, like the liquid glass is still not very well. The search is working. You can click on the notes.
+
+[Laura Fehre] 15:34:56
+You can write stuff. But it's not 100% Apple. You can also see like it has problems with the icons as like DSF Pro is using symbols instead of like icons. So like a lot of really like little things to, like, think about where I at the beginning was like, Oh, this must be so easy. Right? It's just like.
+
+[Laura Fehre] 15:35:18
+Scripts and markdown and like AI is like so powerful, but there's still things that is like struggling with, especially when it's kind of, like, cross-connecting languages.
+
+[Laura Fehre] 15:35:30
+This is really an experiment I want to continue, but like at the current point, I didn't reach like the quality bar, uh, I would love to reach with this. Um, but yeah, this is like a to be continued. Um… Let me switch back to my deck.
+
+[Laura Fehre] 15:35:48
+There we go. And I go back here. Where's my file?
+
+[Laura Fehre] 15:35:53
+Perfect. So now we've really talked a lot about like MPM markdown, and like how this all can support, and how amazing rules are. But.
+
+[Laura Fehre] 15:36:04
+I kind of like want to talk about like the small myth around rules as well. Right? There's like a growing belief that when you really write enough rules into a guideline file, you can control the outcome. But actually, you can't.
+
+[Laura Fehre] 15:36:19
+you could try, for example, this put your wizard and just speak in ancient prophecy in your guideline file, and then submit a very serious prompt that says something completely different. And in nearly 100% of the times the prompt will win. I know this is a silly example.
+
+[Laura Fehre] 15:36:38
+But I hope you can get what I want to say. Like rules are great. And again, if you work in design system, you might know, like you have all those design system guidelines, but if people don't follow them, they don't follow them. And it's kind of even the same with like machines.
+
+[Laura Fehre] 15:36:55
+So guidelines aren't laws, right? And that's really clarifying. There are context and the problems, their express intent, the document enriches the environment right? And the goal isn't cohesion.
+
+[Laura Fehre] 15:37:10
+clarity, right? That's all we want. We want clarity, and machines want this as well. And there's a difference between enforcing rules and creating literacy. And… It's so to make your system so well described, so well annotated, so well structured, structurally clear, that better decisions become the path to, like, least resistance, because… and we're going back to that analogy.
+
+[Laura Fehre] 15:37:38
+Uh, there is a, like, difference in between follow these rules, and here is what the system is, how it behaves, what matters, and what it looks, and it's, like, really to have in mind is, like, one to attempt control, and the other is to enable collaboration.
+
+[Laura Fehre] 15:37:58
+And this is really the part that kind of like changed how I think about design systems like most teams already have the knowledge they need. But it's really like scattered across like docs, Figma components, description, notion pages, rename it. And there's the.
+
+[Laura Fehre] 15:38:16
+and the opportunity isn't to, like, like, reinvent everything, like, have new AI primitives. It's really to enrich what already exists, like, when context is structured, then it really, like, compounds, right?
+
+[Laura Fehre] 15:38:31
+And and I think like this is like really important, like this, this clarity and hierarchy to like write down non goals and explain why decisions were made like link to source material. And it's really not like an AI area trick, right? Like.
+
+[Laura Fehre] 15:38:49
+It's a continuation of like a very old craft, and like everyone working in design system will know it, and it's like record keeping documentation, annotating and making meaning explicit. And the AI moment just makes it obvious that this work is like really like compounding.
+
+[Laura Fehre] 15:39:10
+And if, like all this kind of like markdown deep dive like still is not really sinking in, and you don't understand it understand it. This is like kind of like a tiny sky guide that you can follow. And I already like added it to the.
+
+[Laura Fehre] 15:39:27
+The board itself, like, keep your syntax simple, like markdown has a lot of, like, different dialects, and that's why there is a, like, a lot of, like, standardization effort, like common mark out there, but, like, this thing is, like, already a good little start point if everything else is, like.
+
+[Laura Fehre] 15:39:45
+still too much, like, I know how this can feel.
+
+[Laura Fehre] 15:39:50
+So it's really about, like, the smallest format that does the most, right? Like Markdown looks really minimal, and that's also really the point. Like, HTML build the web, we already said that. Yamla is configurates complex system, markdown lowers the barrier to structured thinking.
+
+[Laura Fehre] 15:40:08
+And all of the shared above has like one underlying belief, like meaning first, presentation second, like structure, structure makes collaboration possible. And that's also maybe the real love story here. Like, not markdown specifically, not.
+
+[Laura Fehre] 15:40:26
+AI specifically, but the quiet discipline of making your work legible, like plain text, clear intent, shared language. And from my side, like a lot of big feelings.
+
+[Laura Fehre] 15:40:41
+And personally, like, this is really… how it changed how I work, and also how I communicate. It really taught me to, like, stop saying, you know, what I mean to write things, how I actually mean them, which is kind of the whole relationship advice underlaying here.
+
+[Laura Fehre] 15:41:00
+So yeah, this is like a love letter, but just with headlines. And if you don't have enough of all this talk while I was getting closer to AI, I read a lot of like papers.
+
+[Laura Fehre] 15:41:15
+All the links you will find on the board, and I think it's really interesting to not just prompt, prompt, prompt, prompt all the time, but really to understand, like, how models are trained, what are their biases?
+
+[Laura Fehre] 15:41:31
+And so on and so forth. So if you have some time on the weekend, feel free to dig in those papers.
+
+[Laura Fehre] 15:41:39
+And with that, thank you for listening. I hope you enjoyed the talk. And yeah, can't wait to answer your questions and listen to the other talks.
+
+[Host] 15:41:51
+Thank you so much, Laura, and especially thank you for sharing also the papers.
+
+[Host] 15:41:59
+I think, uh, the most underrated part in our design world that the research of everything is the base of it.
+
+[Host] 15:42:07
+And we don't have to skip this. Thank you.
+
+[Laura Fehre] 15:42:11
+Yeah.
+
+[Host] 15:42:12
+Um, to wrap this up. From documentation to instruction is also.
+
+[Host] 15:42:18
+You're really hitting the headlines here. So maybe marketing is also a good field for you.
+
+[Host] 15:42:30
+and are you ready for some questions? Nice.
+
+[Laura Fehre] 15:42:33
+Yes, I know I went a little bit over time, so all the questions we can't answer now, I will write them all on the board.
+
+[Host] 15:42:36
+No, ever. It's it's fine. Yeah, okay, cool. But we have one one thing, and also also from my side. The illustrations are so fine. How did you make them make them?
+
+[Laura Fehre] 15:42:52
+Oh, with AI. I actually, in this article I also put on the board. There's a very great article from Wired about Markdown. And some of those articles.
+
+[Host] 15:43:05
+Hmm.
+
+[Laura Fehre] 15:43:09
+The one article I read had a graphic like this, and I was like, oh, I love that. So I took the graphics and then just, like, made a whole character out of it, and, like, yeah, created a bunch of different all that. Also happy to share the, um, and also so you know, I asked the illustrator who did the illustrations in the first place, if I can do that, so… Uh, this is not copywriting here.
+
+[Host] 15:43:20
+Oh, nice.
+
+[Host] 15:43:28
+Okay, that's… that's… that's a nice move. Yeah, okay. Nice. Okay, then the then the necronomic reference wasn't from you.
+
+[Host] 15:43:39
+It wasn't economical. Okay. I was nodding around about that one.
+
+[Laura Fehre] 15:43:40
+No, no, no.
+
+[Host] 15:43:47
+Okay, then let's focus on the questions, maybe. We have here one.
+
+[Host] 15:43:52
+Could you share some best practices of the structure for different guideline files?
+
+[Laura Fehre] 15:43:58
+I already put some on the board. I think I even put them on both boards. The the the whole structure I shared in the talk, and then also some on the I basically on all the.
+
+[Host] 15:44:02
+Nice. Yeah, cool.
+
+[Laura Fehre] 15:44:14
+things I touched on, I shared all the code snippets on the on the board. If there… Yes, you find everything there. I will also publish the talk so you can can have the deck. It will go to the Figma community. And if there are any specific guideline files you want to have questions on, just also put it on the board.
+
+[Host] 15:44:18
+Very cool. So they find everything there. Nice.
+
+[Host] 15:44:36
+Yes.
+
+[Laura Fehre] 15:44:37
+Maybe what is the last thing to add there is a guideline versus skills. So that's also going a little back to the talk up front. When you use guidelines, they're always load right when you you hit a prompt, because the AI will go through all the documents.
+
+[Laura Fehre] 15:44:59
+Where by skills, it's just loaded once. So if you kind of like interop them in a nice way that you can also, like, save some loading time and and credits if you, yeah, just inject some of the guidelines that are important into skill.
+
+[Laura Fehre] 15:45:12
+That can also help.
+
+[Host] 15:45:17
+Um. Maybe one thing, because this is the most upvoted question here.
+
+[Laura Fehre] 15:45:22
+Yeah.
+
+[Host] 15:45:23
+We have five minutes left, so… How do you avoid duplication between Markdown docs and the repo and your design system website? What's your source of truth strategy here?
+
+[Laura Fehre] 15:45:39
+So personally, because I worked for such a long time in product before like Figma is that for me, code is always the source of truth, because at the end, no matter which product you build, what is what ends at the end the end user's hands is.
+
+[Laura Fehre] 15:45:56
+what is valid, right? Like no matter how much I love design systems and Figma like at the end with a product. It's always about the user. So that's also your source of truth. So I think I also with like TJ's MCP, right? There is like some great exploration around how you can also, if you already have.
+
+[Host] 15:45:57
+Yeah.
+
+[Host] 15:46:06
+Yes.
+
+[Laura Fehre] 15:46:19
+your design system in a code repository, but not in Figma, or you're about to get it ready for AI that you can actually kind of like rebuild your design system from, for example, storybook into Figma, because sometimes it's also easier to do those things first in code, right? Get your design system ready in code, and then bring this back into.
+
+[Host] 15:46:38
+Yeah.
+
+[Laura Fehre] 15:46:40
+into Figma also like Nathan Curtis did a great plugin for like metadata enrichment, which is also really amazing. So yeah, also, I think it always depends on where you feel the most comfortable, right? That's also a thing about prototyping.
+
+[Host] 15:46:49
+Hmm.
+
+[Laura Fehre] 15:46:57
+I had a great conversation with Lufthansa on Wednesday, where they were talking about, yeah, we use like prototyping a lot like AI powered prototyping a lot, but they're still also build prototypes with like variables.
+
+[Laura Fehre] 15:47:12
+And like logic. And sometimes they still do prototypes on paper, right? And I think this is something we really… I said at the beginning, shouldn't, like, lose, right? Like, we shouldn't give all the power to AI. Wherever AI can help and automate, like, all around, like, pipeline, right? Updating of components, tokens, all those things.
+
+[Host] 15:47:14
+Okay. Yeah.
+
+[Host] 15:47:23
+Yes.
+
+[Laura Fehre] 15:47:32
+I think there we should really leverage it. But like being a designer and.
+
+[Laura Fehre] 15:47:39
+at heart, a true problem solver, right? That's what we all are problem solvers. We shouldn't give that to AI right? I saw that in my thought experiment. I was like, Oh, I start with AI. Ai can do all the work. And at one point I was like, Okay, fuck, I should go back to my Figma canvas and design it. And with the design itself, it actually worked better.
+
+[Host] 15:47:41
+Yes.
+
+[Host] 15:47:46
+For sure.
+
+[Host] 15:47:52
+Yeah.
+
+[Host] 15:47:56
+Yep.
+
+[Laura Fehre] 15:48:00
+Um, so we shouldn't get blinded by all the the AI hype. There's still a lot of work that we have to do, which is problem solving.
+
+[Host] 15:48:01
+Yeah.
+
+[Host] 15:48:06
+Hmm. We can get faster to validation, but we also… an experiment can also be just a math experiment or so, so… Um, and then.
+
+[Laura Fehre] 15:48:16
+Yeah.
+
+[Host] 15:48:20
+To sum this up here, I think we also have here a big thank you for maintaining the essence of a designer, and I think that's exactly the point.
+
+[Host] 15:48:29
+Um, somebody's waving like, hello. Um, on the fake jamboard, sorry.
+
+[Host] 15:48:35
+Okay, but thank you so much for this. Also, again, so much great questions, so less time.
+
+[Host] 15:48:44
+Laura will answer them. Hopefully all. And yeah, see you. See you after the break. Now we see us at 20th, no, 2030.
+
+[Laura Fehre] 15:48:49
+Yeah.
+
+[Laura Fehre] 15:48:57
+Can't wait for Davey's talk.
+
+[Host] 15:48:59
+Yeah, me neither. And also, I'm a big Atlassian user, so I'm always happy to see how.
+
+[Laura Fehre] 15:49:03
+I'm such a Jira hardcore, uh, so…
+
+[Host] 15:49:06
+Me too. Me too. Okay, folks, then catch a snack, catch a break, drink something. It's important to stay hydrated.
+
+[Host] 15:49:16
+And we see you at 9:30. Bye!
+
+[Laura Fehre] 15:49:20
+Bye!

@@ -1,0 +1,799 @@
+
+[Jesse Gardner] 18:30:32
+We have, like, the second. Jesse, you're here, right? I am here.
+
+[Host] 18:30:39
+So I'll keep my introduction short. Jesse is from New York State. I'll add you to the spotlight. Here you are on the stage. Awesome. Hello, hello.
+
+[Jesse Gardner] 18:30:40
+I'll keep my introduction short. Jesse from New York State, I'll add you to the spotlight. Here you are on the stage. Awesome. Hello, hello.
+
+[Host] 18:30:50
+How are you feeling? You're prepared for everything?
+
+[Jesse Gardner] 18:30:51
+How are you feeling? You're prepared for everything? I am, yeah. You can keep track of how late it is, the window behind me, so… Okay, cool. Then I'll just hand it over to you.
+
+[Host] 18:30:58
+Awesome. Okay, cool. Then I'll just hand it over to you. And I hope you enjoy the session.
+
+[Jesse Gardner] 18:31:06
+Excellent. Let me share my screen.
+
+[Host] 18:31:09
+Yes.
+
+[Host] 18:31:29
+It's starting to come. Perfect. Yeah, visible.
+
+[Jesse Gardner] 18:31:30
+All right. Can everybody see it?
+
+[Host] 18:31:34
+Yes, take it away.
+
+[Jesse Gardner] 18:31:35
+Take it away. Excellent. Okay. All right, well, I am really excited to be here today.
+
+[Jesse Gardner] 18:31:45
+My name is Jesse Gardner. I work for New York State's Office of Information Technology Systems, and I am the director of accessibility and Design Systems, so I oversee our central accessibility team.
+
+[Jesse Gardner] 18:32:01
+As well as our. New York State design system team, both of which are relatively new. I have been at state service for about 3 years. Before that, I was in the tech industry. Um… This is a vibe coding conference, and so I'd like to show you a few things that I vibe coded with AI.
+
+[Jesse Gardner] 18:32:22
+Uh, so just to jump right into it, first of all, let's take a PDF and convert it to a web application. So, this right here is a publicly available PDF, um, from New York State's Office of Children and Family Services. It's a 5-page foster-adoptive parent.
+
+[Jesse Gardner] 18:32:39
+application. I fed it into Claude code. I gave it this prompt, read the PDF from this folder and create a PRD product requirements document for a multi-step front end application. Use the New York State design system, build with Vite and TypeScript, write the PRD to claude PRD.md.
+
+[Jesse Gardner] 18:32:57
+break up the tasks into a step-by-step list. Before you start, ask any clarifying questions to do this well.
+
+[Jesse Gardner] 18:33:05
+And… so I put that prompt in. And the output was, um, pretty impressive. Essentially, this is a kind of sped-up version of it, because I didn't want to have to have you sit through it. It came back initially with some good questions, you know, how do we break up the pages? How do we handle questions that, uh, allow multiple answers? Should we use local storage?
+
+[Jesse Gardner] 18:33:27
+to save and continue to… for, like, a save and continue functionality. Um, but then it went and started querying our design system MCP server. You can see there's, like, eight steps there that it went through and build that out. Pulled in our design system components, our validation patterns, our tokens, our layout utility classes.
+
+[Jesse Gardner] 18:33:45
+And, um, you know, the output was pretty good. Um, it took about 13 minutes, and it had created this. And as you can see, the layout isn't quite right. Um, I actually discovered that our documentation for setting up the layout for our stepper component really wasn't clear enough, but, you know.
+
+[Jesse Gardner] 18:34:01
+Not bad for something that would probably take days or weeks.
+
+[Jesse Gardner] 18:34:06
+And, uh, just a few minutes, I had gone from, you know, a complex, multi-page PDF into… a finished form. Um… As a matter of fact, what I'll do is, uh, you can actually explore this if you want to. I'm a big fan of letting people play around, so I'm gonna drop this into the chat. This is, um…
+
+[Jesse Gardner] 18:34:30
+We're a big fan of working transparently. Alright, demo number two.
+
+[Jesse Gardner] 18:34:36
+interaction patterns at scale. So, we actually just passed our one-year anniversary of the launch of the design system. Uh, we launched it at the end of February last year, and since then, we've kind of reached a critical mass on our components.
+
+[Jesse Gardner] 18:34:51
+Uh, we decided that this year was going to be the year of the patterns. Um, we do a lot of curation on our team, and a lot of, like, comparative research, too, when we build out our components. But one of the things that I really wanted to do was to audition our design system components.
+
+[Jesse Gardner] 18:35:07
+in all sorts of different contexts that they might appear. So, I put this prompt into code. I said, you know, based on everything you know about New York State websites and applications, create a list of the most common service patterns and interaction patterns. And I defined it for Claude, and I said, by service patterns, I mean end-to-end user workflows.
+
+[Jesse Gardner] 18:35:27
+that span multiple steps or pages and describe how a service is delivered over time. They define sequence decision points, states, etc.
+
+[Jesse Gardner] 18:35:36
+Again, this was very, uh… This is just how our team defines it. I also define interaction patterns because that was what I was most interested in. I said, you know, reusable page level solutions to a single user task. They define what happens on one screen, the fields controls validation, and UX writing needed.
+
+[Jesse Gardner] 18:35:55
+to complete that, uh, discrete action. And so it went through that and it generated, sure enough, a list of 40 interaction patterns. A lot of them are really pretty valuable and things that are… really, uh, interesting for us in terms of how they might be used across the state. And so then I added another prompt, which was, basically, build this out. Um, you know, build it out so that we can review it. Use the design system, use existing design system components wherever you can.
+
+[Jesse Gardner] 18:36:27
+When you can't build out new components, using the appropriate design system tokens and utility classes, and then, this is important, perform a gap analysis that documents everything new that was created.
+
+[Jesse Gardner] 18:36:43
+And so, it went through, and it did that. It actually, um, you know, you can kind of see here, it created 40 of those patterns, each on their own individual, uh, page.
+
+[Jesse Gardner] 18:36:55
+Um, and so, you know, it's really, really helpful to kind of see each of these things. It put in some usage guidance, you can see some of these useful patterns, like a household member. We don't have a repeater like that as a component currently, and so being able to see something like that using our design system tokens and components.
+
+[Jesse Gardner] 18:37:15
+was really, uh, helpful. And, um, so this is, you know, what it, what it created. And so then, using our components and tokens, I asked it to use Playwright to take a screenshot of each pattern at both desktop and mobile sizes, and I dropped them into a big fig jam.
+
+[Jesse Gardner] 18:37:33
+And I had our team swarm it so that they could review it and comment on it, and weigh in in terms of what our priorities needed to be in terms of what we're going to build. And if you're curious, here's that gap analysis.
+
+[Jesse Gardner] 18:37:48
+In order to take a look at that. As a matter of fact, let me share the link to that as well, so you can look at it and play around and not… You can do two things, right? You can pay attention as well as clicking around.
+
+[Jesse Gardner] 18:38:00
+So again, really helpful way to audition the components. We learned all sorts of things, like the select, the height of the select didn't match the height of the input fields, and didn't really notice that until they were sitting side by side. So… awesome, right? Like, and this is cool!
+
+[Jesse Gardner] 18:38:16
+I think it's cool. Uh, I wouldn't be talking about it here if I didn't think it was cool.
+
+[Jesse Gardner] 18:38:22
+But, I want to take a minute, because I feel like I need to say this, especially if you work at a large organization.
+
+[Jesse Gardner] 18:38:31
+Is this good? So, you know, I work for New York State, and part of my job is to make sure that everyone is able to access the services that they're entitled to use, um.
+
+[Jesse Gardner] 18:38:46
+with the digital services that we build. I want to make sure that people are able to get access to the services that they're entitled to. So, Cool really isn't enough. Um, we have to ask questions like, how do we know that the output?
+
+[Jesse Gardner] 18:39:01
+that you just saw is accessible. How do we know that those patterns are the ones that our residents need? How do we know that it's actually helping residents achieve the outcomes that they're trying to achieve?
+
+[Jesse Gardner] 18:39:15
+How do you know that it just didn't produce the most probable answer instead of the correct one?
+
+[Jesse Gardner] 18:39:22
+I want to step back for a moment and just kind of give you a little context. Um, I feel like, uh… there… I want to kind of reflect a little bit on sort of the civic sphere for just a moment.
+
+[Jesse Gardner] 18:39:34
+When we started out our design system team a little over a year ago, we visited a few dozen New York State websites and applications, and we found basically as many buttons.
+
+[Jesse Gardner] 18:39:48
+with different fonts, different colors, different styles, different behaviors. And so, you know, how does this happen? If you've worked in a large organization, you know the answer to that question. This kind of fragmentation usually happens when you've got.
+
+[Jesse Gardner] 18:40:02
+different teams that are solving the same problems over and over again, but they're kind of doing it in the narrow context of their own business problems or, you know, their own limited time, their limited expertise, their limited capacity, their limited budget.
+
+[Jesse Gardner] 18:40:18
+And so, um, you know, that's how you see fragmentation get introduced into, uh… a large set of digital services like this. Now, I want you to think for just a moment, like, each of those buttons took time to design, to code, to test. Even if it's just one day of combined work per button, if you multiply that out, that's…
+
+[Jesse Gardner] 18:40:42
+almost a month of time spent on just one component. And now, if you multiply that for every form element, every platform, every agency, every digital service, and, you know, I didn't even mention what the experience is for people with native screen readers, where those buttons accessible?
+
+[Jesse Gardner] 18:40:59
+Hard to tell when you're looking at a Figma slide.
+
+[Jesse Gardner] 18:41:02
+And so, as you can see, what happens is this fragmentation ends up adding up in all different domains, and it creates tech debt, it creates design debt, and ultimately, at the end of the day, it creates a fragmented experience for users. Nobody's, uh, nobody intends for that, but it's accretion, it just builds up over time.
+
+[Jesse Gardner] 18:41:22
+Now, pause for a moment and let's say… adding AI to the mix.
+
+[Jesse Gardner] 18:41:29
+So, you know, think about it this way. Every time you spin up a new AI chat, think of it like hiring a new contractor, right? I heard some folks mentioning similar analogies before. If you don't tell the contractor how you expect them to do the work.
+
+[Jesse Gardner] 18:41:44
+you're gonna get whatever is most probable. They're gonna take a guess at it. And AI is the median. It's sort of like the average of the internet. And so is what it creates going to help your users goals?
+
+[Jesse Gardner] 18:42:00
+Maybe, maybe not. Is it in line with your organization's, uh, brand standards? Maybe. Maybe not. Uh, is it in line with your organization's engineering standards? Maybe? Maybe not?
+
+[Jesse Gardner] 18:42:15
+Will it provide your users a safe experience? Maybe? Maybe not?
+
+[Jesse Gardner] 18:42:19
+If those are things that you care about, you probably don't want to leave it up to just probability. And so, to be clear, the output doesn't collapse down into chaos. You're not getting a mess. It ends up collapsing towards the average of the internet. That's why, if you say, build me a web application.
+
+[Jesse Gardner] 18:42:37
+Most likely, you're gonna get Tailwind and React, right? The most common patterns, not inherently wrong. As a matter of fact, if you're just doing vibe coding for something that, you know, you're doing personally, that's totally fine, likely, unless you're opinionated about that sort of thing.
+
+[Jesse Gardner] 18:42:53
+It's really just what's most common across everything that the model has been trained on. And so, that problem that I mentioned before, that fragmentation that happens when different teams solve the different problems over and over again in their narrow context.
+
+[Jesse Gardner] 18:43:09
+AI doesn't fix that problem. In fact, I would argue that AI actually compounds the problem, or threatens to compound the problem in two important ways. The first is speed. So, AI can generate a lot.
+
+[Jesse Gardner] 18:43:24
+And we have probably generated our fair share of code using AI. And if it's not given the appropriate context.
+
+[Jesse Gardner] 18:43:35
+And even if it is, sometimes it's really hard to keep up. I'm sure I'm not the only person who has experienced AIDR before, right?
+
+[Jesse Gardner] 18:43:43
+Um, so, speed is one of the ways in which you, um, this threatens to compound the problem. And then secondly is access. Now, this is a two-edged sword a little bit, because on the one hand, access is empowering, and I get so excited.
+
+[Jesse Gardner] 18:44:00
+you know, to see Freya and all of, like, she's shipping code, that's amazing.
+
+[Jesse Gardner] 18:44:05
+Um, but I'm also reminded a little bit, I came across this post about wireframing on LinkedIn by Ben Snyder, the senior director of design service now or design at ServiceNow. So, um, there was a lot of interesting comments about wireframing, but one comment in particular.
+
+[Jesse Gardner] 18:44:22
+was Chris Haas, he… one little part of this, he said, um… talking about how PM's vibe coding ideas sometimes bypass design and get approved by leadership being a real struggle, right? And so it's really interesting to face that. And so, the same sort of empowerment that vibe coding brings can come with its own challenges in an organization that's trying to enforce standards.
+
+[Jesse Gardner] 18:44:50
+When leadership might catch a vision, and then want to skip design review. Now, again, put yourself in any discipline and think about what it's like to skip design, to skip accessibility, to skip the engineering review. No one who is an expert in any of those fields wants that to happen, because.
+
+[Jesse Gardner] 18:45:08
+They want to make sure that what's being shipped out to users is something that's actually going to fit those things.
+
+[Jesse Gardner] 18:45:16
+So, the question isn't whether or not AI can generate interfaces, it totally can. And the question really comes down to what infrastructure makes that output good or trustworthy. Now, I've been listening to all of the talks and they've been fantastic, and a lot of people have talked about different ways to provide context.
+
+[Jesse Gardner] 18:45:37
+context in terms of code bases, context in terms of agents, context in terms of skills, context in terms of MCP servers and plugins. There's a lot of different ways in which context is provided, but this is the bulk of my talk today. I really want to talk about.
+
+[Jesse Gardner] 18:45:55
+how we provide context to ensure that we have repeatable, reliable outputs by our AI.
+
+[Jesse Gardner] 18:46:05
+So how do we do that in New York State? Well, I want to start off just talking about a design system. This is, after all, in two design systems. Uh, so, our design system isn't just one accessible tool. It really is a collection of tools.
+
+[Jesse Gardner] 18:46:20
+that are connected, that help teams build inclusive experiences for New York State. Um, it's this collection of components, accessibility standards, usage guidelines that help teams quickly build out usable, mobile-friendly web applications and sites.
+
+[Jesse Gardner] 18:46:36
+Um, the connected tools kind of show up in three important ways. First of all, we have a code component library that we've built.
+
+[Jesse Gardner] 18:46:45
+a series of web components built on Lit and TypeScript. Then we have a design prototyping library in Figma that actually has parity with the props and our tokens, um, with what exists inside of code.
+
+[Jesse Gardner] 18:47:01
+So that when our engineers are building out components, they work very closely with our designers to make sure that the design intent is rendered out into those code components. And that intent is going to come back in just a moment. It's very important. And then this is all documented on our New York State.
+
+[Jesse Gardner] 18:47:18
+design system, uh, reference site, which I will share that in the chat right now.
+
+[Jesse Gardner] 18:47:24
+I don't know who said sprite sheets, but… Um, okay. So those are our three pillars. There are some benefits here. I just… I don't want to belabor this point, but I just want to mention the value of using the design system is that there's consistency. And I don't mean visual.
+
+[Jesse Gardner] 18:47:43
+consistency. I don't just mean visual consistency. I mean all of the things that were mentioned earlier. You know, the consistency in terms of the engineering approach, consistency in terms of the accessibility standards, consistency in terms of layout.
+
+[Jesse Gardner] 18:47:59
+So there's a lot that is valuable in terms of the design system and the consistency that comes from that. Again, you can hire a really smart contractor to build you something great.
+
+[Jesse Gardner] 18:48:10
+But as soon as they're gone, who ends up supporting this? This is something that happens at the state that can be challenging, will bring a vendor in, they'll build something out for us, and then they'll leave, and there's no one who really understands that. You don't really have a product owner. They, you know, it was written in a code base that we don't really have any expertise at, and we're trying to hire somebody.
+
+[Jesse Gardner] 18:48:28
+And so what ends up happening is there's no one who can really own that. And so part of what we do with this consistency is having good documentation, having clear sets of engineering and design standards, that can be really an incredibly powerful.
+
+[Jesse Gardner] 18:48:45
+thing for engineering for an organization going forward. And I'll talk about that context in just a bit.
+
+[Jesse Gardner] 18:48:53
+Another thing, too, is the connectedness. So, when you think about AI generating, you know, custom code from scratch, the code is frozen the moment that it ships, generally speaking. And so if, you know, a team ships out dark mode six months later.
+
+[Jesse Gardner] 18:49:11
+you… unless it's built with those series of connected tokens, you're gonna end up having to do a lot of retrofitting. And one thing that you'll find is that, uh.
+
+[Jesse Gardner] 18:49:20
+crawling through a bunch of code in order to make revisions and changes can be pretty costly from a token perspective. Uh, if we end up rolling out an accessibility fix.
+
+[Jesse Gardner] 18:49:32
+teams would need to either reference an AI or patch that themselves. And so, when AI uses design system components, every product ends up staying connected to the source. And so this is just an example of one of the ways that we.
+
+[Jesse Gardner] 18:49:48
+all of our components are built using those tokens, which again, might be preaching to the choir here.
+
+[Jesse Gardner] 18:49:54
+But if we, again, extend dark mode, every team gets it. Uh, if we fix an accessibility issue, that fix can flow everywhere. When we migrate a pattern, we can ship out a code mod.
+
+[Jesse Gardner] 18:50:07
+And then finally, there's accessibility. And this is an interesting one because, you know, we test our components with native screen reader users. And that's not something that's just like a checkbox exercise. That's actually saying, what is a great experience for somebody who uses a screen reader? What does that look like? Not just, did we pass WCAG?
+
+[Jesse Gardner] 18:50:27
+Right? And so, we end up building our components with accessibility in mind, and an example of this is that, you know, we've been doing the accessibility team has been testing common… some of the most, like, publicly trafficked.
+
+[Jesse Gardner] 18:50:45
+workflows across the state, and I think we're up over almost 2,000 pages that we've tested. Um, and one of the things that we find over and over again, one of the most common issues, is that an input field is not connected with its label.
+
+[Jesse Gardner] 18:51:00
+And so what happens is a screen reader user will land on an input field, and it will just say, text field. And you don't know if it's your social security number or email address. And so what ends up happening is, we just said, why don't we bake in our label into that, and so we can handle.
+
+[Jesse Gardner] 18:51:16
+the associations under the hood, because that seems to be the biggest problem.
+
+[Jesse Gardner] 18:51:20
+So we baked in a lot of accessibility under the hood. There's a little thing I just want to mention here, too, that's interesting is we struggle sometimes because teams will say, oh, yeah, yeah, we used your tokens, and that's it.
+
+[Jesse Gardner] 18:51:33
+But they don't get the benefit of the components that we've built out. Sometimes that's legitimate, you know, legacy systems, there may not, you know, there might not be budget, or it might just be too much to actually change that, but, um… building in the accessibility is an important part of the work that we do.
+
+[Jesse Gardner] 18:51:53
+So, just to kind of put a cap on it, you know, one of the things that I see is, you know, teams that are leaning too heavily on the generative part of AI, which ends up resulting in a lot of guessing. And so it kind of moves it over to the randomness side, to the stochastic side of things.
+
+[Jesse Gardner] 18:52:12
+And what we do, and what we're trying to do is human-directed code mapping. So we actually test out our components so that when we give AI something, we can say we've tested this for accessibility, we have it, it lines up with our engineering standards.
+
+[Jesse Gardner] 18:52:28
+And so what happens is, it's doing more assembling. There's some sort of stochastic guessing that's happening there, some generative work that's happening there, but there's a lot more assembling of our code that we've already put together and been really thoughtful.
+
+[Jesse Gardner] 18:52:46
+thoughtful about how we built that. So let's talk really quickly about MCP, and I wanted to share briefly just the architecture of how we've set this up. This has been a point of confusion, I think, for a number of folks. Some folks tend to wonder, like, what's the difference between Figma's MCP server and maybe, like, a custom MCP server for a design system?
+
+[Jesse Gardner] 18:53:11
+And there's a little bit of, like, question about that. And so I'm going to kind of walk you through the two different paths that we've set up. On the one hand, we actually have the design side. And what we've done is we've actually built.
+
+[Jesse Gardner] 18:53:27
+Code components that have parity with what you see on the design side of things. And so these aren't competing paths. If a designer creates a comp in Figma, engineers can actually point to the Figma MCP server and get code snippets back. If an engineer who maybe.
+
+[Jesse Gardner] 18:53:43
+you know, we have a lot more engineers than we do designers at the state, so if an engineer is building directly from, um, from requirements or from policy, they can use the New York State design system, and we baked in those, uh.
+
+[Jesse Gardner] 18:53:59
+design guidance into that MCP server. So, one of the ways that we've handled our Figma MCP server is we use something called CodeConnect, and some of you may be familiar with it, but in a nutshell, what we do is we actually take, in our code base, we actually map.
+
+[Jesse Gardner] 18:54:17
+the props that exist inside of Figma to their counterpart in our code. And so you can see we have each one of those things are mapped over so that when a designer.
+
+[Jesse Gardner] 18:54:32
+ends up putting something into Figma, what ends up happening is the MCP server will actually not just guess, it's actually returning code that is very much in line with the way that.
+
+[Jesse Gardner] 18:54:48
+are used. specifically for developers, but got kind of lucky that, you know, we're building this out middle of last year, and along came the MCP server, and it really allowed us to tap into, uh, as kind of a first pass.
+
+[Jesse Gardner] 18:55:06
+Figma's MCP server. And so, the way that that works under the hood is somebody prompts, and Claude Code basically says, oh, get the code snippets from Figma's MCP server. You give it a Figma URL, it ends up returning back things like, oh, here's the button that appears in that frame, and here's the text area and the text input, and it actually kind of fills in the blanks.
+
+[Jesse Gardner] 18:55:29
+and it returns that back. So there's, like, less generative work that needs to happen, and it's passing in those kind of full working code blocks to AI, which ends up reducing the amount of work that needs to be done. And a good way to think about this is that it's almost like a mail merge.
+
+[Jesse Gardner] 18:55:44
+Developers set up those fields, designers enter the data, and Figma just runs the merge and hands it off to AI. So that's one way that you can give useful context to a code generation.
+
+[Jesse Gardner] 18:56:00
+The other thing I want to talk about is the engineering side of this. Now, um… This is… this is interesting because, uh, I… I wanna… there's more to be said. Um, some of you know TJ, um, Petrie, I believe he's gonna be speaking, uh, tomorrow.
+
+[Jesse Gardner] 18:56:18
+he has some fantastic plugins, Figma Lint, Figma Console MCP, that actually kind of bridge these two, and so there's a lot of interesting things. I don't have time to go into depth about that, but I'm going to focus today specifically on the, um, on the MCP server.
+
+[Jesse Gardner] 18:56:35
+So… The way that our MCP server works, again under the hood to kind of follow it all the way through, is that you give a prompt to, you know, an LLM, like Claude Code, and it will actually.
+
+[Jesse Gardner] 18:56:50
+see what tools that we have available, like get components or get tokens, and then it will return the structured documentation back to Claude Code, and then it can say, oh, I'm going to use a button. Here are the attributes that are available.
+
+[Jesse Gardner] 18:57:06
+And it sends that off in order to do the work that it needs to do.
+
+[Jesse Gardner] 18:57:11
+And so, uh, to kind of show you what this… how this works in really, really, like, nitty-gritty detail, take a look at our NYS button. So this is in our New York State design system. This is open source. You can actually go check this out on our GitHub repository.
+
+[Jesse Gardner] 18:57:28
+But we document inside of our code, we have all of our component properties. We have things like our summary, we have tag name, props, attributes, things like that.
+
+[Jesse Gardner] 18:57:40
+Um, but one of the things I want to just point out is all of those asterisks and those at signs that you see in the code right there. This right here is a format called JSDoc, and basically it's a way for developers to document in a structured way, everything about the components. All those things that I mentioned.
+
+[Jesse Gardner] 18:57:56
+But it doesn't just list, like, the code, it includes usage guidance here. So if you're gonna have a primary action on the page, use the filled variant. If you're going to have a secondary action, use outline. And so it gives some guidance there.
+
+[Jesse Gardner] 18:58:12
+for an LLM. Now, that guidance can also be applied to an engineer, right? The guidance helps a human developer, but it can also act as a constraint for an AI as well. And this is guidance that our design team actually came up with.
+
+[Jesse Gardner] 18:58:28
+And, uh, so you can see it here on our design system reference site. The guidance is useful for both humans and for AI.
+
+[Jesse Gardner] 18:58:36
+And again, that documentation didn't happen by accident. It's a product of engineers, of accessibility specialists, of designers all working together. Designers deciding when to use what, engineers making those decisions machine readable, accessibility specialists testing those out and making sure that it's a good experience for all users.
+
+[Jesse Gardner] 18:58:58
+And, you know, it's not just components. We do this for our tokens as well. One of the things that we did was we used to have CSS variables, but when the design token standard came out, we ended up just using Claude code. Hey, help us convert our CSS variables.
+
+[Jesse Gardner] 18:59:16
+over into that DTCG standard. Um, and then we put some usage guidance along with that, so it's not just a color.
+
+[Host] 18:59:38
+Jesse, did we lose you? You're still there? Okay, it's not only me.
+
+[Host] 18:59:45
+I hope he comes back. Let's give him a second.
+
+[Host] 18:59:57
+Oh, oh, oh. Jump in a bit.
+
+[Host] 19:00:05
+So what can we see here? Who wants to analyze? What are all the cool tools that you guys spoke about?
+
+[Host] 19:00:10
+I saw sprite sheets. I saw Quark Express. I saw all the old stuff. Icq. I mean like I don't know, like, who went through Wikipedia of old like legacy software we all used.
+
+[Host] 19:00:24
+But like, yeah. anything going on. Oh, man, I hope Jesse comes back.
+
+[Host] 19:00:31
+Stuff crashed. And there is Jesse. Let me add him again to the spotlight.
+
+[Host] 19:00:38
+Are you back? Awesome. I was just like taking over the old applications.
+
+[Jesse Gardner] 19:00:39
+Are you back? I am back. Also, I was just, like, taking over the old applications.
+
+[Jesse Gardner] 19:00:47
+Oh, my apologies. this, uh, this talk brought to you by Spectrum Internet. Thank you. Okay. Let me share my screen. Yes, I'll share that again.
+
+[Host] 19:00:50
+all good things happen.
+
+[Host] 19:00:56
+Your screen sharing is not on. Let's get that on, and then we can continue sync. Yeah. Oh, there's Adobe Fireworks like Dreamweaver. Oh, such good memories.
+
+[Jesse Gardner] 19:01:02
+Alright.
+
+[Host] 19:01:09
+See, everything works again.
+
+[Jesse Gardner] 19:01:14
+All right. Okay, great. Thank you. Okay. So, to kind of pick up where I left off, you know, we, um, you know, all of this stuff is, is… we do the same thing with our tokens as we do with our components. This ends up just being, you know, guidance that we have a governance process for. Um, what… one of the things I wanted to point out, too, is that the way that we're doing this is we have all of that rich documentation in our code base.
+
+[Host] 19:01:15
+Yes, you're back on. Perfect
+
+[Jesse Gardner] 19:01:49
+And we're actually pulling that out and developing a custom element manifest. And that feeds directly into the MCP server. And so we've set up tools like find components that provides a list of all the components that are very succinct.
+
+[Jesse Gardner] 19:02:06
+And, um, then you can hit a specific endpoint and say, give me the properties that I need to use in order to use this component the right way.
+
+[Jesse Gardner] 19:02:16
+Now, you can technically just point your AI at a code base directly, but, you know, we actually ran some numbers here, and we found that if you just pointed at.
+
+[Jesse Gardner] 19:02:26
+the raw custom elements, like, from, you know, from the code base, and it ends up being, like, 50,000 to 80,000 tokens, which can fill up your context window. And so, by using the MCP server, we drastically reduce the number of, um.
+
+[Jesse Gardner] 19:02:43
+context and tokens that are being used, which has been really helpful for our team.
+
+[Jesse Gardner] 19:02:50
+Um. Alright, I wanna… I wanna wrap things up here, and I just wanna revisit those initial projects that I mentioned here. So, I want to go back and kind of see where it holds up and see where the hard work still lives. So, looking back at this adoptive parent application, you know, I turned a five-page PDF into a working form in an afternoon.
+
+[Jesse Gardner] 19:03:10
+But, when you look closer, you know, the hard part of this work, I don't know if you can tell, but there's, like, a little thing here that says, please complete OCFS 5183D medical report and the safety review form. So, it references those things.
+
+[Jesse Gardner] 19:03:26
+Do we need to incorporate those requirements here? Do we need to link out to them? Do we need to build them into, like, one unified flow? And so, you know, the AI can assemble the interface, and it did a pretty good job of it, but the policy requirements, the business logic, they aren't.
+
+[Jesse Gardner] 19:03:42
+evident in the PDF. They have, you know, their institutional knowledge, so we ended up needing to meet with the teams that know the answers to those questions. And so, there is still human work that needs to be done, and it's that work that actually determines whether or not the form will work.
+
+[Jesse Gardner] 19:03:59
+for people, uh, in production. And then going back to that interaction pattern grid, you know, this is… this has been really helpful, uh, you know, that gap analysis was great for us, but I still think about that question. Are these patterns good? Can users make sense of them? Are they accessible?
+
+[Jesse Gardner] 19:04:17
+without designers reviewing these things, we could end up right back to the fragmented experience that I mentioned before, you know, solving the same interaction 40 different ways.
+
+[Jesse Gardner] 19:04:27
+And so, variety here isn't necessarily governance. It's the same compounding problem that we could run into previously. So design review is an important part of the work, because it isn't, you know, design isn't just drawing screens. It's about understanding needs, refining, testing.
+
+[Jesse Gardner] 19:04:44
+And importantly, standardizing around patterns that have been proven. And so, you know, you look at a big list of patterns, and you say, what works, what doesn't, what's canonical? These parts are required, these parts are flexible, here are the key considerations.
+
+[Jesse Gardner] 19:04:59
+and then finding structured way to communicate that, both to human engineers and to AI. And so, you know, we're looking at ways to include the pattern guidance in our documentation and our MCP server. We're not there yet, but this is the year of patterns.
+
+[Jesse Gardner] 19:05:13
+Some of you have lived through this shift before. Uh, some of you are old enough to remember this image.
+
+[Jesse Gardner] 19:05:21
+I remember when one of my web design clients said to me, I just want a comp. And I said, what screen size? And I had to, you know, fetch Google Analytics of the screen sizes to let them know that the screen size you're asking for is, like, 18% of your traffic, 75% of your traffic is mobile.
+
+[Jesse Gardner] 19:05:41
+Um, so again, it's… the shift from static to responsive design was hard, especially if you were a print designer and you weren't used to that. And so, a big part of the job became defining layouts, behaviors, rules.
+
+[Jesse Gardner] 19:05:55
+How do things change across viewports? And so I think AI continues that shift. The job moves further away from like a single ideal screen and closer to defining the rules of a trustworthy interface system. And so Yesenia's Shopify talk was great. She talked about how AI tools themselves.
+
+[Jesse Gardner] 19:06:15
+are rendering real-time UI components, not just text. And there's a lot of places where we're seeing that happen. Google's, you know, working on A2UI.
+
+[Jesse Gardner] 19:06:26
+And so, I just… I want to pause for a moment and say, like, the worst thing that could happen right now is to leave designers out of this loop.
+
+[Jesse Gardner] 19:06:33
+And so, you know, vibe coding without incorporating systems thinkers ends up recreating those silos that we're trying to break down.
+
+[Jesse Gardner] 19:06:43
+So, I want to encourage you, just a reminder of what that fragmentation looks like. I just want to encourage you that, you know, this interaction pattern that I ran into before, that interaction pattern example is really the whole story in miniature, right?
+
+[Jesse Gardner] 19:06:58
+So designers and engineers define how the components should work. They capture those things into a system, structured, queryable, current. It feeds the MCP server, and then AI generates output using that guidance.
+
+[Jesse Gardner] 19:07:14
+And then every output reflects the current state of the system. And so then teams need to review what AI produced. They catch the gaps, they miss those edge cases, the opportunities, that feedback ends up sharpening the guidance and gets encoded right back into.
+
+[Jesse Gardner] 19:07:30
+The system, the components, the tokens, the documentation, the structured guidance that both humans and AI rely on. And, you know, that's not a one-time thing. Designed systems are products. They should be changing, they should be evolving, they should be improving.
+
+[Jesse Gardner] 19:07:46
+The contractor's Handbook, you know, to go back to that metaphor, gets better every sprint. It ends up becoming like a flywheel as it moves forward.
+
+[Jesse Gardner] 19:07:57
+So. Romina brought this up earlier, but, you know, cogeneration is becoming a commodity, and I think that's happening quickly. But what's not becoming a commodity is trustworthy implementation. And I think that's the gap. I think it's a pivotal moment.
+
+[Jesse Gardner] 19:08:16
+we have the opportunity, designers, engineers, accessibility specialists, people who think in systems, have an opportunity to influence the materials that AI builds with. And so, our governance, our accessibility testing, our component decisions, they can become the constraints.
+
+[Jesse Gardner] 19:08:34
+that make AI reliable. And if they don't, people are just gonna just move ahead. And so, you know, AI-assisted development will move forward anyway, and it will do it with weaker patterns.
+
+[Jesse Gardner] 19:08:47
+poorer accessibility, weaker governance, and we'll end up spending a lot of the next decade remediating instead of leading. And so, design systems have always been about consistency, accessibility, governance at scale, and AI does not change that, it just supercharges everyone's ability to scale.
+
+[Jesse Gardner] 19:09:05
+So suddenly, the design systems that we build are super, super important.
+
+[Jesse Gardner] 19:09:11
+So quick takeaway for everybody. If you're a designer, hopefully you've caught a glimpse of what type of design work I think will matter going forward, being really clear about intent, not because Figma is the infrastructure, but because Figma is a helpful way.
+
+[Jesse Gardner] 19:09:30
+to articulate your intent, but how we articulate intent may change over the year and years. And so, how is that intent translated to well-structured code? That's going to be the thing that context the AI will rely on.
+
+[Jesse Gardner] 19:09:47
+And so that age-old question, do I need to learn to code? I think, you know, what's great about this is you can just say, hey, I want personalized… Freya talked about this, I just walk me through what each attribute does. Give me a personalized explanation. This is me asking, hey, AI, you know, Claude, give me a… explanation, a tool, a curriculum, interactive that will help me understand neural networks, because I'm trying to learn about that. And it gives me this really, like, great curriculum.
+
+[Jesse Gardner] 19:10:15
+For developers, you know, the design system only works as AI infrastructure if both sides are working together. Really, all three, you know, are working together. And so, um… you know, AI is… feels a little intimidating for designers, and so…
+
+[Jesse Gardner] 19:10:33
+Engineers, if you're here, I would encourage you, you know, pair with designers, look for ways to help them understand the code side of things, because when a designer understands code, they design better. I started in design, and I got into development because I got frustrated at designing things that developers said couldn't happen.
+
+[Jesse Gardner] 19:10:50
+And so, you know, that change, I think, will unlock a lot. And again, you don't unlock AI infrastructure by writing better prompts. You unlock it by closing the gap between design and code. And so that connection matters even more now.
+
+[Jesse Gardner] 19:11:05
+And then finally, leadership, you know, if you are a product or a program leader, I would just say that, like.
+
+[Jesse Gardner] 19:11:11
+the way you get speed at scale is to, you have to invest. Um, you know, it takes time and it takes money to invest in a design system, but it is a core part of AI infrastructure. And so that structured context will improve not just your design system team, but everyone.
+
+[Jesse Gardner] 19:11:32
+in your organization, and so I think it's really important.
+
+[Jesse Gardner] 19:11:37
+And then lastly, I just want to say to the AI skeptics, you know, I know that there are a number of folks, even people on my team, who are very uncomfortable with AI. You know, we live in a world where some pretty sketchy things are happening with AI, so how could you not be skeptical? I think a healthy skepticism is really important.
+
+[Jesse Gardner] 19:11:54
+Um, it's always important to ask promise versus reality. Um, but I hope that I've inspired you with some really practical ways, grounded ways that you can leverage AI effectively in the work that we do, and hopefully you kind of catch that vision of.
+
+[Jesse Gardner] 19:12:12
+Including proper guidance and guardrails that, you know, provide AI-assisted code with the sort of human input that we need.
+
+[Jesse Gardner] 19:12:22
+Um, and I just want to say, you know, AI makes things wicked fast. A friend sent me this the other day.
+
+[Jesse Gardner] 19:12:29
+And, uh, when things are really fast, reflection is the first thing to go, and the hardest and most important work that we do, deciding what should be standardized, what a good experience looks like for someone using a screen reader, whether a pattern is right or just fast, that work sometimes requires slowing down.
+
+[Jesse Gardner] 19:12:49
+And it requires human judgment that you can't rush, and, um, the design system is where that judgment lives. And so, you know, when AI builds from the place where we have spent time to be reflective and introspective and to bake in the patterns that are right.
+
+[Jesse Gardner] 19:13:05
+It ends up inheriting that reflection that we put in, and it's more likely to create outputs in keeping with those priorities. And when it doesn't, it just goes fast.
+
+[Jesse Gardner] 19:13:15
+And nobody benefits from that. Thank you.
+
+[Host] 19:13:22
+Thank you very much, that was really cool. a lot of things. There's also already quite some questions, Jesse. And if it's okay, we still have a few minutes left.
+
+[Jesse Gardner] 19:13:27
+And a lot of things, there's also probably quite some questions, Jesse.
+
+[Jesse Gardner] 19:13:32
+Okay, we still have a few minutes left. Which is, I mean, like best fitting for you? I wouldn't like to do it then, but like I have one which kind of like sums up a few maybe. Yeah. And that's kind of like, um…
+
+[Host] 19:13:34
+I would shoot some. There's one that I actually would love to ask you, which is, I mean, like, best fitting for you. I wouldn't like to do it that, but, like, I have one which kind of, like, sums up a few, maybe, and that's kind of like, um… Actually, where's my mouse? Oh, man. So how do you actually keep all your sources in sync?
+
+[Jesse Gardner] 19:13:48
+Where's my mom. So how do we actually keep all your sources in sync?
+
+[Host] 19:13:56
+Um, also, like, because people are noticed, A, you actually have comments in CSS, then you have some stuff in Figma, then you have some documentation pages. How is everything actually connected and staying in sync and not getting out of sync? And especially with AI working on a lot of pieces?
+
+[Jesse Gardner] 19:13:56
+And also, like, because people notice, A, you actually have comments in CSS, then you have some stuff in Figma, then you have some documentation pages. How is everything actually connected and staying in sync and not getting out of sync, especially with AI working on a lot of pieces?
+
+[Host] 19:14:08
+Yeah.
+
+[Jesse Gardner] 19:14:09
+Yeah, it's a great question. To quote somebody who I think is in the audience, I remember, I think it was last year I was talking to Brad Frost, and.
+
+[Jesse Gardner] 19:14:19
+I was struggling with, like, the sync question, right? Like, is Figma the source of truth, or is it the code, or da-da-da-da-da? And, um, yeah, Brad, I mean, it's kind of sketchy, but… the, uh, you know, he just… he impressed on me, and maybe I have wrong recollection of this, but I was left with the impression that, like, don't get too stressed about the sinking, because, um, number one, these things aren't changing that often, right? Like, our design tokens, they're not… we're not changing them that often, and when they change.
+
+[Jesse Gardner] 19:14:49
+our designers and our engineers are working closely enough where it's relatively easy to keep these things in sync. And I would even say more so now, um, you know, especially with these tools, you can say, go out and fetch everything that we've got in that JS doc.
+
+[Jesse Gardner] 19:15:05
+and write it to the Figma API. So I think there are ways that, you know, we can create those personalized tools that can handle the syncing. I tend to avoid creating really complex systems that are super fragile. I'd rather our team be communicating and making sure that we keep those things in sync. That being said.
+
+[Jesse Gardner] 19:15:27
+When I think about some of the JSDoc work being done, there are places where it's like, we don't really need to enter slots both in the JS doc, in Storybook, in our reference site, like, that structured data, we can pull that in. We just haven't gotten to that yet.
+
+[Host] 19:15:45
+But it's awesome. Yeah, like the I think, like, the moment you can add structured data, and you can get it out, like, and the system can understand it. It's always like the way to go kind of like.
+
+[Jesse Gardner] 19:15:46
+I think the moment you can add structured data, you can get it out, like, and the system can understand it, it's over, like, the vertical.
+
+[Jesse Gardner] 19:15:54
+Yeah. It's a great question, though. Do you have time for the complex one?
+
+[Host] 19:15:56
+Okay. Do you have time for the complex one? And maybe the tricky one.
+
+[Jesse Gardner] 19:15:59
+Yeah, absolutely. I've got time. Okay, especially like for you because you're in the public sector, how do you actually tailor with privacy, for approval, all these things?
+
+[Host] 19:16:02
+Okay. Especially like for you, because you're in the public sector. How do you actually tailor with privacy, tool approval, all these things shortly touched on it, right? Now kind of like, I think everybody gets that question. But for you, I guess it's even more prominent being in the public sector.
+
+[Jesse Gardner] 19:16:15
+I think everybody gets that question, but for you, I guess it's even more prominent being in the public sector. Yeah. Fantastic question, and a really important one.
+
+[Jesse Gardner] 19:16:25
+I'll answer it two ways. Number one, I'm kind of in a lucky space because almost everything that we do is open source. So, um, I could take, you know, you could do exactly what I did. You could go out, find that form.
+
+[Jesse Gardner] 19:16:38
+You can go and pull down our MCP server. If you look up our GitHub, you can actually pull it down and run it yourself today. Um, and, you know, point at it, um, the documentation's a little outdated, but the, uh, but it would work for you. And so, um, so in some ways, we don't have to worry about it as much as other teams that really are dealing with, like.
+
+[Jesse Gardner] 19:16:59
+private information or, uh, you know, API credentials, database credentials, things like that. That being said, the second answer is, like.
+
+[Jesse Gardner] 19:17:10
+there is a lot of work being done, and I certainly can't represent the state at large, but I do know there's a lot of thought going into how do we do this safely? How do we… how do we, you know, allow… people to use AI without necessarily opening ourselves up to someone posting information that is, um, you know, sensitive, or pasting somebody's social security number. So there's a lot of thought that's going into that. There's a lot of policy, and at every level.
+
+[Jesse Gardner] 19:17:42
+at the highest level, the governor, all the way down to, you know, the different people working on teams. And this is the thing that's interesting to me. Like, today I'm talking about AI, but I'm talking about, like, AI-assisted code generation, not necessarily, like, evaluating.
+
+[Jesse Gardner] 19:17:57
+user entries or looking through databases, you know what I mean? So there's a lot of different, um… I was in a roundtable.
+
+[Jesse Gardner] 19:18:06
+one time, an AI roundtable, and I had a woman who'd been in the public sector for 40 years, and she said, I never want a machine making the decision, like, an AI making the decision whether or not somebody can get, um, benefits. And, you know, Hardy Amen's around.
+
+[Jesse Gardner] 19:18:23
+And then somebody at the AG's office said, we have, you know, law firms that are going up against, um, that we're going up against that are doing 18 months worth of discovery in 3 months. So very different use cases, and so it's hard, I think, because some people, when they think AI, they think.
+
+[Jesse Gardner] 19:18:40
+you know, AI is generating, you know, kind of stole images from my artist friend, and then some people, you know, are thinking of it purely through the lens of just, you know, it's like a chat therapist or something. So, it covers so many different areas that I think it's a challenging thing to have some, like.
+
+[Jesse Gardner] 19:18:58
+policy that touches everyone. So, my focus has really been on how do we, you know, when people start using AI code generation at the state, how do we make sure that, um, that the outputs are going to be something that we can keep, um, that are safe, reliable, repeatable.
+
+[Jesse Gardner] 19:19:19
+accessible, things like that. which I also noticed is kind of like the copyright issue with AI.
+
+[Host] 19:19:22
+Yeah, you also touched one good thing there, which I also noticed is kind of like the copyright issue with AI.
+
+[Host] 19:19:27
+If I tell it to write in my old kind of YouTube channel's name, it completely like hits the tone of voice I had in my YouTube videos.
+
+[Jesse Gardner] 19:19:27
+If I tell it to write in my old kind of YouTube channel's name, it.
+
+[Jesse Gardner] 19:19:33
+completely like it's the sort of voice I had in my YouTube videos, and… That's Michael, but I never gave approval for them to use it. Right. This is something that's there. And maybe also for everybody, if AI asks you to paste just your API key or something, your credentials.
+
+[Host] 19:19:37
+That's my content. I never gave approval for them to use it. So this is something that's there. And maybe also for everybody, if AI asks you to paste just your API key or something, your credentials, and it will store it for you, please don't do that, okay? Just for the first level of compliance.
+
+[Jesse Gardner] 19:19:49
+please do indeed. What model are you using, Marco? Actually, I think everyone falls for that trap, every model.
+
+[Host] 19:19:55
+Actually, like, I think everyone, like, falls for that trap, every model. So yeah, the basic compliance stuff.
+
+[Jesse Gardner] 19:19:59
+So yeah, the basic compliance stuff. I think maybe one last question. Let me see if we find one.
+
+[Host] 19:20:02
+I think maybe one last question. Let me see if we find one more. Yeah, maybe like the the accessibility topic right? We know accessibility and AI. They don't play that well at the beginning, kind of like, I think Microsoft had that big study out where like only 30% of AI generated pages are actually.
+
+[Jesse Gardner] 19:20:09
+Yeah, maybe, like, the accessibility topic, right? We know accessibility and AI, they don't play that well at the beginning, kind of like. I think Microsoft had that big study out where like only 30% of AI generated pages are actually.
+
+[Host] 19:20:22
+it like accessible, most not how do you actually deal with that topic, especially saying, like, hey, you found some stuff, you did the gap analysis. How's it actually working?
+
+[Jesse Gardner] 19:20:22
+like accessible most not. How do we actually deal with that topic, especially saying, like, hey, you found some stuff, you did gap analysis. How does it actually working? Boy, that is a great question. Similar to AI, accessibility is a little tricky, too, because sometimes accessibility is about color contrast.
+
+[Jesse Gardner] 19:20:41
+sizes. Sometimes it's about, you know, things that are much more on the engine… front-end engineering side, like, you know, a chatbot that uses ARIA-Log, so that there's a polite announcement, so that it's able to kind of stack those up when announcements come in. So there's… it can cover a lot of different things, um.
+
+[Jesse Gardner] 19:20:59
+to go back to, you know, one of the points that I was making about context, um, I have… I've used… like, I've created a custom agent that, you know, uh.
+
+[Jesse Gardner] 19:21:10
+tries to look for WCAG 22 and things like that, and so one of the things that I… the guiding principle for us has been trying to reduce the amount of work that the AI has to do. And so when we.
+
+[Jesse Gardner] 19:21:27
+roll out ex… we test our components. We have a native screen reader user on our team, and so it's been very helpful to kind of see accessibility as a subset of user experience. You know, it's like, how do we announce a badge?
+
+[Jesse Gardner] 19:21:43
+Right? Like, what is that… what's the experience? What should the experience of an alert or a badge be for somebody who uses a screen reader? And it's just another way of looking at it through the lens of design. So, similarly, you can… you can… hand that decision off to AI, and maybe it'll get it right, um, but it might not. And it's really important to, um, if you know accessibility testing to be evaluating that, if you don't.
+
+[Jesse Gardner] 19:22:10
+especially in a large organization, you really need to make sure that you have somebody that you can go to, or, you know, it's just that human input is really, really important, especially if you're gonna bake that into something that becomes your kind of recurring use, right?
+
+[Jesse Gardner] 19:22:26
+There's this interesting balance to… there's a tension that I'll just say, between the accessibility team and the design system team.
+
+[Jesse Gardner] 19:22:35
+is our accessibility team is very pragmatic because we're trying to help engineering teams, even if they don't use the design system, we try to help them fix their accessibility problem because many, and we prioritize it like this is blocking people from being able to access their services.
+
+[Jesse Gardner] 19:22:52
+huge issue, so we prioritize that, and we say, here's how you fix your modal. Like, make it so somebody can hit escape and get out of it, right? So, that's… we try to be very pragmatic on that end.
+
+[Jesse Gardner] 19:23:03
+But we also say, hey, if you have the budget, or the time, or the capacity.
+
+[Jesse Gardner] 19:23:10
+we point you to the design system, because we are already kind of taking care of this problem. We're actually in the process of building out accessibility pages. I don't think I've seen this anywhere, but it's pretty interesting.
+
+[Jesse Gardner] 19:23:20
+where we have our individual components, like an accordion page is like, here's our web component, but there are teams that, you know, for whatever reason, can't or won't use that, so we have, like, here's the checklist, the US Web Design System has, like, that, here's how you go through and test those things.
+
+[Jesse Gardner] 19:23:36
+But then we're also building, like, a child page that basically says, if you have to build it natively, like, there's a big letter at the top that says, go use the web component, but if you have to build it natively, here's what you need to take into consideration when you build that. And that actually becomes a helpful guide.
+
+[Jesse Gardner] 19:23:53
+For our engineers who are building that. But that whole infrastructure can, you know, there's a lot of ways that we can… that can be… we can… that can be kind of improved through automation and through a lot of AI, and it helps us build, like, a stronger… we build out a lot more test cases and things.
+
+[Jesse Gardner] 19:24:11
+by using AI, but reviewing all of that, so we're much more… we're in this place where it's much easier now to go through and say, teams use this because the output that you're going to get is something that is reliable.
+
+[Jesse Gardner] 19:24:25
+And, you know, one of the easiest ways to measure this is, if we build out something using the design system, the amount of time that it takes our accessibility team to review it, significantly lower than trying to go through and review a team that just, you know, busted out Bootstrap and started to build something.
+
+[Jesse Gardner] 19:24:40
+So. Amazing. You actually are speaking for something that I also feel like it's more important to actually have these test cases or these rules. Because we can throw a model at it to circle through and just to get that right thing. But the important thing is to really have the definition of what goes in, what goes out, what to expect.
+
+[Host] 19:24:41
+Amazing. Thank you. You're actually speaking for something that I also feel like right? It's more important to actually have like these test cases or these rules that we validate because we can throw a model at it to circle through and, like, just to get that right thing. But the important thing is to really, like, have the, like, definition of what goes in, what goes out, what do I expect.
+
+[Jesse Gardner] 19:24:58
+Yeah. And then, like, we don't need, like, this stencil beginnings or something anymore, kind of, like, we can just, like, iterate on any model to get the output we want, so it's really more about the definition.
+
+[Host] 19:24:59
+And then, like, it doesn't. We don't need like this stencil beginnings or something anymore, kind of like we can just like iterate on any model to get that output we want. So it's really more about the definition.
+
+[Jesse Gardner] 19:25:08
+Right, yeah, and just like we haven't done this yet, but I envision being able to do, um… oh, that's interesting. Somebody mentioned Evinced in Deque offering enterprise enterprise-grade MCP. I think that's really interesting.
+
+[Jesse Gardner] 19:25:25
+you know, one thing I didn't really touch on in this talk is, um… there's a lot of different ways to give context, right? There's agents, there's skills, and each have their own, you know, are better for other… some things better for others. So, for example, like, an MCP server is really great for structured content that you need to provide to an LLM.
+
+[Host] 19:25:38
+It's very rapid development.
+
+[Jesse Gardner] 19:25:46
+But if it's something where the LLM might need to make a change to it, that's probably better for it to be a skill so it can go through and it can revise that skill as a markdown file. You know, one of the things that we are trying to work on is, like, can we take some of that guidance that we have?
+
+[Jesse Gardner] 19:26:03
+written up? And can we pass that in as part of the guidance? Can it be one more thing where it's like, if you're going to, you know, if you need to build something new, here's what you do in terms of the accessibility rules. Or, importantly, because.
+
+[Jesse Gardner] 19:26:17
+Again, we've tested those components. They generally, if you use them in the way that we've described, they'll be accessible, but sometimes you can put them together in ways that are not, and so those kind of higher order, um, you know, patterns, that's where some of this, you know, those interaction patterns, I think there has promise there, because then it's like.
+
+[Jesse Gardner] 19:26:36
+What does it mean for this to be accessible? Like, if you think about a chat bot or something like that, that is a lot of different components put together. Is that a single component? Probably more like a pattern. You know, it's semantics at that point, but, you know, it's it's this thing submits, then this has to do something, and so… Once you get into those more complex pieces, sometimes accessibility can get a little bit weird. And so if we can bake in rules in those components, I think, you know, we're going to be, um…
+
+[Jesse Gardner] 19:27:04
+better off in terms of, like, engineers that end up, you know, AI that end up, like, consuming that and using it.
+
+[Host] 19:27:12
+Thank you very much, Jesse. That was amazing. Learned a lot today. When people want to connect to you, I guess Linkedin is also the place to go and yeah, thank you for the talk.
+
+[Jesse Gardner] 19:27:12
+Thank you very much, Jesse, that was amazing. You learned a lot today. When people want to connect to you, I guess LinkedIn is also the place to go. Yeah.
+
+[Jesse Gardner] 19:27:21
+Yeah, you can re… Thank you, I appreciate it.
+
+[Host] 19:27:23
+Yeah. And, uh, yeah, we have 3 min to the last talk of today. It's going to be Christian. It's going to be also quite nerdy, I think. So, yeah, buckle up, get your last coffee, or, like, whatever, and thank you very much, Jesse, for being part of the show.
+
+[Jesse Gardner] 19:27:25
+And, uh, yeah, we have 3 minutes for the last talk of today. It's gonna be Christian, it's going to be all the quite nerdy, I think. So, yeah, buckle up, get your last coffee, or…
+
+[Host] 19:27:37
+See you in a second.
+
+[Host] 19:30:14
+Welcome back, friends. It's time for the last session of the day, and I feel so honored to host this session.
+
+[Host] 19:30:22
+Chris… Chris showed me the very first agentic design system I've ever seen, and I
+

@@ -1,0 +1,903 @@
+
+[Host] 15:02:13
+Welcome back, everybody. How's everyone doing? Let us know in the chat how you like the content and the conference so far. So far we have seen so much amazing content. I've learned so much, and I'm super excited to host our next session.
+
+[Host] 15:02:32
+We have Andresa here and Eddie. They are going to teach us how they enabled AI in their design system. And we have been using Miro a lot in our past conferences. And this is the first time that we are using.
+
+[Host] 15:02:51
+Um, by the way, so, um, I couldn't be more excited to have Andresa here with me and Eddie.
+
+[Andresa] 15:02:58
+Hello? Hello, okay. It's.
+
+[Host] 15:03:01
+Welcome! Andresa, you're the host, the main host of the Intel Design Systems Conference. We have been doing so many amazing meetups together at Spotify, Meta, and now it's your first debut here and presenting at Inter Design Systems. How do you feel?
+
+[Andresa] 15:03:19
+I know it's strange to be on the other side, even though I'm on the same side. But yeah, we'll see. Be nice to meet, especially with the questions after.
+
+[Host] 15:03:28
+Yes, Eddie, you are a design engineer, and I also know that it's your birthday today. Happy birthday, Eddie!
+
+[Eddie Machado] 15:03:38
+Thank you. Thank you. There's nowhere else I would rather be on my birthday than talking about work.
+
+[Host] 15:03:43
+Uh, that's so cool. Yeah, you're celebrating with 1,000 people today. How do you feel?
+
+[Eddie Machado] 15:03:50
+Great, great, that's great. Thank you for having me.
+
+[Host] 15:03:54
+Very welcome. Andresa, Eddie, I cannot wait to see what you are going to present. I will give you some time to set up.
+
+[Host] 15:04:03
+your presentation, and whenever you're ready, we will start.
+
+[Andresa] 15:04:08
+Ooh, sounds good.
+
+[Host] 15:04:10
+Yeah, I can see… Your hand?
+
+[Andresa] 15:04:14
+You can see my hand. Brilliant. Yeah, I can see my hand as well. Well, let's do this.
+
+[Host] 15:04:17
+You're right.
+
+[Host] 15:04:25
+Yeah, nice. Let's go.
+
+[Andresa] 15:04:26
+Yeah. Let's go. I would like to start with a question.
+
+[Andresa] 15:04:35
+How many of you here have been in a meeting in the last 6 months?
+
+[Andresa] 15:04:40
+Six months a year, and someone someone senior has said, can't we just use AI for this?
+
+[Andresa] 15:04:49
+And that thing that they are trying to replace is your team.
+
+[Andresa] 15:04:53
+Maybe just off. Now, before we go any further, I know what you might be thinking, Miro.
+
+[Andresa] 15:05:03
+big company, very fancy design system team, lots and lots of investment, lots and lots of engineers now.
+
+[Andresa] 15:05:14
+I would like to correct that. Our team is one design system lead myself.
+
+[Andresa] 15:05:22
+Eddie here, design engineer and birthday boy. One engineering manager, three engineers, and only these folks do serve.
+
+[Andresa] 15:05:34
+48, 40 plus product teams. So yeah, small but mighty.
+
+[Andresa] 15:05:42
+team. So, yeah, we're in all sources. We are figuring out, and this is that story. That's the story I would like to tell you today.
+
+[Andresa] 15:05:50
+In case you're in the same position. So let us give us, give you a little bit more context on where we were.
+
+[Andresa] 15:05:58
+When this all starts. Miro is a canvas-based product. If you used it.
+
+[Andresa] 15:06:03
+And it's not fake, Jan. if you used it, you'll know it. It's not your typical web app. She's a different girl. She's not like the other girls. And we have 2 tech stacks. One is react, which is pretty standard, and another one is Surface SDK, which is Miro's.
+
+[Andresa] 15:06:22
+on campus technology. which is very complex and property up until recently, almost entirely undocumented from a design systems perspective.
+
+[Andresa] 15:06:39
+This time last year everything changed. Everything shifted. It's perhaps the same happened to you.
+
+[Andresa] 15:06:45
+designers are now prototyping with AI. Engineers are coding with cursor Claude codes, you name it.
+
+[Andresa] 15:06:53
+Dealership is adding pressure. Integrate AI. Everything is AI.
+
+[Andresa] 15:06:59
+Everything should be AI. We were excited about that too. But the problem was in our case that nobody was asking us how.
+
+[Andresa] 15:07:08
+product teams were moving faster. They AI made them faster overnight. And as you can see here, this is Eddie chasing them and myself.
+
+[Andresa] 15:07:18
+Um, we had to keep off. not just keep up with building things, but keep up with being useful in a world where people and the way that people design and build had fundamentally changed.
+
+[Andresa] 15:07:32
+and there was one specific moment that made it clear that we couldn't wait and see, but I'll let Eddie tell that part of the story.
+
+[Eddie Machado] 15:07:41
+So we refer to this as the incident. This was the catalyst that led us down this path. It was Andres's first day, and we had a team off-site in Berlin, and at the same time, the leadership team was in Berlin talking about their plans.
+
+[Eddie Machado] 15:07:56
+for the new year, and they were launching a new feature where teams could upload their brand guidelines to be able to prototype inside of Miro.
+
+[Eddie Machado] 15:08:06
+And the question was floating around. Could they just use AI to create a design system inside of Miro?
+
+[Eddie Machado] 15:08:15
+So not only replace, like, our team, just point AI to somebody's brand guidelines and have it auto-generate a design system inside of Miro.
+
+[Eddie Machado] 15:08:24
+And that conversation is great, but the problem was they didn't even come to us, the internal design team, to ask this. They went directly to AI to see if this was possible. So it got us thinking, uh, if we didn't figure out how to make AI work within our system, somebody else was going to do it without us.
+
+[Eddie Machado] 15:08:43
+Yes.
+
+[Andresa] 15:08:44
+Yeah. So when I joined. Yeah, good day to join. This was in the air, in the air already, and the question that Eddie and I kept coming back to was simply, what does an AI enabled design system look like?
+
+[Andresa] 15:08:59
+That question really drove everything that we did from that point onwards. And the insert came with a realization. Ai was really a new member of the team that we had to onboard. So it was a new hire.
+
+[Andresa] 15:09:14
+who was extremely enthusiastic. very capable, extremely literal.
+
+[Andresa] 15:09:20
+and a new team member that knew nothing about mural, nothing about us, nothing about how we're building our conventions and had zero tolerance for ambiguity.
+
+[Andresa] 15:09:33
+Eddie, you might want to introduce her now.
+
+[Eddie Machado] 15:09:36
+Sure thing. So, this is our new team member. Her name's Aura, and Aura is not a single tool. She's not an agent. She's what we started calling the AI practice on our team. She's a collection of integration scripts, documentation and workflows that we've built over the past year to make our design system.
+
+[Eddie Machado] 15:09:55
+AI-enabled. She's got her own personality, and she's very proactive. She will attempt absolutely anything you throw her way.
+
+[Eddie Machado] 15:10:06
+But she just doesn't know anything yet. She doesn't know anything about us, she doesn't know how we work, why we made the decisions we make.
+
+[Eddie Machado] 15:10:14
+What icon to use, what token to use, which I promise you, is not as obvious as it sounds. And at Miro, we don't really onboard people, we throw you right into the deep end.
+
+[Eddie Machado] 15:10:24
+And hope you can swim.
+
+[Andresa] 15:10:27
+And it was no different for for Aura, was it?
+
+[Eddie Machado] 15:10:30
+Yeah. Yeah, we threw her right in, and uh… but what… the problem that actually causes is a lot of confusion, right? As you've worked on teams, you've had a lot of new hires that come to you saying, hey, where's this library? How come we don't have this variant? Where can I find this? How do you do this?
+
+[Eddie Machado] 15:10:46
+It's not ideal, but it comes from a struggle that a lot of people have when onboarding is lack of documentation, and in a lot of places, and Miro is no exception, documentation just was not seen as a priority, right? So… When we looked at what we had, it… nothing was useful. Everything was kind of outdated and not relevant. So…
+
+[Eddie Machado] 15:11:09
+And that's because everything lived in our heads, right? I knew why we use certain tokens and Dresen knew why we had made certain design decisions, things like infrastructure, best practices, guidelines, patterns, processes, why we, uh.
+
+[Eddie Machado] 15:11:26
+Build in a way we do the linting process for our PRs. All that stuff was not documented, it just kind of lived inside of our heads, and we kept getting these questions over and over again.
+
+[Eddie Machado] 15:11:35
+So, before we started writing all this down, we took a step back, and we said, this seems to happen with every person that we onboard. If we were to start over.
+
+[Eddie Machado] 15:11:45
+How could we create some principles that we could follow to be able to onboard people, humans or machines, in a more efficient way?
+
+[Eddie Machado] 15:11:56
+So, we landed on three principles. The first is show, don't tell. It's important to not only explain things to new joiners, but show them, not just telling them why, but also why not.
+
+[Eddie Machado] 15:12:09
+So, show, don't tell. The next one is be consistent, right? Team members need to know how to react in different situations and context. If you're inconsistent, if your messages waffle back and forth, it's hard for them to decipher what you're truly trying to say.
+
+[Eddie Machado] 15:12:24
+And the third is about giving room to experiment. If you think about all the greatest learnings that you've had in your career, they usually came when you had a time to explore, try new things. If you messed up, you learned from it, and you self-corrected, right? So we want to give that same space to new joiners, so they have the space to try things, even Aura.
+
+[Andresa] 15:12:45
+even Aura.
+
+[Eddie Machado] 15:12:47
+Yeah, especially Aura. So, we have our principles. We decided to put her to work, right? So we started with something simple.
+
+[Eddie Machado] 15:12:54
+We asked her for her first task to build out a simple toolbar, all with elements within the design system. We asked her to create a toolbar with four common actions and an overflow menu. These actions were one that we had in our text widget that was on the board, so we figured she could just look at the mural board, understand what.
+
+[Eddie Machado] 15:13:11
+What needs to be there, and create the toolbar, no problem.
+
+[Eddie Machado] 15:13:15
+So, she was confident, she did it, she chose the icons, she chose the token, she chose the right component, and to be honest, we were pretty compre… not compressed, we were impressed.
+
+[Eddie Machado] 15:13:26
+Um, but as we looked closer. Uh, she was wrong.
+
+[Eddie Machado] 15:13:32
+And she was not randomly wrong, she was confidently wrong. She had chosen the wrong icons for these tools. The outcome for textile, the icon for text adjustment, and the icon for highlighting were all wrong.
+
+[Eddie Machado] 15:13:48
+So, we took a step back, and we thought, well, why? What happened here? She could clearly see the icon, right? She could identify what this icon was, two A's next to each other, one capital, one cursive, but… This icon actually was not used for textiles, it's actually used for font styles.
+
+[Eddie Machado] 15:14:09
+And if you look at the way our icons are named.
+
+[Eddie Machado] 15:14:14
+That's where she got confused, because that icon is actually named Icon Text Styles, but the icon that we use for textiles is text be bold italic Underlined, right? This is something Andres and I knew already, but… To anybody who's joining, looking at these icon names is like, how am I supposed to know this, right? So, uh, we also had text be bold. We had…
+
+[Eddie Machado] 15:14:39
+The next one. There we go. They underline. So it was clear that this wasn't a problem with Aura. It was a problem with the way that we had set up our icons.
+
+[Eddie Machado] 15:14:54
+And if we looked at the icon actually structure in Figma, we saw that we had added tags a long time ago to be able to help people search, right? People call icons different names, so it's good to add tags so that when I'm looking for an icon, maybe I call it a different name, I can find it a bit easier.
+
+[Eddie Machado] 15:15:11
+And just for some extra context, like, there's a lot of the naming infrastructure, the icon names, the token names, these are all things that we inherited, right? This is… This is probably the case for a lot of you. You inherit a design system, you inherit the decisions that are made, and now you've got to kind of navigate around in this environment. And so, this is the struggle that we were having. We had this icon naming structure that was named around.
+
+[Eddie Machado] 15:15:36
+The visual representation of the icon, not the usage. And RO is really struggling with how to understand this. So we took a step back and we decided to expand this description. And we added things like.
+
+[Eddie Machado] 15:15:49
+a visual description, we added things like a use case, and we added things like a category. So if you go to the next… Yeah, then you see we added their description. We added use case. So now, when she's reading these descriptions, it'll actually say represents font style like serif or sans serif do not use to represent textile like bold italic underline.
+
+[Eddie Machado] 15:16:13
+This is exactly what she was looking for. It just didn't exist before.
+
+[Andresa] 15:16:19
+Yeah.
+
+[Eddie Machado] 15:16:19
+So when we translated that to code, you can see now this is what it looks like in our Jason file, right? So now this is accessible to everywhere that we output our icon library.
+
+[Eddie Machado] 15:16:30
+So, we gave her the task again. We said you have the updated information. Let's see if you can create the toolbar. This was the before, and this is the effect of after, right? She nailed the icons. She got all the context she needed and generated the right set of icons.
+
+[Eddie Machado] 15:16:46
+But as we looked a bit closer. We managed… we saw that she managed to nail the icons.
+
+[Eddie Machado] 15:16:53
+Um, and even some tokens were applied properly, right? So she applied a background token, a border token, and even an elevation token.
+
+[Eddie Machado] 15:17:02
+But the token she chose for the background was deprecated.
+
+[Eddie Machado] 15:17:06
+Um, we had replaced it recently, and she didn't know that.
+
+[Eddie Machado] 15:17:11
+So back to the drawing board. We applied the same principle to the tokens. It's not enough to say this token is white, right? You can see here, this was the data she was working with before. Two tokens, both white, both very ambiguous in usage, so we added a description to clearly state.
+
+[Eddie Machado] 15:17:31
+The background for toolbars, panels, and drop-downs. And then we also state, do not use for cards or flat content, use background surface instead, right? To make it super, super clear which token to use when.
+
+[Eddie Machado] 15:17:46
+Again. We gave her the task.
+
+[Andresa] 15:17:46
+Again. Again, something that we inherited as well. Token names can be more descriptive than that, but it was a bigger job to refactor our token architecture, then add in the additional context.
+
+[Eddie Machado] 15:18:04
+Exactly. Yeah. So we gave her the task again.
+
+[Eddie Machado] 15:18:08
+And, um… She got it right.
+
+[Eddie Machado] 15:18:12
+Right? So, adding all that context really helped her, and… We took a step back and we were like, okay, it wasn't Aura that was struggling, it was actually the fact that we didn't provide her enough context to get the job done. And the technical work was hard, and it took time to add all this stuff, but Andresso will tell you the harder work.
+
+[Andresa] 15:18:14
+pray.
+
+[Eddie Machado] 15:18:33
+was everything that got us there.
+
+[Andresa] 15:18:36
+Yeah, really the less clamorous side of design systems equally important, but not as fancy as all the you know, all the great things that we can generate with AI.
+
+[Andresa] 15:18:50
+Um, every two weeks at Miro, we have a show and tell.
+
+[Andresa] 15:18:56
+for Albredder teams, not just our team and other teams were shipping really flashy AI features. Maybe you use some of them sidekicks or close.
+
+[Andresa] 15:19:10
+We were auditing documentation. We were writing icon descriptions. We were adding component best practices, adding metadata, stuff that wasn't really visible, really important under the hood.
+
+[Andresa] 15:19:24
+But it wasn't fancy. It's, you know, it doesn't make your leadership, your senior leadership eyes sparkle.
+
+[Andresa] 15:19:34
+I was told by senior leadership directly that there was no value in what we were doing, that nobody reads documentation.
+
+[Andresa] 15:19:42
+And if this was the best that our team could do, then we could be rated a 4 out of 10 when it comes to your impact.
+
+[Andresa] 15:19:52
+Well, the lesson sometimes is ask for forgiveness rather than permission.
+
+[Andresa] 15:19:58
+and prove concept proof and explain it second. So.
+
+[Andresa] 15:20:05
+We had to keep going because we knew the MCB, and we're going to talk about the MCP in a while.
+
+[Andresa] 15:20:11
+Um, but we knew that EMCP was only good as, um, what Aura could read and what it could read, it was only as good as what we'd written, and if we didn't have anything written, you know, you can put any fancy.
+
+[Andresa] 15:20:27
+AI enablement, any MCPs, and you know the results are not going to be good at all.
+
+[Andresa] 15:20:35
+So yeah, the lesson learned here is proof the concept for sex and its second.
+
+[Andresa] 15:20:43
+One of the trickiest parts of design system work, and you may all relate to this, is proving that has always been proving the impact.
+
+[Andresa] 15:20:54
+And in our case, AI integration made it harder, not easier. I'll tell you why. When we made the MCP frictionless and Eddie again will show you that in a minute or speak about that in a minute.
+
+[Andresa] 15:21:08
+We no longer… could actively see the calls that people were making to the MCP.
+
+[Andresa] 15:21:15
+and it just worked in the background, which was great. We were we were responding to user feedback. They didn't want to be actively saying, hey, use the design system MCP.
+
+[Andresa] 15:21:25
+So that meant that we gained adoption, but we lost visibility into how many calls that were being made.
+
+[Andresa] 15:21:34
+Which sounds like a problem, but really. Girls didn't… it wasn't a problem. It was a… it was great news. We had adoption.
+
+[Andresa] 15:21:43
+Um, it sounds like a problem, but it meant it's working. You just have to find other ways to to to show.
+
+[Andresa] 15:21:51
+metrics, or what you know other ways of measuring success or what success looks like.
+
+[Andresa] 15:21:58
+So lesson I want to share here is any figure is better than no figure.
+
+[Andresa] 15:22:04
+again, speaking from my own experience. I've been working in design systems for eight years. It's a reality might be different to other teams, but from my experience, any figure is better than no figure. So even if it's approximate and no… and not 100% accurate, even if it's qualitative, if it's testimonials from engineers, from designers, from product managers.
+
+[Andresa] 15:22:28
+responses to quality comparison or time saved, even if that's in qual form.
+
+[Andresa] 15:22:35
+It's it it helps you. What you want to do here is build the case from what you have.
+
+[Andresa] 15:22:43
+Eddie is going to now walk us through what we actually built and what, you know, what's coming, what's coming next.
+
+[Eddie Machado] 15:22:51
+Okay, so this is the fun part. Okay, so in all the three talks that we've seen so far, we've seen people prompting, right? We've seen the differences in their prompt.
+
+[Eddie Machado] 15:23:02
+in their prompts. And we can see that humans are very unpredictable, right?
+
+[Eddie Machado] 15:23:08
+One person prompts really detailed, and another one, like myself, prompts, like, a 6th grader. You know, I just… Ask Aura to do something really quick, and let's see if she gets it right, she gets it right. But this means that we couldn't expect Aura to give the same response if different people gave her instructions in different ways, right? We can't control the input.
+
+[Eddie Machado] 15:23:29
+Uh, so if we can't control the input, how can we control the output?
+
+[Eddie Machado] 15:23:33
+The answer to that question was to create an MCP.
+
+[Eddie Machado] 15:23:38
+So if my cursor looks anything like your cursor, you have a bunch of MCPs loaded, and uh… Having the AI figure out which one to call can sometimes be frustrating. I have the Figma MCP installed, I have the Figma Console MCP installed, and sometimes it's going back and forth on which one to call when I have to specifically say, use this MCP. So we added instructions to our team's root Claude.
+
+[Eddie Machado] 15:24:05
+file. And now when we address Aura. It knows to call our MCP directly. This has been a huge time saver to be able to get direct answers from our design system.
+
+[Eddie Machado] 15:24:19
+And just adding this has dropped support questions in our Slack channel by 70% to 80%. Like, we're seeing much less people pop in for simple questions, because they can just chat with the MCP in their IDEs.
+
+[Eddie Machado] 15:24:34
+So let's look at what we did. So for the MCP. We started with 2 simple tools, just list components and get a component stocks.
+
+[Eddie Machado] 15:24:44
+List components is super simple. It just returns a list, so you can say yes or no, we have this component, and get component docs finds which component you're looking for and returns the documentation file that's located in our repo.
+
+[Eddie Machado] 15:24:59
+Um, that's it. Just to, right? We wanted to see, we wanted to start simple and see, uh, how that worked, and where we could optimize.
+
+[Eddie Machado] 15:25:08
+And then we discovered that all of this metadata that we put in place.
+
+[Eddie Machado] 15:25:16
+was not helpful, right? It did not save us. A lot of times, Aura struggled to find the icon library. It struggled to find the token library. We learned that when she looked at our documentation site.
+
+[Eddie Machado] 15:25:32
+Where we listed the link to these libraries. She couldn't read the link, because the links were in React, they weren't in Markdown. So, she would end up in these loops, and then she would find the answer just in the codebase randomly. Again, she's looking for an answer, she's very eager, she wants to solve the problem.
+
+[Eddie Machado] 15:25:48
+And if she can't find it in one place, she's gonna look somewhere else. And that's where we get all these hallucinations, right? If she doesn't have these clear guidelines, she'll make something up.
+
+[Eddie Machado] 15:25:58
+So we started to build 2 more tools, search icons and search tokens.
+
+[Eddie Machado] 15:26:03
+And the way that I did that was, instead of building the MCP tool directly, I built it as a skill.
+
+[Eddie Machado] 15:26:11
+And the reason I built it as a skill is because skills are way more accessible, they're simple to create, you can use Claude's Skill Creator skill to spin up a skill in minutes.
+
+[Eddie Machado] 15:26:22
+And then, you can get it to do what you need it to do, and then you can ask it to simplify it, right? So slash simplify is, um, is something in Claude that, like, compresses everything, it makes it simpler, it reduces redundant code, and it optimizes it. So, you tweak that skill, and what I was able to do is get that skill down.
+
+[Eddie Machado] 15:26:40
+to around 410 tokens, down from 33,000. That is a 98% fewer tokens. These are the kinds of metrics that we can give to leadership and say, look at this, like, that's 98% fewer tokens scaled across the company.
+
+[Eddie Machado] 15:26:56
+So, when you're building these things, I recommend using a skill, build it as a skill, and then you can import it to whatever you want. If you want to keep it as a skill, you can, but to me, that's the easiest way to onboard.
+
+[Eddie Machado] 15:27:07
+Um, another thing we did was we optimized contributions by creating a skill that helped streamline that process. So let's say I have a contribution idea for a design system component.
+
+[Eddie Machado] 15:27:19
+I do the work on a branch, and now I have to go through this process of like running the linter, making sure it's all passing our code standards, accessibility, localization. So we created a skill called wrap up that basically runs a linter.
+
+[Eddie Machado] 15:27:35
+Goes through the checklist of our code quality, goes through the checklist of accessibility localization, and then it adds a line for each commit describing what the change is, and then it structures PR based on a template that we've created.
+
+[Eddie Machado] 15:27:50
+And creating a PR sucks. That's the worst part of working like vibe coding, right? You have to write this detailed PR, so we created a template, and now… or it does it for you. So it's super simple, it standardizes all of our PRs, all of our contributions now.
+
+[Eddie Machado] 15:28:06
+So they're very easy to understand. And this auto reviewing, yeah, streamlines. So we see people more eager to contribute because it's less, um, there's less of a restriction now.
+
+[Eddie Machado] 15:28:22
+So. What do you do, right? You have all these scripts, these are all… this is all stuff that we're working on, and the thing with AI is that if you introduce one tiny thing, like one tiny line in a Claude file.
+
+[Eddie Machado] 15:28:38
+Um, it can impact. How aura outputs, right? So, if that's not optimized, you risk, um… diverging her guidelines every time you make a change. So what we do is we create these skills, we create these workflows, we create these scripts, and we test them internally on the team.
+
+[Eddie Machado] 15:28:58
+Uh, we put them in our instances, and we run the skills ourselves for a week or two, and see, okay, we can optimize here, we can optimize that. If you have a rogue script, it can really wreak havoc. So, we've been testing these things for the last two weeks, and now we've gotten to a place that we can start to leak it out to people and have them start to use it and get some feedback.
+
+[Eddie Machado] 15:29:19
+Um, so this is something that really worked for us.
+
+[Eddie Machado] 15:29:23
+Okay, now… We believe that Aura is capable of much, much more, right? This is just her getting started. But we've started tagging Aura in some bugs. We created a workflow where we tag a Jira ticket with or ready.
+
+[Eddie Machado] 15:29:40
+She scans it, she picks it up, she reads the Jira description, she does the work, she uses the Aura wrap-up skill, submits the PR.
+
+[Eddie Machado] 15:29:48
+Good to go. That's great. It's been a huge help, and in her first day working on books, she created 17 PRs in an hour. It was great.
+
+[Eddie Machado] 15:29:57
+Are we also gonna look into writing another script for tokens to replace tokens as Andres has said, like, our token naming structure is really old, it's outdated, it needs to be modernized. And to do that by hand would have taken us… months, right? But now, Aura can manage that herself. We can create some scripts, we can create some workflows to rename, map, and replace tokens.
+
+[Eddie Machado] 15:30:21
+Automatically. icons. We can do the same for icons. This naming structure that's confused her so much. Who better to fix it than she?
+
+[Eddie Machado] 15:30:31
+Eventually, we can also move her to components, right? While this one's tricky because components have logic to it, we can identify some simple ones, map them, replace them, and start there. We've also explored component generations, creating a script from a spec.
+
+[Eddie Machado] 15:30:48
+or creating a spec from a script, and then using that to generate components easier. We've asked Claude to analyze our existing components.
+
+[Eddie Machado] 15:31:00
+Document a pattern, document the standards, extract a recipe, and that recipe now allows us to generate new components that meet that quality bar, and with the same structure as our existing components.
+
+[Eddie Machado] 15:31:12
+A lot of this is trial and error, right? It's just going back and forth. And then, the best part is when you'd make all these changes.
+
+[Eddie Machado] 15:31:22
+or it can just keep the documents up to date, right? We can create a script similar to the wrap-up skill that says, if you made a change to a component.
+
+[Eddie Machado] 15:31:30
+understand that change, log that change, and now look for the relative, uh, the related documentation file, and make that update, right? So if you make a change to a component, then look for the documentation and make that change there. Keep it up to date, right? This helps us. This helps her. Everybody's happy.
+
+[Eddie Machado] 15:31:46
+So that's a lot of work right? And while we're optimizing and building some of these workflows, we wouldn't be good corporate overlords if we didn't squeeze every last drop out of Aura's energy. Right? So we're going to ask her to work on notifications and change logs, automate our versioning, let people know what changed.
+
+[Eddie Machado] 15:32:07
+And in what channels that matter. We want Aura to carve out opportunities for growth, right? Use her learning budget and figure out where she can help us in a way that we're not looking at.
+
+[Eddie Machado] 15:32:17
+And we see a bright future in management. She's a people person, right? So we know that she can possibly manage team. Maybe she has a team of her own that she can coordinate and organize workflows simultaneously.
+
+[Eddie Machado] 15:32:31
+So we're excited for the future, we're excited to learn more from Jan, we're excited to learn more from Romina on how they're onboarding their new team members. We're excited about the process that Aura has made in just her first year at Miro.
+
+[Eddie Machado] 15:32:44
+And, as you know, right, after your first year.
+
+[Eddie Machado] 15:32:48
+Once you hit that year mark, it's time for your performance review.
+
+[Eddie Machado] 15:32:54
+And with all the things that Aura has done, she's picked up bugs, she's managed tokens, she's integrated herself into everyone's workflow. When she's out for a day, everyone feels it, right? She's done a lot.
+
+[Eddie Machado] 15:33:06
+So we took that all into account and we're really excited to give her.
+
+[Eddie Machado] 15:33:11
+meets expectations, right? Welcome to the corporate.
+
+[Andresa] 15:33:15
+Yeah. That's it. Keep her honest. Yeah, really.
+
+[Eddie Machado] 15:33:20
+Yeah.
+
+[Andresa] 15:33:23
+Well. I come with lessons learned. So this was really the story of what has been happen happening in the last year. And I do not want to paint a.
+
+[Andresa] 15:33:38
+picture perfect picture here. A lot of this work, as Eddie said, is trial and error.
+
+[Andresa] 15:33:47
+a lot of it. It's still in the testing phase. This is all the potential that we see for Aura, but we're not there yet.
+
+[Andresa] 15:33:56
+Well, what we learned, yeah, really that. There's no need to resist AI.
+
+[Andresa] 15:34:03
+and there's no need to panic about it. The answer is to be the person who is there to onboard the new team member, the new hire. It's the person… and that person is you.
+
+[Andresa] 15:34:15
+Because, you know, you, you wrote the ruse. Someone has to know how the system.
+
+[Andresa] 15:34:23
+works, and yeah, you need to know to be able to teach, so you're there to teach the new hires that are coming along.
+
+[Andresa] 15:34:32
+That person is you. And this has always been your job to document it. Yesenia was saying, we can't get away from documentation.
+
+[Andresa] 15:34:40
+So if you take nothing else from this talk today, just take this. You don't need a perfect system.
+
+[Andresa] 15:34:47
+You need a system that is legible enough to teach. So even if it's not the glamorous work.
+
+[Andresa] 15:34:54
+put the work into metadata, documentation. and extracting everything that lives in your head and put it in an MD file.
+
+[Andresa] 15:35:04
+That's it. Thank you so much. We're here for all of your questions.
+
+[Host] 15:35:10
+Amazing. Yeah, Eddie.
+
+[Eddie Machado] 15:35:11
+I have a question. Are you and still facing each other? What's the setup there? Are you in the same room?
+
+[Andresa] 15:35:19
+Ah, that's a secret. We'll never tell.
+
+[Host] 15:35:21
+Yeah, and also this is a real room. This is not just a Zoom background.
+
+[Eddie Machado] 15:35:22
+Okay.
+
+[Andresa] 15:35:25
+Oh, yeah, it is true. Yeah, we can. We can touch the background.
+
+[Host] 15:35:27
+Yeah. We will show you. You need to stick until the end, and we will show you the real setup.
+
+[Host] 15:35:35
+It's crazy. Yeah, but thank you so, so much, Andresa, Eddie and or Aura. That was fantastic. You mentioned cloud code and I was like, now I'm listening. I'm such a big fan and it was so cool to see your workflow.
+
+[Andresa] 15:35:41
+500.
+
+[Host] 15:35:53
+We have so many questions. Are you up for that?
+
+[Andresa] 15:35:56
+Absolutely. Yeah.
+
+[Host] 15:35:59
+All right, let me share the… fiction board.
+
+[Andresa] 15:36:04
+We know you wanted to say mural board.
+
+[Host] 15:36:07
+Yeah, we have been using Miro for 5 years or longer. This is the first time we are using figjam.
+
+[Host] 15:36:14
+please be nice to us fiction. We are on the second fiction board now, but you can also drop questions in the chat and in the Zoom Q. And a we'll find them all.
+
+[Host] 15:36:23
+We had so many questions around skills. Could you briefly explain what a skill is?
+
+[Eddie Machado] 15:36:32
+Yeah. A skill is basically it's basically a folder that lives in your repo or in your root directory when you're using Claude code, right? So it's a folder, and then inside that folder there's a markdown file, and the markdown file is essentially just.
+
+[Eddie Machado] 15:36:47
+A list of… it's like a to-do list, it's a list of tasks. Do this, then do this, then do this. And inside that folder, you can reference other things. You can have other things inside that. You can have scripts inside that folder, you can reference external repositories in that folder. So it's essentially just.
+
+[Eddie Machado] 15:37:08
+Like, a little prompt wrapped up in a folder that you can reuse, that you just put slash… reuse it. So I would highly recommend looking up Claude's Skill Creator. It's a skill called Skill Creator, and you can use that to generate a skill. It'll do it all for you, it'll run the skill, it'll test the skill, um, and just play with it. It's super, super powerful and very useful.
+
+[Host] 15:37:30
+Nice. Thank you. Eddie, what would be your workflow when you want to create a new skill like search icons, search tokens? Do you just tell Claude code to figure it out? Or how would you create a new skill?
+
+[Eddie Machado] 15:37:43
+Yeah, um… I, like I said, I'm very bad at prompting, and I think what I try to do is I… I try to explain the problem that I'm trying to solve, and then over time, I spend a lot of money.
+
+[Eddie Machado] 15:38:02
+A lot of tokens creating the skill, because on the back end, hopefully I'm trying to save money, because that way, if there's another bad prompter like me, they'll be able to use it. So, essentially, I find a problem that I'm trying to solve, I say, okay, create a skill that helps me find.
+
+[Eddie Machado] 15:38:20
+this. And then I run that scale over it, like, I tried to… I test it out over and over and over again to see where are the gaps. And every time I test it, I ask, okay, um… What can we approve from the last run? Where was the stall? What information could be useful to help improve the flow so we don't get this result again? And over time, it'll slowly start to improve itself until you get to a point where you can get some consistent results.
+
+[Host] 15:38:47
+Mm-hmm. Thank you. And what were the steps you did take before up front to, you know, to give it enough context? Did you just store everything in markdown files? So what was your workflow in the beginning?
+
+[Eddie Machado] 15:39:03
+For… okay, so for the tokens specifically, I created a skill and then I… you kind of think like, okay, well… Claude's just going to find the token directory, right? But the time it takes for it to actually find the actual directory would… it'd be just easier if you just point to it, right? So those are the little things that you kind of take for granted. You expect AI to know where these.
+
+[Eddie Machado] 15:39:30
+directories are, but it's much more efficient if you, say, search for the tokens. The tokens are here, right? Here are… here's the description file, here's the JSON file to access all of this information. Now, with all that information, make this decision.
+
+[Eddie Machado] 15:39:44
+That's so much more powerful than just assuming that it's gonna go find what it needs to find. Because it'll eventually find it, but it'll take way longer, cost way more, so I think being the most descriptive you can be is what really helped me.
+
+[Host] 15:39:59
+Thank you. Andres, are you as a design system lead, if you had to, you know, plan no dark mode for Miro.
+
+[Host] 15:40:09
+Would you invite Ora to the meeting or would you, what would you like, how would you plan a roadmap for that, including AI?
+
+[Andresa] 15:40:17
+So if her dark mode. Was that the question?
+
+[Host] 15:40:20
+Yeah.
+
+[Andresa] 15:40:20
+Oh, oh. That is the vein of every design system team.
+
+[Host] 15:40:25
+Yeah, yeah, yeah. People want to have the dark mode and Miro.
+
+[Andresa] 15:40:31
+Oh, they want us to invite Aura to do it. We will, yeah, we'll put that in the roadmap, not to worry.
+
+[Host] 15:40:38
+Yeah, or us already on it, working on it.
+
+[Andresa] 15:40:39
+It is.
+
+[Host] 15:40:42
+And he's prompting in the background.
+
+[Eddie Machado] 15:40:45
+Yeah. I'll tell you, I'll tell you the real back end of why we don't have dark mode yet is because… mirror… the way Miro works is, like, it's a… it's a canvas that everybody sees. So, for example, if Andresa turns on dark mode, then Syl, what would you see? Would you see her dark mode? Would you expect to see your own? So that's the complex…
+
+[Host] 15:40:51
+Hmm.
+
+[Host] 15:41:04
+Hmm.
+
+[Eddie Machado] 15:41:05
+that we have to figure out before we can ship dark mode, and that's why it's taken so long.
+
+[Host] 15:41:09
+Okay, that's interesting. I also really like the slide you had the comparison between skills and MCP. People are wondering if you're still using MCP or fully skills only now, because we saw that it is eating a lot of your context window and it's.
+
+[Host] 15:41:27
+getting very expensive, burns a lot of tokens to use the MCP.
+
+[Eddie Machado] 15:41:33
+So that screen was was not the MCP. It was a skill versus just no skill, right? Yeah. So I did some research on skills versus MCP, and I've got mixed results. Sometimes it's said that skills were better.
+
+[Host] 15:41:39
+Ah, okay.
+
+[Host] 15:41:45
+Mm-hmm.
+
+[Eddie Machado] 15:41:49
+And it said that that tools were better in the MCP. So I don't know what the answer is. It's hard for me to figure it out, but I think just running those tests, right, comparing it, uh, will help, because I think it's contextual into what you're trying to solve.
+
+[Eddie Machado] 15:42:05
+at what's more efficient.
+
+[Host] 15:42:06
+Mm-hmm. We will learn more about skills and MCPs at this conference later on.
+
+[Host] 15:42:15
+I am for some more questions, Andres. So you can also pick some. You can also see the fiction.
+
+[Andresa] 15:42:16
+Oh.
+
+[Andresa] 15:42:21
+Oh, I I I don't have it on my screen at the moment.
+
+[Host] 15:42:23
+Uh, okay.
+
+[Andresa] 15:42:24
+So let's hope that my prescription is still in date.
+
+[Host] 15:42:29
+It's fine. I will pick some. Do you recommend any online training or resources to learn how to build something similar to your AI driven design workflow? How about into design systems? Do you know any other courses?
+
+[Host] 15:42:42
+I think there are some courses like by Claude Code. There's an academy, there are some cursor courses, online training. I post a lot of this stuff on LinkedIn.
+
+[Andresa] 15:42:53
+Yeah.
+
+[Host] 15:42:53
+Anything else, like, for your designers, any trainings or.
+
+[Andresa] 15:43:00
+Well, I am forever memorizedly child. So that's a memorizely plug. Um, yeah, Xander is, if you are not familiar with Memorizely, yeah, Memorizely.com, maybe you came across Xander's videos before, super fast. Um, yeah, there's… a lot of courses, AI coding for designers, AI design systems, AI, there is another one. I know that there are three boot camps. They're very short bootcamps, four weeks long.
+
+[Host] 15:43:03
+Oh, yeah.
+
+[Andresa] 15:43:34
+Um, but yeah, lots and lots of, uh, great information there. If you don't even know where to get started, I think that's great, but mostly.
+
+[Andresa] 15:43:42
+mostly keep an eye on enter design systems. Today, there's going to be so many more talks.
+
+[Andresa] 15:43:49
+Um, yeah, keep an eye out for your stock later. Um, she's going to take us through, you know, really from, um, the very, very beginning as well, how you can get started.
+
+[Andresa] 15:44:00
+Um, yeah, and then all the great content that Sale shares, Romina shares, so many folks here, um, great, uh, great content around.
+
+[Andresa] 15:44:11
+Yeah, AI design systems.
+
+[Host] 15:44:13
+Absolutely. Shout out to Memorizzy if you're looking for more beginner-friendly content. Go there.
+
+[Host] 15:44:21
+So we have some more questions here. What AI tool is powering Aura? We already know that is cloud code. And what parts of Miro is Aura connected to exactly?
+
+[Host] 15:44:32
+Does she have access to? all your Figma libraries, or is it kind of restricted?
+
+[Andresa] 15:44:41
+So we wanted. So Aura is not a single thing, right? She is not an agent. She is what we're calling the AI practice at Miro.
+
+[Andresa] 15:44:52
+Um, so it. We used Aura as the new hire, as the carrier to tell the story, but really it is a combination of a lot of initiatives. So the first initiative was improving our documentation and metadata then.
+
+[Andresa] 15:45:09
+building our own design system MCP. So product designers, engineers that are prototyping and building. Now, Miro, there is not a single.
+
+[Andresa] 15:45:22
+tool that folks use. Um, that's a good thing about, you know, the advantage of a bigger company. You get access to tools. So there's not a single tool that people are using. So when we created Cmtp for the first time, the majority of.
+
+[Andresa] 15:45:40
+engineers and design engineers were using cursor. Um, that shifted a bit now to Claude code, you know, and then there is other, um, what's the VS Code one as well?
+
+[Andresa] 15:45:54
+But anyways, so what we're trying to do is something that is agnostic to the IDE. We wanted to bring the information, all the assets and all the context of our design system to whatever 2 people we're using.
+
+[Andresa] 15:46:10
+Um, so it's not a or is not a single, it's not a single tool, if that makes sense.
+
+[Host] 15:46:17
+Thank you. Can you tell us a bit more how you, you know, work together with the engineering team?
+
+[Host] 15:46:25
+And how your designers, you know, contribute to this.
+
+[Host] 15:46:30
+using AI.
+
+[Andresa] 15:46:33
+I can talk a little bit, but then I'll pass over to Eddie.
+
+[Host] 15:46:35
+Yeah, thank you.
+
+[Andresa] 15:46:37
+It's an interesting question, and we were actually going to mention that as part of the talk as well. But when Eddie and I started talking, this is a year ago, about.
+
+[Andresa] 15:46:50
+enabling our design system, you know, bring it up to date with AI, you know, and then this path to an AI-enabled design system. We actually got a lot of resistance from our.
+
+[Andresa] 15:47:05
+the engineers in our own team. Um, and, you know, we take their point.
+
+[Andresa] 15:47:13
+AI. Well, different tools, different Llms are evolving all the time. When.
+
+[Andresa] 15:47:21
+this maybe this time a year ago, if designers were using AI to generate components. The codes would would be.
+
+[Andresa] 15:47:31
+Definitely very far from production ready. You know, it added a lot, a lot of extra code, a lot, a lot of unnecessary lines of code, and we also have to be really diligent about accessibility. So the the course that was being generated.
+
+[Andresa] 15:47:47
+It just wasn't good enough. And their argument was.
+
+[Andresa] 15:47:52
+Um… their argument was all of this is just creating more work for us to now review this code.
+
+[Andresa] 15:47:59
+But with time we got them on board. I think everyone is kind of realizing, you know, that you don't have to resist that you can use it to your advantage. Then the the MCP work was actually.
+
+[Andresa] 15:48:14
+a spike drew… it was a hackathon project. We did it as the spike.
+
+[Andresa] 15:48:20
+In collaboration with one, it's always good to find one ally and they'll influence the others. So we found our ally in the team, and she influenced the other ones, and they're now all on board.
+
+[Andresa] 15:48:35
+Um, but there is also the question around. designers contributed, and we did have it from from the start, you know, designers from… from product teams. Designers are, um, they were already, like, experimenting, and, um, yeah, generating codes, they're generating components that we couldn't keep up with. You saw the size of our team.
+
+[Andresa] 15:48:57
+It's quite small, and you know we we have a huge demand from different teams.
+
+[Andresa] 15:49:02
+So they were like, Hey, I built this. I can contribute. And yeah, the results back then was, you know, a lot of additional code, a lot of, um, yeah, it was maybe not as usable, but Eddie, you can chime in on this one.
+
+[Andresa] 15:49:17
+Because we, I remember when he wrote the recipe for components, then that was able to reduce that, the, you know, the amount of unnecessary code by a lot.
+
+[Eddie Machado] 15:49:30
+Yeah. Yeah, it took… I started to experiment because what we saw was we had designers using Claude Code, we had designers using cursor, we had designers using Replit, we had designers using Lovable, so we were all over the place. Some places they could use our components, some places that they couldn't.
+
+[Andresa] 15:49:30
+Yeah.
+
+[Eddie Machado] 15:49:49
+And then they would build these prototypes, and then they'd hand it over to their engineer and be like, here you go, like, make this. And the engineers would just be like, what? What do I do with this? So, um… What we thought about is to create a script that would take that asset.
+
+[Eddie Machado] 15:50:05
+Map it to our tokens, and then create a Markdown file that says, okay, background color equals this, border equals this, like, just a very strict Markdown file with all of the mappings, all of the properties, and then maybe feed that into AI instead of feeding the original asset. So kind of all that heavy lifting is done.
+
+[Eddie Machado] 15:50:25
+And at first, like Andresa said, like, the code that we spit out, the complexity that we spit out, it just wasn't great. But now, over time, actually, the engineers are taking the lead on that script. They've kind of taken it over, and now I think two of our engineers are in the top 10 of token usage in the whole company. So not only have they, like, bought on, but they've, like.
+
+[Eddie Machado] 15:50:47
+Super exceeded a lot of the engineers in the company already. So it takes time. It's a lot of trial and error, and… When you start with AI, I mean, so I'm sure you can attest to this, like when you start with it, you get frustrated. It sucks. It doesn't listen to you. You can't figure things out. And then over time, you start to learn what works, and the jump in the quality that you get over time is exponential.
+
+[Host] 15:51:13
+Absolutely. Yeah. There's also a question, which model you are using. I assume it's Opus, the newest cloud code model.
+
+[Eddie Machado] 15:51:23
+Uh, yeah, I use whatever Claude code tells me to use is what I use. But I know we use a lot of different ones in the company, so… yeah.
+
+[Host] 15:51:32
+Yeah, absolutely. Yeah, that's true. I mean, people are struggling installing at the terminal or installing Claude code. But it's really worth it. I believe that these are not really need to have their own aha moment. First, maybe it's difficult, or it doesn't look like.
+
+[Host] 15:51:48
+the way you want it, but once you get it, you do stuff for you, it's absolutely mind-blowing. I'm also having an open clawboard. There's a question regarding open claw. If there are any plans to, you know, turn Aura into an open clawboard. So, for example, you could message.
+
+[Eddie Machado] 15:51:55
+Yeah.
+
+[Host] 15:52:08
+or on WhatsApp or send a voice message to Aura, and she's doing all all of your work.
+
+[Host] 15:52:16
+Any plans on that?
+
+[Eddie Machado] 15:52:16
+I think that's a that's a very quick path for Andresa and I to get to be jobless if we set up open claw in a corporate environment.
+
+[Host] 15:52:25
+Yeah, totally. All right. Thank you so, so much.
+
+[Host] 15:52:31
+Andres are Eddie and Ora. This was fantastic. I cannot wait to see you hopefully again, because we have so many questions. You should totally do another session soon, please. What's so cool to see what you are.
+
+[Host] 15:52:48
+You are building. Thank you so much. And Eddie, enjoy your birthday, and thank you so much for presenting.
+
+[Eddie Machado] 15:52:53
+Thank you.
+
+[Andresa] 15:52:55
+Thank you.
+
+[Host] 15:52:57
+Thank you. All right, folks. Well, we will have a short break now, and then we'll be back with more sessions. You will learn more about agentic design systems, skills, MCPs, all the cool stuff. So let's have a short break and see you there.

@@ -1,0 +1,755 @@
+[Host] 14:00:40
+Hello again. I hope you are enjoying the conference. We are so excited. There's so many great talks. Nate's talk was incredible. Seb's, and we have a knot.
+
+[Host] 14:00:56
+less of an incredible presenter now, who I can see is already with us.
+
+[Host] 14:01:04
+Yesenia, are you here? Oh, hey, how you doing?
+
+[Yesenia Perez-Cruz] 14:01:07
+Hi. I'm good, I'm excited.
+
+[Host] 14:01:11
+Big smiles, amazing. Yeah. I don't think I need to introduce you, but I think it's very unlikely that people don't know you. However, for those of you that don't know, Jessenia is a very prominent design systems leader.
+
+[Host] 14:01:28
+He's the author of Expressive Design Systems. He spent lots and lots of time crafting really, really cool things at Shopify, and she has so much experience and today it's going to be.
+
+[Host] 14:01:44
+Walking. Yeah, I we were chatting and I got a sneak peek into your talk and I don't want to give too much away.
+
+[Host] 14:01:57
+But we're looking at a. different way we're looking at adaptive UI, adapted interfaces. Yeah. How are you feeling about it? Are you already?
+
+[Yesenia Perez-Cruz] 14:02:11
+Yeah, yeah, I'm all… I'm all geared up, I just have to make sure about the screen sharing works well, but I can… Pick it up.
+
+[Host] 14:02:17
+Oh yeah, the joys. The choice of well, I'll pass it over to you.
+
+[Yesenia Perez-Cruz] 14:02:24
+Okay. Perfect.
+
+[Host] 14:02:25
+And we'll chat again at the end. I'm sure folks will have lots and lots of questions for those of you in the audience. If FigJam is not working, please add your questions to the Zoom Q&A.
+
+[Host] 14:02:37
+Yeah. Over to you, Yushenia. Thank you.
+
+[Yesenia Perez-Cruz] 14:02:41
+Yeah. All right. Yeah, I'm so excited to talk about this topic.
+
+[Yesenia Perez-Cruz] 14:02:47
+I have been thinking not so much about how AI can accelerate the work that we're doing today, but how AI is reshaping user experiences and how design systems will need to adapt.
+
+[Yesenia Perez-Cruz] 14:03:01
+So I want to start with the shape of UI today.
+
+[Yesenia Perez-Cruz] 14:03:05
+Today's UI looks a lot like this, a form. This was the discount creation form in Shopify, where I led the Polaris design system for 5 years.
+
+[Yesenia Perez-Cruz] 14:03:18
+And we help teams experiment with different ways to display the discount selection options, like in a choice list, a select, or in a modal, but ultimately, that's not what Shopify users cared the most about.
+
+[Yesenia Perez-Cruz] 14:03:37
+And that's the gap with design systems today. They answer, what's the best component to display this data, but not what's the best experience for this user in this moment.
+
+[Yesenia Perez-Cruz] 14:03:51
+And the problem is that the needs of all users varies greatly. Day one, users need guidance and focus, but by day 100, the same users demand efficiency, shortcuts, power tools, advanced settings.
+
+[Yesenia Perez-Cruz] 14:04:06
+Deciding on a discount strategy is best suited for an exploratory service like a canvas, while monitoring performance is best for a performance dashboard.
+
+[Yesenia Perez-Cruz] 14:04:17
+Or users can be making changes at vastly different scales. A shop owner may want to offer 10% off of a new product, while an enterprise user needs to extend expiration dates across many discount codes.
+
+[Yesenia Perez-Cruz] 14:04:32
+So, in the best case scenario, experiences could adapt based on the user's needs, and they could adapt based on the precision and scale of tasks, and the layout, density, and visual presentation could all adapt.
+
+[Yesenia Perez-Cruz] 14:04:48
+But instead, we don't have the ability to adapt in a scalable way, so everybody gets a middle ground. A form. It's both too inefficient for power users.
+
+[Yesenia Perez-Cruz] 14:05:00
+But it also forces new users to start making.
+
+[Yesenia Perez-Cruz] 14:05:05
+Precise decisions about input fields before they've even decided on a strategy. So, without the ability to adapt.
+
+[Yesenia Perez-Cruz] 14:05:15
+Everybody gets a subpar experience. But AI is making intent-based adaptation possible.
+
+[Yesenia Perez-Cruz] 14:05:24
+Let's look at a few examples that are live today.
+
+[Yesenia Perez-Cruz] 14:05:28
+If I ask Claude to give me a carbonara recipe, it'll listen to my keywords and structure and the conversation history and my preferences, and detect a recipe intent, and it'll give me back a recipe card where I can see the beautiful, enticing food photography.
+
+[Yesenia Perez-Cruz] 14:05:45
+It even has a timer when I hit get cooking, uh, so it adapts the display of the recipe to the work that I'm doing.
+
+[Yesenia Perez-Cruz] 14:05:53
+Or if I say, help me prioritize tasks for my talk, it'll detect a ranking intent and give me a sortable list that where I can rank priorities, and it'll help me then make the next decision.
+
+[Yesenia Perez-Cruz] 14:06:07
+or if I say, help me draft an email, it'll detect a message intent and display an embedded email box with some options on how to phrase the email.
+
+[Yesenia Perez-Cruz] 14:06:20
+So I don't want to just teach AI how to choose the right component, because that'll just keep us stuck in the middle ground.
+
+[Yesenia Perez-Cruz] 14:06:29
+I want AI to adapt the experience entirely. And here's how I think that could look in practice.
+
+[Yesenia Perez-Cruz] 14:06:39
+So today, if I want to offer a 10% off discount for my new journal product, I start on my journal product, then I go to the discounts section, I need to start typing and making selections.
+
+[Yesenia Perez-Cruz] 14:06:52
+Then I need to go back and select the product that I was just on.
+
+[Yesenia Perez-Cruz] 14:06:59
+And find it in a potentially long list of products so that I can finish my discount and go back to the product that I was just editing.
+
+[Yesenia Perez-Cruz] 14:07:08
+But what if I could just, from the product that I'm on, say, create a 10% off discount code for this product? And I get a confirmation view that has the discount already created, I can confirm that it looks good, I can make some final tweaks, like at an end date.
+
+[Yesenia Perez-Cruz] 14:07:25
+I can close it, and then I go back to editing the product that I was just on.
+
+[Yesenia Perez-Cruz] 14:07:31
+Or, if I need to extend the expiration date on my June discounts to July 1st, today I need to go to each individual discount, click open a date picker, click date picker, go back, go to my next one, click.
+
+[Yesenia Perez-Cruz] 14:07:47
+It's a lot of clicking. But again, what if I could just say, extend all active June discounts to July 1st, and AI could render a bulk surface, where I can… I have a column with the end dates that have changed, I can confirm that that looks good.
+
+[Yesenia Perez-Cruz] 14:08:05
+make any final tweaks and apply the changes. Or this example, I needed to extend the duration of my intro call in SavvyCal, and I also needed to update the confirmation email. Now, I only have a handful of scheduling links, so to me, the individual event is the center of gravity.
+
+[Yesenia Perez-Cruz] 14:08:25
+I thought this was going to take 5 minutes, but because the tool is built to scale for higher complexity, it took me 10 clicks to update 2 fields about the same scheduling link.
+
+[Yesenia Perez-Cruz] 14:08:39
+Again, what if… what if I could just say I need to extend the duration of my intro call and update the confirmation email, and AI can compose a view that has the event. I can actually drag the distance of it to extend it. I can make some edits to my email.
+
+[Yesenia Perez-Cruz] 14:08:57
+And I can apply the changes. The thing is that today's design systems give you the building blocks for a directive UI.
+
+[Yesenia Perez-Cruz] 14:09:11
+Today's UI relies on users interacting with UI. To complete a task, you navigate to a page, fill out fields, click buttons, and then navigate to the next page.
+
+[Yesenia Perez-Cruz] 14:09:23
+And because of that, design systems give you the UI components to build pages that users will navigate to and interact with.
+
+[Yesenia Perez-Cruz] 14:09:33
+But future design systems will need to provide the building blocks for an intent-based UI.
+
+[Yesenia Perez-Cruz] 14:09:45
+Oh, my gosh, something came crashing down my office. Okay. In an intent-based UI looks like this. So, a user states a goal.
+
+[Yesenia Perez-Cruz] 14:09:55
+Um, like, I need to offer 10% off my new journal product, extend my June discounts to July and lower thresholds, or even a question. What's the… what discount strategy will increase revenue?
+
+[Yesenia Perez-Cruz] 14:10:08
+And then AI can decipher that intent based on the keywords, the structure, the user's history, like how long their account has been open, if they already have created any discount codes, and also the scope and the clarity of the message.
+
+[Yesenia Perez-Cruz] 14:10:25
+So if you're asking a question like, what discount code will… what discount strategy will increase revenue.
+
+[Yesenia Perez-Cruz] 14:10:32
+it… your clarity on what you need to do is less precise, versus if you're saying something directive, like, extend my June discounts to July. And then from there, AI can compose a surface, like confirmation, batch, or discovery.
+
+[Yesenia Perez-Cruz] 14:10:48
+for that specific intent. But what's apparent in all of the intent-driven UI examples that I just shared is that an intent-driven UI is centered much more around the product… the objects that users are directly manipulating, instead of the components that users.
+
+[Yesenia Perez-Cruz] 14:11:08
+type into and click, because you're just… they're just doing less clicking and typing.
+
+[Yesenia Perez-Cruz] 14:11:15
+Today's UI is focused on inputs, but an intent-driven UI, the output becomes the defining material.
+
+[Yesenia Perez-Cruz] 14:11:23
+If a discount is no longer a page that you go to, but it's an object that can appear across many surfaces, then you need to recognize that object wherever it appears.
+
+[Yesenia Perez-Cruz] 14:11:37
+It needs a design language with the same attention that we currently reserve for buttons and drop-downs.
+
+[Yesenia Perez-Cruz] 14:11:46
+So, to compose these intent-driven UIs, AI needs more context about the product primitives and the surfaces that they can appear on.
+
+[Yesenia Perez-Cruz] 14:11:56
+But, before we get into this, let me show you what AI can do without this context.
+
+[Yesenia Perez-Cruz] 14:12:03
+So, here's a before demo. I, uh, in this demo, I gave Claude Code access to the Polaris component library and the MCP server. So it has context on the UI components, also some.
+
+[Yesenia Perez-Cruz] 14:12:19
+composition patterns, like a resource details layout, and how to compose cards.
+
+[Yesenia Perez-Cruz] 14:12:25
+And I gave it these prompts. Um, first I asked it to build a UI for confirming changes to a discount code, and it defaulted to the resource detail layout. It added some visual styling to show changes, like, it basically made a variant of the badge component.
+
+[Yesenia Perez-Cruz] 14:12:44
+But it didn't go much further than that. And then, when I asked it to build a UI for a user that needs to extend the discount code expiration date on 30 discount codes, it gave me that same.
+
+[Yesenia Perez-Cruz] 14:13:00
+resource detail layout. But with an index table in one of the cards. So, the association between that a discount is a specific type of page was very strong. Like, I couldn't get it to.
+
+[Yesenia Perez-Cruz] 14:13:18
+create anything other than this layout. So the context that AI needs to adapt, the UI is much more focused on these product primitives and surfaces.
+
+[Yesenia Perez-Cruz] 14:13:34
+In the future, I could see documentation around product primitives and surfaces the same way that we currently document UI components and layouts. So, product primitives are the objects that users create and manipulate in their work.
+
+[Yesenia Perez-Cruz] 14:13:50
+So these are things like the discount, the order, the task, the event, a customer, a product, a collection. And each of these primitives needs a defined anatomy, lifecycle states, relationships, and rules.
+
+[Yesenia Perez-Cruz] 14:14:05
+for how it appears across surfaces. Now, surfaces, they're different than the static layouts that we have today. These are context-aware containers that adapt a product primitive's presentation to match the user's intent. So… This could be, like, a canvas, a fully editable high fidelity view used to compose a dedicated editing environment for a single object, or a confirmation, which is a view for reviewing changes before committing with diff views and impact statements.
+
+[Yesenia Perez-Cruz] 14:14:41
+So, instead of fixed page layouts, surfaces let the same object appear differently, depending on what the user is trying to accomplish.
+
+[Yesenia Perez-Cruz] 14:14:52
+So, just to zoom in on one product primitive.
+
+[Yesenia Perez-Cruz] 14:14:55
+I created an example of what one of these… one of these could look like with a discount.
+
+[Yesenia Perez-Cruz] 14:15:01
+So it starts with an anatomy. And one of the most important things is the visual signifier. Like, how do you know that you're looking at a discount in the many places where it could appear?
+
+[Yesenia Perez-Cruz] 14:15:14
+that an avatar, a number, an icon? And then, how do you represent that signifier consistently any time that this primitive appears?
+
+[Yesenia Perez-Cruz] 14:15:26
+And then what's the essential data for this primitive? For instance, is it the discount type, or an order number?
+
+[Yesenia Perez-Cruz] 14:15:37
+Then you have states and transitions, like, what can and can't happen with this object. So a discount has draft, scheduled, active, paused, and expired states.
+
+[Yesenia Perez-Cruz] 14:15:51
+what state transitions are allowed. For example, a task can't be completed if it's blocked.
+
+[Yesenia Perez-Cruz] 14:15:59
+And then, the interesting one is relationships. So, how does this object connect to the other objects? And what's upstream and downstream?
+
+[Yesenia Perez-Cruz] 14:16:09
+So how does a task relate to a project or an owner?
+
+[Yesenia Perez-Cruz] 14:16:14
+what is… what I think is really interesting about the opportunity with relationships is we don't really see that with our flat navigation styles today. So, you could have a… you can have an object like a collection that sits at a higher altitude.
+
+[Yesenia Perez-Cruz] 14:16:32
+than products. But, in the navigation, they're at the same level of hierarchy. So I think there's an interesting opportunity to visualize relationships in a clearer way for users.
+
+[Yesenia Perez-Cruz] 14:16:45
+And then finally, you get to surfaces. Again, what surfaces can this product primitive appear on?
+
+[Yesenia Perez-Cruz] 14:16:53
+And… just to get into an example of what surface documentation could look like.
+
+[Yesenia Perez-Cruz] 14:17:00
+So in this case, you are looking at a confirmation surface. You can see that its purpose is for reviewing changes before committing. You can see how different product primitives appear in the surface.
+
+[Yesenia Perez-Cruz] 14:17:16
+And see its anatomy, and that it requires a primitive signifier, a diff view, unchanged fields, and an impact summary, and all the rules for how to compose these, and for which primitives are compatible with this surface.
+
+[Yesenia Perez-Cruz] 14:17:33
+And then you need the… the AI needs the intent signals, so it knows what to compose. So you need to define the signals that detected intents and surfaces. So if a merchant is new, like their account age.
+
+[Yesenia Perez-Cruz] 14:17:50
+And it's their first visit to discounts. That could signal that they're in a learning intent, and they need more of a canvas surface for guided exploration.
+
+[Yesenia Perez-Cruz] 14:18:01
+But if they say, extend all June discounts to July.
+
+[Yesenia Perez-Cruz] 14:18:05
+that could signal a bulk editing intent and compose a batch surface. And there's also all sorts of types of signals that could be added, like, if they have a lot of discounts, right, that denotes experience, and also the scale of the change that they're trying to make.
+
+[Yesenia Perez-Cruz] 14:18:23
+So, in my after demo, I basically took the same information that I just went through, and I gave Claude Code the same Polaris component library, and I added some markdown context pages.
+
+[Yesenia Perez-Cruz] 14:18:40
+With the primitive and the surface specs that I just went through.
+
+[Yesenia Perez-Cruz] 14:18:45
+And so you can see here it has the intent signals, uh, the primitive metadata.
+
+[Yesenia Perez-Cruz] 14:18:51
+And it gave it the same prompts. So, with context, I asked it, build a UI for confirming changes to a discount code, and it successfully presented this summary of changes in a modal, and it styled the discount code primitive with its signifier.
+
+[Yesenia Perez-Cruz] 14:19:10
+And it also styled the changed values with the diff styling, and summarized the impact of these changes.
+
+[Yesenia Perez-Cruz] 14:19:17
+You could also see, for this type of task, you don't really need all the empty real estate of a full page. This is compact, and it does exactly what you need to do.
+
+[Yesenia Perez-Cruz] 14:19:30
+And then when I asked it to build a UI for a user that needs to extend the discount code expiration date on 30 discounts, it successfully built a bulk editing screen with, uh, highlighted column for the new end date.
+
+[Yesenia Perez-Cruz] 14:19:48
+And so, with this context, the scale, the structure, and the density of the UI adapted to the task, which we didn't see in the example before. In the example before, the pages looked nearly identical. They were too… resource detail pages with content crammed inside of them.
+
+[Yesenia Perez-Cruz] 14:20:09
+Um, but what I thought was was really interesting, um, as I was reading, like, Claude Code summarizing what it was doing.
+
+[Yesenia Perez-Cruz] 14:20:17
+So, in the page without context, it was basically just repeating back to me what components it chose. It was like, alright, I built it, here's a warning banner, an index table, a checkbox, a sidebar, a modal, and some status badges.
+
+[Yesenia Perez-Cruz] 14:20:34
+With… with context, it detected that it was a batch intent.
+
+[Yesenia Perez-Cruz] 14:20:39
+It built a batch surface, and, like, it made more strategic decisions. Like, it actually built a new bulk date picker UI, which I… It didn't exist, that component didn't exist anywhere, um, or composition didn't exist anywhere. I didn't specify it anywhere in the context, but it had enough context to build a new, appropriate control for the task. Let me go back to it. This is the…
+
+[Yesenia Perez-Cruz] 14:21:11
+Um, the bulk.
+
+[Yesenia Perez-Cruz] 14:21:16
+the composition that it built, which I thought was really cool. It was like, okay, if you need this, you probably need a way to select all of the checkboxes in this table, and just have one place where you, uh, extend the date.
+
+[Yesenia Perez-Cruz] 14:21:32
+So, I thought that was cool, because I was curious if this was just going to, uh, just only reuse things that I had already defined.
+
+[Yesenia Perez-Cruz] 14:21:43
+So, the key here, uh, because a lot of the documentation that I'm describing is describing things about product primitives that have historically lived in the domain of feature teams.
+
+[Yesenia Perez-Cruz] 14:21:58
+And so, you know, like. We've had this philosophy with design systems that we provide the basic building blocks and then the domain teams wire that up with their own data.
+
+[Yesenia Perez-Cruz] 14:22:13
+But in this world, I imagine the design system team is functioning more like architects, right? They're not responsible for defining content of these product primitives, like, that belongs to the domain teams who actually own the product primitives.
+
+[Yesenia Perez-Cruz] 14:22:29
+But instead, they're defining the grammar. the patterns, the templates, the interaction logic that let these objects live together coherently in the UI.
+
+[Yesenia Perez-Cruz] 14:22:42
+Meanwhile, the domain teams are supplying the vocabulary, the specific fields, rules, and behaviors of these product primitives. So just to zoom in on that.
+
+[Yesenia Perez-Cruz] 14:22:53
+Think of it as the design system team is providing the scaffolding. So, you can provide different surface types for the product. So, you know, based on the type of work that people are doing in your tool, you can define, you know, which types of surfaces are the most.
+
+[Yesenia Perez-Cruz] 14:23:11
+valuable, like a canvas and a spreadsheet, or, um… some sort of, like, mini confirmation or an inline surface.
+
+[Yesenia Perez-Cruz] 14:23:22
+And then… then you can define, here's the building blocks of a confirmation surface. So, you know, it needs the primitive signifier, it needs the diff view, it needs the unchanged context and the impact summary.
+
+[Yesenia Perez-Cruz] 14:23:35
+But then the feature teams define their product primitives, their data, what surfaces where they can appear, and the rules that govern how they can be composed by AI.
+
+[Yesenia Perez-Cruz] 14:23:46
+And so, that also requires design system teams to define the required metadata for each of these product primitives. So, for example, every object must have a list view, a micro view, a summary representation, clear rules for how it can be.
+
+[Yesenia Perez-Cruz] 14:24:04
+splayed or manipulated, um, things like, you know, you need to define its anatomy, the relationships, the states and transitions, and then the domain teams are basically, like, filling that in. Um, so they can say, alright, for a discount.
+
+[Yesenia Perez-Cruz] 14:24:19
+the types are percentaged, fixed, or buy one, get one. The value is this. And so this ensures that no matter which team defines the vocabulary, all objects are speaking the same visual and interaction language.
+
+[Yesenia Perez-Cruz] 14:24:34
+And AI can reliably compose them. Same with interaction. Grammar, I think of this as, like… How do you… what are some compositional patterns for how, uh… Different objects can appear nested within each other, or how do they… what is a…
+
+[Yesenia Perez-Cruz] 14:24:57
+What does a product primitive look like when it's on a canvas? And it's more so defining the surface-level treatment, like the drop shadow that it has.
+
+[Yesenia Perez-Cruz] 14:25:09
+While the feature teams are defining the business rules and the states for the primitive.
+
+[Yesenia Perez-Cruz] 14:25:15
+and then, uh, you know. Design systems teams today, they typically do provide an icon library, but I think that that could be expanded to more of this visual signifier system. So what is a… how do you define a glanceable identity for each of your.
+
+[Yesenia Perez-Cruz] 14:25:35
+product primitives, like, how do you make it recognizable? What are the sizes, then, and the styling of these? And again, while the domain teams are more so thinking about the relationship mappings, like.
+
+[Yesenia Perez-Cruz] 14:25:50
+A discount targets product. A task belongs to a project, and an order contains products.
+
+[Yesenia Perez-Cruz] 14:25:57
+So when you combine those things, like, with the grammar and the vocabulary, AI can compose sentences.
+
+[Yesenia Perez-Cruz] 14:26:06
+So, a confirmation surface plus a discount primitive is a composed UI that is a diff view showing the values that have changed.
+
+[Yesenia Perez-Cruz] 14:26:18
+A batch surface plus an order primitive is a spreadsheet of orders with bulk fulfillment actions.
+
+[Yesenia Perez-Cruz] 14:26:27
+So, a few ways that you could start. You can start by identifying what are your core product primitives, right? Like, every product has a handful that are really the, like, the core product primitives that define what the product is.
+
+[Yesenia Perez-Cruz] 14:26:46
+Um, map the relationships to each other. What are the types of relationships between these core objects and the surfaces where they need to appear? I think a… A pretty easy starting point would be to start to establish their visual signifiers. Like, you can do that without even, um… you can do that without even needing to do all this documentation. You can just think about how to display your core objects in a more visual way.
+
+[Yesenia Perez-Cruz] 14:27:14
+I also think a really useful starting point could be, where are your traditional layouts and navigation failing users? Like, maybe you're flat navigation list.
+
+[Yesenia Perez-Cruz] 14:27:27
+Doesn't do a great job of showing the nested relationships between two of your product primitives. Or maybe your default.
+
+[Yesenia Perez-Cruz] 14:27:36
+power user layouts are too complex for new users. You know, the… I think there's so much opportunity for how this can evolve. And, you know, these are some examples of how I could see solving some problems today, but I would love to hear where you all see opportunities for intent-driven adaptation in your products, because I…
+
+[Yesenia Perez-Cruz] 14:27:57
+I think we can finally… solve a problem that has bothered me for a really, very long time, which is design systems teach you how to pick components, but not how to tailor an experience for a specific user need. So…
+
+[Yesenia Perez-Cruz] 14:28:12
+Alright. That's all, thank you.
+
+[Host] 14:28:18
+Thank you so, so much. And as you can see from the Zoom reactions, everybody loved. There was so much love being shared in the chats and and lots and lots of great discussions there. And there's so many questions. So are you up?
+
+[Host] 14:28:37
+For us, for answering a few of them. Yes, please. Also, is everything okay? You said that something came crashing down in your office.
+
+[Yesenia Perez-Cruz] 14:28:38
+Yeah, yeah, I have to take a sip of water, but but yes.
+
+[Yesenia Perez-Cruz] 14:28:45
+It was like, it was… I had something on a shelf, and it just, like, started to topple as I was… as I was talking.
+
+[Host] 14:28:54
+Just to add to the pressure. Okay, amazing. So we have lots of questions in FigJam, lots of questions in the Zoom Q&A. So I will… Starts.
+
+[Yesenia Perez-Cruz] 14:28:56
+Yeah.
+
+[Host] 14:29:10
+Here, um… I had one in mind. Yeah, so Megan Harris, thank you so much for your question is asking. This reminds me a bit of object oriented Ux. Is this framework that you've used to identify?
+
+[Host] 14:29:24
+primitives and metadata, or what sort of mapping exercise helps you identify the right language or schemas?
+
+[Yesenia Perez-Cruz] 14:29:33
+Hmm. Yeah, that's a good question. I… I honestly just tailored it on… User problems? And I've been working with another client on this exact problem, and the starting point was, like.
+
+[Host] 14:29:44
+Okay.
+
+[Yesenia Perez-Cruz] 14:29:51
+We need to be able to… convey a relationship between an audience and a journey and a program that… you can't see in our traditional navigation today, and so… Like, that was the starting point, and then we kind of, like, okay, then we zoom in on, on one of them, alright, for an audience.
+
+[Yesenia Perez-Cruz] 14:30:16
+What is the… what are the most important, like, things that you have to represent in an audience if you want to show it within the context of a journey? So, because I'm not too familiar with… what was that, object-oriented?
+
+[Host] 14:30:30
+Object-oriented UX. Yeah.
+
+[Yesenia Perez-Cruz] 14:30:32
+Yeah, I mean, it might be… I would have to look it up, but yeah, I kind of just started from… User gaps. And, like, the discount code example was also a really good one, where it was like, you know, we did so… we iterated so much on…
+
+[Yesenia Perez-Cruz] 14:30:46
+Is it a modal? Is it a drop-down? Is it a set of radio buttons? And it was never a great experience?
+
+[Yesenia Perez-Cruz] 14:30:55
+Because you couldn't change things further.
+
+[Host] 14:30:59
+Right, yeah. So you mentioned starting with the problem. So no different to there's a lot of talks now about how the design process is dead, but I think we can always reverse to.
+
+[Host] 14:31:12
+What is the problem that we're trying to solve?
+
+[Yesenia Perez-Cruz] 14:31:14
+Yeah, I will say, I will say for the some of the Shopify examples. I did ask their AI tool. What are the… what's the metadata for a discount?
+
+[Yesenia Perez-Cruz] 14:31:26
+So I could see it, and then I could, like, then think about how to represent it. So I do… I think there's something around, like, what is the actual, uh, like, below-the-surface, and then how could you represent it visually in a different way that isn't just form fields and… Buttons.
+
+[Host] 14:31:26
+Right.
+
+[Host] 14:31:40
+Interesting. Okay. Cool. as I mentioned, lots and lots of questions. There is someone that is really excited to hear saying, I love intent-based UI. So many exclamation, exclamation marks. I am curious intent based interaction needs existing data before understanding tenancy of behavior.
+
+[Host] 14:32:04
+So sorry, someone is covering the question. So this will only be able to support after the user is using for a while.
+
+[Yesenia Perez-Cruz] 14:32:07
+Mm-hmm.
+
+[Host] 14:32:16
+Is that how it works?
+
+[Yesenia Perez-Cruz] 14:32:19
+I mean, I think… I think there's, like, different levels to it. One example that I didn't include in the talk, but, um… Permissions-based adaptation. So, say that you have a tool, like a task.
+
+[Yesenia Perez-Cruz] 14:32:37
+tool, and you… people have permissions that they only have read access to the properties related to a task. Like a linear-style tool, uh… If they're not… if they only ever have read access based on their permissions, then having a visual display that makes the scanning really, like, legible, like.
+
+[Yesenia Perez-Cruz] 14:33:05
+That's a good place to start, and you don't actually… they don't need to do anything. So I feel like there's, like, small ones like that, that can be… Like, just… Small wins? Yeah, before you go, like, uh, changing things. Um…
+
+[Host] 14:33:09
+Yeah.
+
+[Host] 14:33:16
+preempt. Yeah.
+
+[Yesenia Perez-Cruz] 14:33:22
+Um, and… what was I gonna say on that? Because otherwise… What you could display… you don't want to see, like, a drop-down that's disabled, right? You know? So, I think, are there places where… things are just not the best experience for people that may have different permissions. I think that could be a good starting point.
+
+[Yesenia Perez-Cruz] 14:33:43
+I also think that… Because mo like enterprise tools, complex tools, they tend to rightfully so, geared towards the power user, so they are as, like, really complex.
+
+[Yesenia Perez-Cruz] 14:33:58
+finding opportunities to… have the composable UI for the simpler use cases, I think is a really… Like, I feel like that is, like, an untapped, uh… has some untapped potential. That, again, you don't… I don't… you could potentially start without knowing a ton about them. Like, you know that they're new, so they need a more guided experience.
+
+[Yesenia Perez-Cruz] 14:34:27
+Um, or, like, the example that… with the… with Savvy Cal, like, I only have a couple events, like, I don't need to build a full workflow.
+
+[Yesenia Perez-Cruz] 14:34:36
+So, yeah, I would think about where other experiences to, where's the experience below the line where there could… things could be uplifted? And then there's the whole, like.
+
+[Yesenia Perez-Cruz] 14:34:48
+We're learning so much about you, and we're changing things that… I haven't spent as much time on because I feel like that is… That has so many implications.
+
+[Host] 14:34:59
+Yeah, no, I think even the example of permissions fits in perfectly here. There are so many.
+
+[Host] 14:35:07
+Yeah, ins and outs, or when you're trying to figure out, even as a designer, like, what? What should they do? Is there… you know, depending on the product complexity as well, there are so many different types of permissions and so many different combinations.
+
+[Yesenia Perez-Cruz] 14:35:18
+Mm-hmm. Yeah.
+
+[Host] 14:35:22
+Um, so yeah, displaying something that is more meaningful or that gives them, like, an action to take, even if they don't have permission. Yeah, definitely, that's a great example. Just notice that I am not sharing the FigJam board.
+
+[Yesenia Perez-Cruz] 14:35:28
+Mm-hmm.
+
+[Yesenia Perez-Cruz] 14:35:35
+Oh, yeah. Oh, there, that's helpful.
+
+[Host] 14:35:36
+So why? So I will do that.
+
+[Host] 14:35:41
+Cool. Yeah. As you can see, we have lots of questions, but it's great. We still have some time here.
+
+[Host] 14:35:50
+you… where, you know, a lot of your examples were Shopify. So I think this question is quite fitting. How do you define and maintain product primitives at scale across different teams?
+
+[Host] 14:36:03
+So if you're thinking.
+
+[Yesenia Perez-Cruz] 14:36:06
+Yeah, so, so, doing this, I have not done this at scale yet, right? Like, so these are some ideas, um, but, um, I do think that.
+
+[Yesenia Perez-Cruz] 14:36:18
+that having… I think it would take some iteration, um, like what I was doing, where I have, okay, here's the things that I've documented, and I'm testing how well AI, uh, can handle, uh, like, is that the right information? Is it enough? Where are there gaps?
+
+[Yesenia Perez-Cruz] 14:36:40
+Um… And then having, having templates that make it easy for teams to kind of drop their stuff in. Um… Yeah, those are my thoughts. And then, I would also think about, like, what are some of the things that…
+
+[Yesenia Perez-Cruz] 14:36:55
+you're already doing, but you can push it further. Like, for instance, the icons, like, if you already have an icon library, how do you start to shift to think about, uh… signifiers and because that's one of the things that we did at Shopify. Even before.
+
+[Yesenia Perez-Cruz] 14:37:16
+Like, everything became AI. We started to shift parts of the product away from, um… Like, we de-emphasize back buttons and instead emphasize the signifier for an order object. Um, so… yeah, I feel like you have to start… start small, iterate, don't try to…
+
+[Yesenia Perez-Cruz] 14:37:39
+Turn it into a whole, like… Like, go too large? Like, pick, pick something small that you can start to, um, to iterate on, like, with this client that I'm working on, where, you know, we just… we're starting with 3 product primitives, and we're starting with surfaces.
+
+[Yesenia Perez-Cruz] 14:37:59
+um, and, like, a surface system where they… imagine the existing page isn't changing, but how can you be on a journey and then access an audience from there? Like, what is an audience… what is a portable audience look like? And so…
+
+[Yesenia Perez-Cruz] 14:38:19
+you know, I think… Starting, like, with a really, like… Narrow scope, I think, helps.
+
+[Host] 14:38:27
+Cool, cool, cool. Definitely. I feel like that applies to anything design systems as well. Start small scale from there. Yeah.
+
+[Yesenia Perez-Cruz] 14:38:36
+Yeah. Seriously.
+
+[Host] 14:38:42
+So I think it's worth us touching on a few of like more practicality. So.
+
+[Host] 14:38:49
+Perhaps a few people in the audience looked at intent-based UI and they're like, oh, you know, I've seen that before. Like, I know exactly what you're talking about. Maybe some other folks are like, what? So we have some questions around really like the tools that you use, if you don't mind sharing.
+
+[Yesenia Perez-Cruz] 14:39:06
+Mm-hmm.
+
+[Host] 14:39:07
+There is a question here on how, and lots and lots of pluses on how do you create the DMD file?
+
+[Host] 14:39:16
+Can you give us the structure on how to build Dmd, or even like any tips that you have to share?
+
+[Yesenia Perez-Cruz] 14:39:17
+So…
+
+[Yesenia Perez-Cruz] 14:39:23
+Yeah, and it may… I could probably just share the… share it right? Like after so that people have it. But I can describe it. But I probably just want to just share it. So I mean, what I started with was the.
+
+[Host] 14:39:29
+Oh, yeah.
+
+[Yesenia Perez-Cruz] 14:39:38
+Like, I work backwards from the solution, so I thought, um… Okay, what would be, uh… Oh my God.
+
+[Yesenia Perez-Cruz] 14:39:49
+Yeah, so I started with like end state prototypes of what I thought would be better solutions, and then I worked backwards from.
+
+[Yesenia Perez-Cruz] 14:39:57
+how do I break that apart into different canvases and product primitives? Um, and then… I had to draft notes, and then I… I… honestly, I asked Claude, like, how do I… how would I structure this in a way that AI can… can understand it for the thing that I'm doing? Um, and…
+
+[Yesenia Perez-Cruz] 14:40:19
+Uh, initially, it had started as the, like, the documentation pages that I shared, so they weren't the MD yet, they were just, like.
+
+[Host] 14:40:26
+Right.
+
+[Yesenia Perez-Cruz] 14:40:29
+I don't know if there's something about grounding ourselves in documentation that still feels like the thing to do with the design system. So, I, like, built the documentation pages of these, um, and that helped me kind of… That helped me visualize, like, okay, uh, does this actually explain and capture everything? And then I ask Claude to convert that to a Markdown file.
+
+[Yesenia Perez-Cruz] 14:40:56
+With the same structure. So that was the process that I took.
+
+[Host] 14:40:57
+Right. Okay. You can't get away from documentation. That's our safe place.
+
+[Yesenia Perez-Cruz] 14:41:04
+It's… yeah, it was just like… it helps you see it, and there's something, like, if I see it, then it helps me understand whether this makes sense or not.
+
+[Host] 14:41:14
+Yeah, definitely. And I think asking AI on how to write something for AI, it's always the best option. Yeah. On that, um.
+
+[Yesenia Perez-Cruz] 14:41:24
+Yeah.
+
+[Host] 14:41:28
+After the conference, I can't remember what days still mentioned, but we shared recordings, and then any resources that our lovely speakers made available to to our attendees. So.
+
+[Yesenia Perez-Cruz] 14:41:37
+Okay.
+
+[Host] 14:41:41
+Yes, so if you have that MD file afterwards to share or anything at all, all those resources then will be shared with.
+
+[Host] 14:41:48
+folks here after, yeah, after the conference a few a few weeks after.
+
+[Yesenia Perez-Cruz] 14:41:48
+Great.
+
+[Yesenia Perez-Cruz] 14:41:54
+Okay, great. Yeah, I'll do that.
+
+[Host] 14:41:55
+Okay. grace. Just any other so many questions here. Are you up for one more if that's okay?
+
+[Yesenia Perez-Cruz] 14:42:02
+Yeah, sure.
+
+[Host] 14:42:03
+Okay, amazing. It's yeah, there's so many great questions here.
+
+[Yesenia Perez-Cruz] 14:42:07
+Oh, should I answer? Where's the user inputting and explaining their intent?
+
+[Host] 14:42:11
+Um, yeah, go for it if you're spot in a question that you think you want to answer. Absolutely.
+
+[Yesenia Perez-Cruz] 14:42:17
+I mean, in my eye, it's like… search becomes a command K style menu, or like a… like a… Yeah, that was it. Like, rather than thinking about, um, here's… I'm opening this panel and chatting with AI separately that is now doing things on this page. I just think…
+
+[Host] 14:42:33
+Right.
+
+[Yesenia Perez-Cruz] 14:42:37
+If I'm on a product screen, and I just pull up a Command-K menu, maybe it already has some, like, default actions that I can do, and I could just type, like, create a discount code for this product.
+
+[Yesenia Perez-Cruz] 14:42:50
+Um, so…
+
+[Host] 14:42:50
+Echo like a yeah command center command key. Okay.
+
+[Host] 14:42:54
+Perfect. Um… Why does the design system need to have in place for this approach to be possible?
+
+[Host] 14:43:05
+design tokens and code. primitive tags in code, etc. Is there any?
+
+[Host] 14:43:13
+scaffolding that you think it's. recommend it.
+
+[Yesenia Perez-Cruz] 14:43:19
+So, honestly, one of the things that I think is really important is the, like, starting to think about your… your… product, like, as of the visual… with the visual language of your product primitives and and starting to get away from the idea of pages, because that's how we started to evolve things at Shopify. It was with.
+
+[Yesenia Perez-Cruz] 14:43:40
+Um, alright, we're… we are now thinking about, uh, a discount as a portable thing that you could pull up in an intent modal within another page. So… I feel like that mindset shift… is really…
+
+[Yesenia Perez-Cruz] 14:43:59
+a precursor, because you don't… You can do that today without needing to wire it up to AI, and you're just helping to… clarify things. Um… I think that… Definitely, like, the… the primitive…
+
+[Yesenia Perez-Cruz] 14:44:19
+Metadata. Is… is… is… is important. Um… Yeah, and the surface definition.
+
+[Yesenia Perez-Cruz] 14:44:32
+But I imagine, like, this… you need to have the baseline covered as well, you know, like, um… once you have the baseline covered of having your basic UI components and, like, everything that I showed was already built off of the Polaris MCP and the components, and then I was just adding that additional context on top.
+
+[Host] 14:44:55
+Right. Yeah. So the foundations. have to be there.
+
+[Yesenia Perez-Cruz] 14:45:00
+Yeah.
+
+[Host] 14:45:00
+Yeah, for sure. I see a question here on Zoom.
+
+[Host] 14:45:07
+And I, we chatted about this briefly, so that's why I'm going to bring it up. Is the accessibility a big challenge with generative AI? What other challenges? Is there any challenges that you've spotted along the way as well?
+
+[Yesenia Perez-Cruz] 14:45:24
+I mean, well, I think one of the… One of the bigger challenges.
+
+[Yesenia Perez-Cruz] 14:45:30
+would be what I was saying around, like, changing things up on users. Like, that's why it has to be really deliberate, because users eventually learn their muscle memory, and so, like, they don't want, like… Like, a default. A default surface that they go to suddenly changing on them. But if their default is always tailored to them, like, if the permissions are correct.
+
+[Host] 14:45:48
+Mm-hmm.
+
+[Yesenia Perez-Cruz] 14:45:54
+Then, um… Then things, like, then things aren't gonna be changing up on them all the time.
+
+[Yesenia Perez-Cruz] 14:46:02
+Um, what was the… Yeah, yeah, because that could be… that could be very confusing. Um, and I think also I think about it more as, like, as a response to something that.
+
+[Host] 14:46:02
+Yeah, it's not like it's going to adapt every single time.
+
+[Host] 14:46:11
+Yeah.
+
+[Yesenia Perez-Cruz] 14:46:18
+a… a user is asking for. You know, like… Uh, again, rather than things just, like, I've learned your behavior, and so I'm going to change… the configuration of things on the screen. I feel like that could be very tricky. I haven't wrapped my head around how to do that.
+
+[Yesenia Perez-Cruz] 14:46:36
+Well.
+
+[Host] 14:46:38
+Yeah. It is. Definitely a fine line because also as humans, we like familiarity.
+
+[Host] 14:46:47
+boss, if something is adapting to make my life easier, it's also kind of, you know, a delightful experience. So yeah, definitely a fine balance.
+
+[Host] 14:46:58
+Listen, there are so many questions here, but I won't keep you any longer. You've answered loads. Please feel free to, you know, afterwards, if you if you'd like to answer some of the questions in the FigJam board.
+
+[Host] 14:47:12
+But yeah, thank you so, so much. Your talk was super insightful. And oh, do you want to… if folks want to reach out, or if they want to work with you, where they can best reach you out? Is it LinkedIn?
+
+[Yesenia Perez-Cruz] 14:47:14
+Yeah, thank you so much.
+
+[Yesenia Perez-Cruz] 14:47:26
+Yeah, LinkedIn is a good spot. Yeah, that's where I'm the most active right now, to be honest.
+
+[Host] 14:47:30
+Okay. Okay, cool. Thank you so much, and have a lovely rest of your day.
+
+[Yesenia Perez-Cruz] 14:47:38
+Yeah, thank you so much. Thanks for all the good questions, everyone.

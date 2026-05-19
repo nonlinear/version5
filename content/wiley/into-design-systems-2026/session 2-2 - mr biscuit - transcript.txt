@@ -1,0 +1,639 @@
+
+[Host] 13:00:14
+Hey, friends, how's it going? Hope you're enjoying the conference so far. I'm so excited for our next session. So happy to host another design system legend, like all of our speakers and our dear friend.
+
+[Host] 13:00:29
+Mr. Biscuit. Mr. Biscuit, are you here? Hi. So cool to see you, Mr. Biscuit, you are the co-creator of a plugin called Variable Visualizer. You also created a very popular design system UI kit. They aren't design system UI kit.
+
+[Mr Biscuit] 13:00:33
+I am here.
+
+[Host] 13:00:48
+Um, you can find this kit in the Figma community. And yeah, we have been wipe coding a lot, right? Since last June, and you presented multiple times at our Vibecoding jams, and back in in June.
+
+[Host] 13:01:05
+You already show people how to ship production-ready code as a designer, but couldn't… but people couldn't really believe it, that this is true. So here we go for another session. And yeah, blow us away, Mr. Biscuit, with your knowledge, and I'm so grateful to have you here. Please give Mr. Biscuit a big round of applause and support in the chat.
+
+[Host] 13:01:28
+Let's go, let's fucking go. Let's do this.
+
+[Mr Biscuit] 13:01:30
+Thank you so much. Yeah, I will give you my best. So… Exactly like Sue said. There's a lot of confusion and doubt on how I do everything, and I feel like I haven't been sharing enough of the details. So this session is going to be a bit different from my previous sessions.
+
+[Mr Biscuit] 13:01:54
+Where I'm gonna walk through all the way from Figma to Storybook to production with a zero drift, and this is gonna be a super hands-on session, so I will be doing a lot of demos 90% of the talk is going to be demos.
+
+[Mr Biscuit] 13:02:13
+Feel free to take a screenshot wherever you don't understand, and you feel confused and leave that screenshot to my question area in the FigJam. I will answer them all. And so, the methodology is.
+
+[Mr Biscuit] 13:02:29
+Pretty straightforward. We build components in Figma, and then we land in the storybook using Figma MCP, provided if all of the variables are created on the component and is bound to the components.
+
+[Mr Biscuit] 13:02:47
+Um, um, um, elements. And then the final step is to copy the the screens that you have built in Figma.
+
+[Mr Biscuit] 13:03:00
+either in an XML formats, which I am doing now, or you can also try to use MCP, but right here, there is a caveat where the MCP currently does not really handle the full amount of.
+
+[Mr Biscuit] 13:03:15
+Uh, props and variable modes that you have applied on each layer, and so this is where I will be showing how I do it now. I built a custom plugin for just copying the XML, but it is super straightforward.
+
+[Mr Biscuit] 13:03:32
+And then you are heading to production from the storybook. And so I've been talking about that methodology a lot in the past, but we will go through it all today.
+
+[Mr Biscuit] 13:03:48
+together. And so one of the biggest problems I face consulting these big firms is that designers are pretty messy. They are visual creatures. Whenever they see something that look alike, if they're under a short time constraint, or they just feel happy about it.
+
+[Mr Biscuit] 13:04:08
+They can just grab it and use it. And so the problem that I see is that how to let a person, a human or an LLM, to know when to always pick the correct component to use. And that is pretty hard. So take a look at this example. I try to make it simple for all of you guys.
+
+[Mr Biscuit] 13:04:28
+This is a design system all you guys know. You've been using every day. It's Figma's own design system, UI3. And so take a guess, I'll give you 5 seconds. What is this, and what is this?
+
+[Mr Biscuit] 13:04:43
+And it turns out that this is a chip, and this is a navigation tab. So if you interchangeably use the tool, you can see that.
+
+[Mr Biscuit] 13:04:55
+the functions aren't really the same. One is supposed to be when you click, it triggers you a navigation, it navigates you somewhere else. Well, this one is probably gonna trigger, like, a drop-down for you to see more variables to bound with.
+
+[Mr Biscuit] 13:05:13
+And yeah, so next question is this right? What is this?
+
+[Mr Biscuit] 13:05:19
+5 seconds, take a guess. And turns out that this is a 5 icon, fave icon, and this is a button. You might think this is an icon, but no, this is a button that I played this presentation with, right? So you can see how tricky it is. Now, I will make it a lot easier for this final question.
+
+[Mr Biscuit] 13:05:42
+This you must know, right? If you don't know.
+
+[Mr Biscuit] 13:05:45
+uh, what these are, I think you are, I heard that food delivery is also pain pretty good, right? I think you can consider the next chapter of your design system journeys. But, um, turns out.
+
+[Mr Biscuit] 13:06:01
+that this is a page list item. So this is a page. So this is not even an icon. This is just a text that you typed. And then this turns out it's a layer list item.
+
+[Mr Biscuit] 13:06:16
+Um, we use this every single day, right? And the asset list item is this one, where you can find all of your component variants.
+
+[Mr Biscuit] 13:06:24
+under this folder. And this is the home sidebar, so when you're at your Figma dashboard, this is what you'll see, but you see that they have different icon size, they have different gap, they are even different, uh, top… bottom paddings. This one is a lot taller than this one. This one, you see that the inner background is a lot shorter, but despite all of that.
+
+[Mr Biscuit] 13:06:49
+I think the solution has to be that, at least in my head, is that let's make the components behave themselves, so that we don't have to ever pick, just like Steve Jobs once said, the line of code that never breaks is the line of code the developer never had to write in the first place.
+
+[Mr Biscuit] 13:07:09
+If it doesn't exist, it's… it ain't gonna break. And so let's make these components just… not exist most of the time, so that we don't have to pick. Let's just… for example, what if we just have one, uh, component, and under different circumstance, under different context, it's able to behave itself, morph into the correct.
+
+[Mr Biscuit] 13:07:34
+component, then we can drastically reduce the number of components we have. So… How we do that is, first, we categorize the components by function. Function is the most critical determination factor, I think, when it comes down to components. And we're gonna merge the components that have the same function, more or less.
+
+[Mr Biscuit] 13:07:56
+and also share the similar layout. And we're going to be making the resulting components, which is much fewer contextual aware, so that it's able to morph to whatever it needs to morph into. And so now it's time for a demo that I will do everything completely from scratch.
+
+[Mr Biscuit] 13:08:16
+So now we just have a bare bone structure set up, and no variables whatsoever in this file yet. Oh, there is some, maybe this is, like, primitive that idolically steal from Figma UI 3, so… Let's look at it in the Vivi plugin that I developed as well. So it's like this, you have a lot of modes. And then, so if we want to start creating the variables, uh, what I…
+
+[Mr Biscuit] 13:08:50
+always like to do is that I will have a collection for this particular component itself. Let's call it.
+
+[Mr Biscuit] 13:08:58
+sidebar roll item. And then this is a component specific collection. And I will introduce multimodal in when I create the collections. So what I mean by multimodal, you will understand in a bit, but this right here, let's create some variables like the background. We have the foreground.
+
+[Mr Biscuit] 13:09:23
+And we also have the… Oh, by the way, what happens when I create this? Let me go back. What happens when I create a collection is simply that they are here appearing in the variables table. So this is really like a shortcut, so let me do this again.
+
+[Mr Biscuit] 13:09:39
+If I create another one and call it FG, what happens is that there is simply an FG popping up, and then the last one I will create for now will be the, um… Um, the, let's say, uh…
+
+[Mr Biscuit] 13:09:57
+That's the best name I can come up with. And so let's make some aliasing. So right here, I just double click, double click on this input port and say, I want to do Bg default, and then.
+
+[Mr Biscuit] 13:10:13
+This will be connected to that variable. And then right here, let's just duplicate this connector and just pia it here so that it's connected to the same thing for now. This right here, I want to do the text.
+
+[Mr Biscuit] 13:10:31
+text default for now. This is how Figma name it. Don't blame me. But yeah, this we have all of our variables now. Let's connect something. So before I connect, let's make a instance side to side so that you.
+
+[Mr Biscuit] 13:10:48
+You can see what happens. Now, when I… Let's first connect the inner BG, for example, and let's just do the fill. I will drag it to this, and you instantly see it happening. And what I want to do on this instance is let's set the modal, the colors to dark mode.
+
+[Mr Biscuit] 13:11:08
+Um, while leaving the main component in the light mode. And we have deal with the inner Bg. Now let's do the the foreground. So now the text, I will give it the fill color and as well as these icons. Let's say the trailing icon. Let's give it the same.
+
+[Mr Biscuit] 13:11:28
+foreground field color, and then there is, like, a leading icon. I would just give it the same fill color as well. And then lastly, the entire container itself using this background fill.
+
+[Mr Biscuit] 13:11:43
+Um, let's see where is, uh… There's a bit of a problem here. Let's see if this one is actually connected. Let's see where I disconnect inner Bg. Okay, this inner Bg is not using the correct.
+
+[Mr Biscuit] 13:12:00
+Correct thing right here. This is what I want, and this is the text. Sorry. So this is the text. Yeah, like that. There, there we go. So that's it. And then you see, now we have all of our… let me let me show you the panel, right? So this is the field color bound to a variable that we just created. This is the the the icon.
+
+[Mr Biscuit] 13:12:21
+bound to a variable, we created called FG. And so that's already enabled one modality that allows you to change between the light and dark mode. And I would like to call that a contextual awareness already.
+
+[Mr Biscuit] 13:12:38
+Contextual awareness, all it is. Why? Because when you put this inside of a container, it's already able to dictate, say, all of my children, including myself, let's say I want to bind you to this BGBG default.
+
+[Mr Biscuit] 13:12:55
+It's going to go to dark mode. Whoever falls inside of me, right? This is already a contact, see? It falls inside, it knows the context, it behaves itself. That's exactly what contextual awareness is. It's just that simple. It cannot be simpler, but that's one level.
+
+[Mr Biscuit] 13:13:11
+of contextual awareness. Let's go another level. And that is where it becomes useful. And so, you see that the foreground, uh, sorry, the inner background color now, it is bound to this, uh, this, the same colors as the background.
+
+[Mr Biscuit] 13:13:27
+And it's actually changing color based on whether it is light or dark mode, right? So it's now black, but now the inner BG is actually white. But that's… not all the colors that we want the inner BG to be, we need to dictate, let's take this example, we need to dictate the inner BG based on whether you're hovered or not, right? At least that's at the very least. So let's create another collection called the…
+
+[Mr Biscuit] 13:13:58
+interactive state, and we can actually give a few interaction states here by default, like idle, and then what about let's do hover.
+
+[Mr Biscuit] 13:14:12
+There's gonna also be, like, uh, selected, let's call it active state as well. And then what I'm going to do is I will just dictate the inner BG for now. I will just copy it and put it over here. And, uh… I will just steal the current one for the idle because I don't want the idle to change. So I will connect it right back. Now, for the hover, this is what is going to be interesting. For the hover, I think it's going to be the BGBG hover.
+
+[Mr Biscuit] 13:14:42
+And for the active, I think it's gonna be the BGBG selected. There we go. And now let's try it. That's another level of modality. Let's set it to dark mode, and voila, we have this. Let's say hover. All of those are hover now. Let's say active, all of those are active, just like when you select multiple of these layers, right?
+
+[Mr Biscuit] 13:15:03
+That's two level of conceptual awareness. Now, remember this color, right? It actually it's it's decided by by this active, but it is also decided by this. See? Now, this right here, you have a different color. If I put this two together, you see clearly that's different color. If you don't see those.
+
+[Mr Biscuit] 13:15:23
+But yeah, so this is already two level of contextual awareness.
+
+[Mr Biscuit] 13:15:31
+Right? I would like to stop here to not waste your time on three levels, 4 levels, a thousand levels, right? But it can go infinity, and so you can literally make your component morph, as long as they have the same functionality.
+
+[Mr Biscuit] 13:15:47
+What happens when I click this? It navigates you to somewhere. Like if I am here, I click this, it navigates me to, oh, it doesn't jump, but it navigates me to having this selected on Canvas. If I have a page, if I click the other page, it navigates me to another page.
+
+[Mr Biscuit] 13:16:03
+If on the dashboard I click somewhere, it navigates me somewhere, right? So all that you need to provide is basically the… uh, the, like, the navigation that you want to jump the user to, that's basically the API. So, since they share the same API, let me also show you the assets, right? So, um, in the assets panel.
+
+[Mr Biscuit] 13:16:28
+These, when you click, it also navigates you to another place. You see, this is now another level of menu. It navigates you to… so it's… all of the purposes, navigation. So now, let's see what is the difference between the page and the.
+
+[Mr Biscuit] 13:16:47
+the layer, right? So, I… we see that if it is a page, it doesn't have icons whatsoever, and when the page is selected, I don't know if you can see that the fonts are slightly bolder, as if when you select these, the fonts doesn't change, they're not bolder, right?
+
+[Mr Biscuit] 13:17:04
+So let's take those two into account and see if we can actually replicate the same thing. So, all you need to do is that when… I think, uh, let's create another collection that's gonna be yet again, another modality, and I'll probably want to stop there. This is going to be the panel. So the context will be which panel are you living inside of? If you're living inside of layer.
+
+[Mr Biscuit] 13:17:26
+You act as is, you don't change, but if you live inside of page, I need you to hide those, at least those… let's make a Boolean, and then I need you to hide those, uh, like, uh, the, the trailing icons and the leading icons, right? So.
+
+[Mr Biscuit] 13:17:42
+for layers, I think this, let's call it trailing visibility.
+
+[Mr Biscuit] 13:17:51
+Then for layers for trailing, I want it to be true. Let's select this. This is the I'm sorry. This is the leading. And then I want to connect it to the visible, and it is true, right? But if I toggle this.
+
+[Mr Biscuit] 13:18:06
+Particular one to, let's say, a panel you're now on page. You see it's gone. It's gone. Why? Because I said that you're now false. Sorry, this is leading visibility. I lost a lot of sleep yesterday.
+
+[Mr Biscuit] 13:18:23
+It's just, um, yeah, so let's duplicate and say.
+
+[Mr Biscuit] 13:18:28
+thrilling visibility now, and then it's, uh, I think it's just… Well, let's set it to false by default as well. And then I will show you the multimodality as well there. So leading the trilling, sorry, by default, it's also… it's also not visible. Why? Because take a look at this, right? You only… it only shows itself when you hover.
+
+[Mr Biscuit] 13:18:53
+And so that means that by default, if you're in the layer panel, your trilling is also hidden. But then as soon as you hover.
+
+[Mr Biscuit] 13:19:04
+This needs to be actually… this actually needs to be true, right? So let's let's pass it through this right here. This is the gist. Now, try to focus right here. The trailing visibility right here, uh, it needs to… It needs to depend, right? So by default, it is, of course, false, but on hover, I want it to be true active false. Yeah, let's just leave it like that, right? So by default, it is always false because.
+
+[Mr Biscuit] 13:19:37
+all the two options are false, you're false, but on hover, it's true. Now, let's just bind this, uh, this variable to a trilling layer. Where is it? I hide… I have it hidden. Now let's just minimize the panel.
+
+[Mr Biscuit] 13:19:53
+Maximize it again. Now let's drag the trailing layer here, connect the visibility. Bam! And then so now. So let's test it out right say now this instead of instead of active as a hover, you see now it is visible.
+
+[Mr Biscuit] 13:20:10
+Any other state, it is not visible. So let's say this one is idle, it's not visible, right? Which is exactly how FIMA behaves. And now… but, look, if they are… if they are, uh, in… in… in this panel page.
+
+[Mr Biscuit] 13:20:24
+And this one doesn't make its own decision, then they just don't have these icons, right? Because now you're inside a page. Look, so if right here, I grab a new one, it has the icon, but as soon as it drops inside of here, it doesn't have its icon anymore. Why?
+
+[Mr Biscuit] 13:20:41
+Because your container says now it represents this. this page part, right? And so that's exactly what it is. And so now, only thing left to do is to make the font bolder when it is selected, right? So…
+
+[Mr Biscuit] 13:20:57
+Uh, when it is selected, which means that it is active. Now, the page active actually has a different color than the layer active, as you see. This is gray, right? Hover gray, select also gray, but this hover is gray, select is blue, right?
+
+[Mr Biscuit] 13:21:11
+So, let's make that, uh, so then that means that the inner BG color is going to be, again, another level of determination on the active itself. So if you are in the panel, let's just copy this right here.
+
+[Mr Biscuit] 13:21:28
+Right, so if the… let's… for… for naming consistency's sake, let's just turn on the naming conflicts and just to avoid some of the naming conflicts, I will just add a trailing number here. And then.
+
+[Mr Biscuit] 13:21:43
+Uh, so if it is Slayer, we want to keep it as is on the active, but if it is, uh, if it is the page, we want to use the same color as the hover color, and so that we connect to the active.
+
+[Mr Biscuit] 13:21:58
+And voila, that's it. So I think now you see. So now, all of these, they are what? They are actually active. But since they are page, the active color for page is simply this focus, this hover color. So let's turn it to the dark mode, you can see.
+
+[Mr Biscuit] 13:22:14
+That's… that's the correct color for the active. Now, what happens on hover? Hover is also this color. Uh, oh, but hover now shows this, right? So, let's make sure that in page, your hover doesn't really show the… Your hover doesn't really show the the trilling. So let's say right here, the hover, uh, this right here. Okay, so…
+
+[Mr Biscuit] 13:22:37
+Uh, the trillion visibility, let's connect this right here, and so then it doesn't show that. And so, if, uh, now this is where we leave it, and we want then to go to code. Unfortunately, I don't have that much time.
+
+[Mr Biscuit] 13:22:52
+Today, but I have showed multiple times on my YouTube and everywhere how to bring it to code, so we're just essentially gonna copy the link, uh, here, and then you go to cursor, open a new project, and then you let it code it. The other reason why is that today, I find that my cursor is working super slow. I tried to do multiple dry runs, there's no way I can make it on time.
+
+[Mr Biscuit] 13:23:14
+So that's why I prepared this, uh, and then you can see that when you have landed in cursor, let me show you this right here. These are the variable names that it coded because Figma MCP does a good job at telling what.
+
+[Mr Biscuit] 13:23:32
+variable name that you have used, and, uh, for example, the foreground right here, and then where it is used is that whatever value comes out of this, then it's applied on this div that is the… this row item.
+
+[Mr Biscuit] 13:23:48
+And then, uh, so the value right here is dictated entirely by your Figma variable logic and setup. And then what happens in the end is that in the storybook, you end up with this.
+
+[Mr Biscuit] 13:24:02
+Your hover is the right color. You go dark mode. It is the right color. And then there's a lot of other stuff as well, like the, uh, for example, if I go here, you can see that when I.
+
+[Mr Biscuit] 13:24:18
+press on these different tabs, as when it is active, the phone is a little thicker. Oh, let's see if we can actually do that as well, right? So I forgot. So, how do you actually make this font right here, uh, a bit thicker when you are active in the… as page?
+
+[Mr Biscuit] 13:24:37
+Let's drop this text layer here. We're gonna expand the typography here, the font weight is where we control it, and so we can just have, like, uh, so let's see the panel based on what panel you are.
+
+[Mr Biscuit] 13:24:53
+If you are page… well, this is also going to be, uh, come into play with the interactive state, so let's replicate these both places. Let's call this the font weight 1, and this the font weight.
+
+[Mr Biscuit] 13:25:09
+Uh, and then, so by default, let's just make it 400 and 400.
+
+[Mr Biscuit] 13:25:16
+This is gonna be the idle, um, and then on active, it's gonna be where the difference is. So let's say active.
+
+[Mr Biscuit] 13:25:27
+Uh, this right here, Hover, is also the same. Only on active, the page itself becomes 500. And there you go. So then you connect that to the, uh, to the letter, the font weight.
+
+[Mr Biscuit] 13:25:41
+And then… there we go, let's try it out. So, if we look at this, right? If we say now that you are active, bam, that's a little… that's a little bulkier. Let's make a bigger difference, let's say, instead of 500, let's go 600.
+
+[Mr Biscuit] 13:25:57
+there. That's right. If it is, if it is idle hover, it doesn't change. But bam, when it is active, it's actually bulkier. So that's how you do it. And then, um, to play it out, it's fun, right? Um, so now let's get back to the… Uh, to… well, I still want to show a tiny bit more. So, when I play with this, I land up here. So this singular component, when it drops into the components, uh, children.
+
+[Mr Biscuit] 13:26:27
+It knows that now it's part of a component. It knows it needs to be purple, including its icon, everything else. If you go, now you are hover, uh, let's say the interactive state hover, it knows that it's eye visibility also needs to be purple.
+
+[Mr Biscuit] 13:26:44
+That's how Figma behaves right here. And then as soon as it drops into a normal layer part, then it knows that it needs to maintain this white color. And then… when it drops into this page, bam, like, all of the unneeded stuff is gone, like, it doesn't have this icon anymore, but as it drops into this dashboard, then bam, it knows that it needs a bigger icon. So if you didn't notice.
+
+[Mr Biscuit] 13:27:15
+that that is much bigger icon and the padding and everything is different. Right? So and then, if you copy this panel directly and say, now you are asset panel.
+
+[Mr Biscuit] 13:27:31
+then it knows this is what asset panel looks like, so it needs to behave like this right? So I just I need to change this to match. And that's basically it. So why do you need multiple, multiple, multiple different components if one can serve the most, especially the functionality is just for you to navigate. The reason why I want you to focus on this.
+
+[Mr Biscuit] 13:27:51
+The reason why I don't make this drop-down menu item also morphing from this is because they serve different functionality. When you click… there is also, on the right side, you see there is actually a shortcut assigned to each of these. And so, meaning that when you press a certain key combination, it's able to trigger these.
+
+[Mr Biscuit] 13:28:11
+So, that doesn't navigate you from place to place. That actually triggers a direct function run. So I'm not saying that you should… combine everything that you can combine, although they are also, like, looking similar, but no. In this case, they have different functionalities, just leave it alone. This needs to be its own standalone component. But, nevertheless, uh, you are, uh…
+
+[Mr Biscuit] 13:28:35
+making… you are gonna be able to condense from this amount of components into just this amount of component. So let's go back, right? So, we have this slabs, for example, and now where are they? Well, it's just this square was squashed. And then.
+
+[Mr Biscuit] 13:28:54
+Um, you are able to squash it a little bit, and then you have it, right? So this to this, yeah, you can imagine. And then with that, you're able to then spawn, uh, arrive at the exact results that your previous design system is capable.
+
+[Mr Biscuit] 13:29:11
+But now the benefit is that… The LLM in the end, or the human, it's only ever need to read this much component, much fewer than, uh, and then it doesn't need to care about a lot of the APIs. Do I need to set this on, uh, you know, small, medium, large, whatever? Those sizes can also auto-adapt based.
+
+[Mr Biscuit] 13:29:35
+Because they are now in different places. The paddings, the font weight, everything, they can adapt, right? So… With that, the Llm doesn't need to do much because there isn't much for it to do to begin with. So then it all it needs to do, right? I need to show you in the end, like, if I have a screen.
+
+[Mr Biscuit] 13:29:58
+and I copy this part, for example, I said that there is a plugin that I built myself. It's called the better LLM Context right here. It's also accessible in the dev mode, so if developers access it, they do like this. And then if I copy.
+
+[Mr Biscuit] 13:30:16
+Uh, everything that I got from it is simply this XML right here. So it says that the modes that… this is a subpanel, uh, because this is a subpanel if you read the layer tree right here, this says this is a subpanel.
+
+[Mr Biscuit] 13:30:31
+And the modes that are set to it is this panel page, and there are frames inside of it that is doing this and that, and then there is, like, there is, like, a frame that is named header right here, and then, uh, the auto layout properties.
+
+[Mr Biscuit] 13:30:49
+As well as the inner nested children's and as well as their properties and modes all the way. This is everything that the LLM ever needs to read, and this is, I find, the minimal amount of.
+
+[Mr Biscuit] 13:31:02
+context that you can give it, so it doesn't need to hallucinate. So it knows, oh, this is the component that I need to use. And then, uh, this is the component ID, uh, this is the property that I need to, you know, so then you are not driving your LLM into hallucination, because you're really giving it all that it needs to cook you the results.
+
+[Mr Biscuit] 13:31:22
+That's the majority of my talk. And then, um… Uh, let me go back to the slides and see what I have still right here. So I couldn't sleep yesterday because the talk on the just-in-time composition. I also want to share a slightly of my own thoughts there. So.
+
+[Mr Biscuit] 13:31:48
+This is definitely gonna be the future of design system, because I feel like the example that was shared yesterday is super valid and shared by by Yesenia is super valid.
+
+[Mr Biscuit] 13:32:03
+who uses websites and applications and click, click, click, click, click these days? If you have better interfaces, everyone is going to flock to the better interface if it is generated, right? So, I feel like then, I have this question in my head, like, what materials we need to feed for the AI in order for it to.
+
+[Mr Biscuit] 13:32:20
+Do a good job at it at generating the composition just in time, just for that user. Then I think that if we feed it the raw tokens only, it's not going to be enough. There's a lot of ways for it to actually misuse your tokens.
+
+[Mr Biscuit] 13:32:37
+And so then I find that that gives you a low return, although that is, like, very easy, the easiest to do, because when you set up a design system, you're supposed to first have your brand styles and these guidelines, right? But.
+
+[Mr Biscuit] 13:32:52
+um, is too much to feed for the AI, and trusting that the AI is able to use your tokens correctly. So what the sweet spot I find is that if we already bound these tokens to our atomic and.
+
+[Mr Biscuit] 13:33:07
+molecule level components, then we don't need to ever give the AI our tokens anymore as raw materials, because they are… they are already living inside of our… our components, right? But then, if we look further.
+
+[Mr Biscuit] 13:33:23
+We give it the atomic components, the molecules, these basic building blocks, right? And then, do we need to provide patterns as well in the form of, let's say, XML and rules, and also the relation graphs, what components are supposed to be living inside of what components?
+
+[Mr Biscuit] 13:33:42
+how this component is supposed to be functioning together. Well, I think this part is needed, but not, like, super much needed. There needs to be some wiggle room for the AI to… because it's able to… it needs to create screens that you never thought of, so it's not possible that you cover all.
+
+[Mr Biscuit] 13:34:00
+use cases. And then the screens, uh, the screen level compositions, I think, we can just leave it out, because it's too expensive to index all of your screens, and it doesn't really give you much good results in return for your investment.
+
+[Mr Biscuit] 13:34:18
+And then this is just my 3 cents on what I think should we focus on feeding the AI the enough materials for it to be able to compose a stream that never existed before in runtime as the user is requesting that screen.
+
+[Mr Biscuit] 13:34:38
+And then I want to say that I'm also me and my co-founder Martin is starting a new company. And this company is going to be called Dopamine Technology. It's not yet set up, but very quickly we are in the legal process of setting it up.
+
+[Mr Biscuit] 13:34:55
+And the company is going to be focusing on all of these efforts we are chasing after and push it more seriously, uh, to make sure that we achieve exactly the goal that we wanted to achieve. But with that.
+
+[Mr Biscuit] 13:35:10
+Thank you for your time. It's been Mr. Biscuit. And if you want to follow me, I have this QR code for LinkedIn and for X. Yeah, let me know what questions you have.
+
+[Mr Biscuit] 13:35:25
+And hopefully you have learned a bit of something interesting today. Yeah, see you.
+
+[Mr Biscuit] 13:35:31
+Thank you.
+
+[Host] 13:35:32
+Hey, Mr. Biscuit, thank you so much for your session. Please don't leave. Please give Mr. Biscuit a big round of applause.
+
+[Host] 13:35:43
+Very cool session. Thank you so, so much. Are you up for some questions? Because we have many, many questions.
+
+[Mr Biscuit] 13:35:47
+Yes, yes, yes, please. Yes, please.
+
+[Host] 13:35:50
+Let's see. So the question is, how would you like from Figma now go to Storybook? Are you using an MCP or something? What would… how would your workflow look like for that?
+
+[Mr Biscuit] 13:36:06
+Yeah. So that's the part I've been showing on on YouTube. You can check if you search for Miss Mr. Biscuit. It's I have a pretty in-depth walkthrough. But basically what happens is that I copy the link to that particular component.
+
+[Mr Biscuit] 13:36:23
+And then I paste it and say, use Figma MCP, because Figma MCP, although it doesn't pass you what modes is used on which layer, but it does a good job at providing all of the other detailed informations on, let's say, what are the.
+
+[Mr Biscuit] 13:36:41
+attributes on this particular element, and that element nested inside of it. What tokens are used are bound to this XYZ layer, and that is where I was sharing when you see all of these hundreds of tokens bound to this entire component, that's where they came from. They came from the Figma MCP.
+
+[Mr Biscuit] 13:37:02
+And so with that, then you have the component in your storybook. And once it lands in your storybook, then you don't need to invoke Figma MCP anymore, in my opinion, because all the LLM ever needs from then on.
+
+[Mr Biscuit] 13:37:19
+Is what component is used, and then what prop is set on that particular component. They don't need the X and Y position, the width and height, the font weight, the whatever color anymore, because your component is already set up, yeah. So hopefully that answers your question. Thank you.
+
+[Host] 13:37:36
+Yeah, thank you. The plugin you showed, will this be available publicly?
+
+[Mr Biscuit] 13:37:42
+Yes, I think, uh, it will be available publicly pretty soon when I'm intending to publish it.
+
+[Mr Biscuit] 13:37:53
+I was… I had, like, last month, I had asked in the community, like, why we are not passing this modes that are set explicitly on certain layers.
+
+[Mr Biscuit] 13:38:08
+I didn't get a reply yet from the Figma mods, and so I feel like if Figma solved that particular quirk, then you don't need the plugin that I built that much. But again.
+
+[Host] 13:38:11
+Mm-hmm.
+
+[Mr Biscuit] 13:38:24
+It could have been that if we use my plugin, it could consume a lot less of your data and save you a lot of money on the LLM expenditure.
+
+[Host] 13:38:33
+Oh, yeah, that's super helpful. So we also have a couple of questions regarding VV, which is variable visualizer.
+
+[Mr Biscuit] 13:38:40
+Yes, yes, yes, please, please.
+
+[Host] 13:38:42
+And yeah, so what happens if we have so many variables? Does it become somehow unreadable? How do you manage a file with many, many variables with this graph? And do you have any recommendations how to find variables?
+
+[Mr Biscuit] 13:38:59
+Yeah, so that's a very good question. So if you if I am allowed to share a bit on… This is actually… my companies that I'm consulting with is a thumbnail. It's this cat on fire, and pia, you know, it's like, what the But the amount of, uh, variables that normally, like, at a minimal, that you will need to end up with is looking like this.
+
+[Host] 13:39:05
+Of course. Show us.
+
+[Host] 13:39:25
+Oh my god.
+
+[Mr Biscuit] 13:39:26
+And how do you… this is like a living city, but it's two-dimensional, right? It's multi-dimensional. But then, if you really see, you see, we… if you really want to see, like, where things are, you can actually… wrap around using, like, uh, like, uh, this, this, this section, I call it. There's a section that you can, you can just select how to create a section. It's like, you can just select multiple, uh, collections, and then you hit command G to make a group, or Command-Shift-G to ungroup it, or you can also right-click to group a selection right here.
+
+[Host] 13:39:54
+Mm-hmm.
+
+[Mr Biscuit] 13:40:00
+And then you can… you have the ability to name it, blah, blah, blah. You also have the ability to set different colors to it so that next time when you see this, you know, oh, that's the other thing that I was saying, you know. So you 2d canvas, you have infinite ways to manage it. Also, I don't recommend having all of your raw.
+
+[Host] 13:40:15
+Yeah.
+
+[Mr Biscuit] 13:40:23
+materials role primitive tokens in the same, uh, in the same file. You can actually reference it from a remote library somewhere else. So that's the suggestion.
+
+[Host] 13:40:31
+Mm-hmm. Yeah. Yeah, feel free to keep sharing. I have a couple of questions more regarding VV. How many variables do you have in this file?
+
+[Mr Biscuit] 13:40:40
+Okay. Um, not that… that not that much, I think, is just it's somewhere around 1,000, 1,500 at max, because when you start to build more and more, it's like marginal in increments when you have more, because.
+
+[Host] 13:40:45
+It looks so crazy.
+
+[Host] 13:40:54
+Okay, not that much.
+
+[Mr Biscuit] 13:41:04
+Most of the, let's say, interactions, it's already covered, and they are shared across, and most of the, uh, let's say the dimensions, the different device, the different density is already covered, so you are just mostly just reusing. And I think for cleanliness reasons.
+
+[Mr Biscuit] 13:41:21
+60% of all of these variables that we currently have is just living inside of the output collection, because.
+
+[Mr Biscuit] 13:41:29
+You want to make each component having its own individual output component. For example, Chip has chip output collection. Sorry, I was talking about collection. Button has button output collection. And these variables are repeated just because they… They are, uh, you know, for cleanliness reasons, we want to have a per component its own collection, so that it's easier to maintain later on, it's easier for AI to reference it, to change it, right? If in the future you want to rename something, there is that one collection that you go to to check what is changed.
+
+[Host] 13:41:37
+Mm-hmm.
+
+[Mr Biscuit] 13:42:05
+So yeah.
+
+[Host] 13:42:06
+Thank you. Yeah, another question is, what's the main benefit of using variable visualizer versus, you know, Figma variables like in general?
+
+[Mr Biscuit] 13:42:17
+I think, uh, yeah, that's a very good question. I think it just comes down to you see that most of what I do is basically like a shortcut. You can achieve all of that in figma table as well. But when it gets to, you know, aliasing across 3 or 4 collections, you start to lose sight of.
+
+[Mr Biscuit] 13:42:36
+how things are flowing from where to where, like, what is going on. That is where, because in Figma, at any one time, you're only able to just look at one table. You cannot look at two tables together, let alone, let's say, I'm looking at, like, 4 or 5 different collections and see how they are wired across. You're just rewiring those tokens most of the time anyway.
+
+[Mr Biscuit] 13:43:01
+You're not going to be creating variables. What I show is just the beginning of setting up your… you don't have any variables, but when you have variables, you mostly just wire in between them. And then, uh, I think what I wanted to also mention is that the main benefit is that you have.
+
+[Mr Biscuit] 13:43:21
+this graph sort of view and high level view of what is happening across different collections. So if you zoom out, you don't see the individual aliasing lines. You see between collections and collections.
+
+[Mr Biscuit] 13:43:36
+Like this alluvial chart, uh, what is, uh, how, how they are related to each other. And so, yeah.
+
+[Host] 13:43:43
+Mm-hmm. And did you create all of these variables like in the file you showed manually, or how was your workflow? Did you use?
+
+[Mr Biscuit] 13:43:50
+created by AI. It's created by AI. Yeah, yeah, yeah. So we have we have. That's that's the only. So this plugin is entirely free, but there is only the 5% of feature that is LLM related. I pay, we had to pay.
+
+[Host] 13:43:52
+Created by AI. Okay. Well.
+
+[Mr Biscuit] 13:44:07
+For the provider, currently my co-founder Martin is paying for that out of his own pocket, and so that's why we ask people to, if you want to use LLM, you have to do the subscription as well, because we are anyway being charged.
+
+[Mr Biscuit] 13:44:21
+And so that is the only paid feature considered like a freemium. But I will always try to keep 90% of it free because I don't. Yeah, that's just my personality. I don't like to force people to pay. Yeah.
+
+[Host] 13:44:32
+Yeah. That's very kind of you. If you don't mind, would you like to show a little bit of the LLM workflow you have or how to set it up in Figma with variable visualizer or how you use that AI?
+
+[Mr Biscuit] 13:44:48
+Um, variable visualizer AI is just it's built into the plugin. So.
+
+[Host] 13:44:54
+Mm-hmm.
+
+[Mr Biscuit] 13:44:56
+I can show maybe one example right here. So if you…
+
+[Host] 13:45:01
+Yeah. Imagine people already have a UI kit nowadays, like with hundreds of variables, and now they want to use variable visualizer.
+
+[Mr Biscuit] 13:45:10
+So, you see that I have, uh… Oh, I'm already running out. I don't have credit as the creator myself anymore, sorry. I need to ask you, I need to charge for more. Let's see. Okay, got, uh, let's create like a new file. That was my other account. Let's check on this account in particular, let's see.
+
+[Host] 13:45:14
+You don't have any credits.
+
+[Mr Biscuit] 13:45:34
+Hmm. as right here. Let's move this away. I will share search for the variable visualizer right here.
+
+[Mr Biscuit] 13:45:45
+Hopefully, I have some credits left here.
+
+[Host] 13:45:49
+If not, no worries. I was just curious to see…
+
+[Mr Biscuit] 13:45:53
+It's right here. Yeah. So I have, I think. Oh, $7 left here. Yeah. So let's say you can.
+
+[Host] 13:45:59
+Oh, okay.
+
+[Mr Biscuit] 13:46:04
+create me a button collection with all the needed variables.
+
+[Mr Biscuit] 13:46:11
+And then you can just send it like that. It's built in and just, uh… This model is pretty expensive. Let's see how much it will will cost over. But we have free models as well. So.
+
+[Host] 13:46:19
+Yeah. Yeah. Somebody in the yeah.
+
+[Host] 13:46:24
+Yeah, what's like, what? Which model would you recommend?
+
+[Mr Biscuit] 13:46:30
+I think it depends on the task that you want to do. Mostly, I would do Sonnet.
+
+[Host] 13:46:33
+Mm-hmm.
+
+[Mr Biscuit] 13:46:38
+Um, Opus is, like, when you're really, uh, thinking that's a hard task. So not only can the AI right here assist you on understanding or creating your variables, but also it's able to.
+
+[Host] 13:46:42
+Mm-hmm.
+
+[Mr Biscuit] 13:46:54
+Uh, see what you selected on screen, like, analyze your, let's say you selected a button on screen. This is what it built, right? Uh… So, so it already has the mode. I didn't tell it to do the mode, but it has the mode. And then…
+
+[Host] 13:47:02
+Oh, wow.
+
+[Mr Biscuit] 13:47:09
+Oh, how many did I spend? I spent, like… 1 tenth of a dollar already, and you can see that, like, that's pretty expensive. And so yeah, that's why I'm losing money that fast. This, I think the other thing that Figma doesn't show you is that.
+
+[Mr Biscuit] 13:47:28
+If you have another collection, let's say that this is, let's wire it here. Figma show you this color, but when this is in dark mode, what does it change to? This is something that FIMA doesn't show, but you see when I simulate.
+
+[Mr Biscuit] 13:47:43
+that you can see the difference, and this difference is all the way across downstream as well. So you can see like what happens, what happens. So yeah, that's the… that's the answer. Thank you.
+
+[Host] 13:47:55
+Thank you. Do you have any tips? How to how to support accessibility requirements using this method?
+
+[Mr Biscuit] 13:48:05
+Hmm. I am looking into that as well myself. And yeah, so I know on the coding aspect, you need to provide the accessibility labels so that people cannot see exactly that while it's able to hear what components.
+
+[Mr Biscuit] 13:48:27
+is being interacted with, is being selected, what's on screen, and that's as far as it. I am. But mostly the branding aspect on, for example, what color goes on top of what color is.
+
+[Mr Biscuit] 13:48:43
+failing the AA check, those kind of stuff is not my job per se, but those are done by visual designers in the companies that I'm consulting with. And so, yeah, I don't know a whole lot about that. I am humbled to not share that much opinion.
+
+[Mr Biscuit] 13:48:58
+When I don't know too much about that, yes.
+
+[Host] 13:49:00
+Yeah, thank you so much. Miss Biscuit, one last question. How do we see the future of.
+
+[Host] 13:49:06
+design systems and agentic design systems and all this stuff.
+
+[Mr Biscuit] 13:49:12
+I think the design systems as a whole is definitely not going away. It's just that it's going to there is going to be some new blood pouring into design systems so that you need to make it lightweight so that it's able to adapt.
+
+[Mr Biscuit] 13:49:28
+to this AI real-time generated. Jacob coined it JIT, just in time generated compositions, or it's even able to generate you existing or non-existing components. So.
+
+[Host] 13:49:46
+Mm-hmm.
+
+[Mr Biscuit] 13:49:47
+Meaning that if you have atomic components, but you need to generate, like, a pattern component or a molecule component that didn't exist before, it's able to do that as well. So, it's not only the… the just-in-time screen composition, per se, but also just-in-time component origination.
+
+[Mr Biscuit] 13:50:06
+But yeah, that is the part where… I see that if you have, like, a super bloated component library, I can see where the challenge is, because the context window is only so much, and when you reach, let's say, 50% of the context window, it's already… it's already hallucinating. You don't need to wait for 100% filling up the context window.
+
+[Mr Biscuit] 13:50:28
+So that's where I am seeing that if you have, like, a… lightweight design system, I think you are… you're pretty well set to the future, for the future, yeah.
+
+[Host] 13:50:41
+Amazing. Thank you so, so much, Mr. Biscuit. It was a pleasure to host another session with you. Good luck with your company. What was the name? I just heard dopamine.
+
+[Mr Biscuit] 13:50:51
+dopamine technology. I think soon we will probably need some hands, yes.
+
+[Host] 13:50:52
+Oh, man, are you hiring? Because that sounds so cool. I should apply.
+
+[Host] 13:51:00
+Yeah, okay, let me know, because it sounds so cool.
+
+[Mr Biscuit] 13:51:03
+Thank you so much, Seo. Thank you. Right.
+
+[Host] 13:51:04
+Thank you so much. See ya, Mr. Biscuit. Thank you. Yeah, thank you so much, everyone. This was super interesting. We will take a short break, and then we will continue with our next session. See ya.
