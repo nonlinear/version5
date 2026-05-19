@@ -1,7 +1,7 @@
 
 
 <section class="recap{{ if .Get "end" }} end{{ end }}" aria-label="{{ .Get "title" }}"
-{{ if .Get "image" }}style="background-image: url(/images/recap/{{ .Get "image" }}); background-repeat: repeat; background-size: cover; background-position: center;"{{ end }}>
+{{ if .Get "image" }}style="background-image: url({{ printf "images/recap/%s" (.Get "image") | relURL }}); background-repeat: repeat; background-size: cover; background-position: center;"{{ end }}>
 
 <div class="header">
  <div class="titles">
@@ -17,8 +17,8 @@
     {{ $prev := printf "%02d" (sub $idInt 1) }}
     {{ $next := printf "%02d" (add $idInt 1) }}
     <a class="button previous" href="#{{ $prev }}" data-tippy-content="previous in list"> <img
-        src="/images/recap/previous.svg" alt=""></a>
-    <a class="button next" href="#{{ $next }}" data-tippy-content="next in list"><img src="/images/recap/next.svg"
+        src="{{ "images/recap/previous.svg" | relURL }}" alt=""></a>
+    <a class="button next" href="#{{ $next }}" data-tippy-content="next in list"><img src="{{ "images/recap/next.svg" | relURL }}"
         alt=""></a>
     {{ else if and $id $end }}
     {{ $current := .Page.File.BaseFileName }}
@@ -27,17 +27,17 @@
     {{ $nextBase := index $nextMap $current }}
     {{ $nextPages := where .Site.RegularPages "File.BaseFileName" $nextBase }}
     {{ $nextPage := cond (gt (len $nextPages) 0) (index $nextPages 0) nil }}
-    {{ $nextFile := cond (not (eq $nextPage nil)) $nextPage.RelPermalink "/2025/" }}
+    {{ $nextFile := cond (not (eq $nextPage nil)) $nextPage.RelPermalink ("2025/" | relURL) }}
     {{ $nextTitle := cond (not (eq $nextPage nil)) $nextPage.Title "next post" }}
     {{ $idStripped := replaceRE "^0+" "" $id }}
     {{ $idInt := int $idStripped }}
     <a class="button previous" href="#{{ printf " %02d" (sub $idInt 1) }}" data-tippy-content="previous in list"> <img
-        src="/images/recap/previous.svg" alt=""></a>
+        src="{{ "images/recap/previous.svg" | relURL }}" alt=""></a>
     <a class="button next" href="{{ $nextFile }}#01" data-tippy-content="{{ $nextTitle }}"><img
-        src="/images/recap/next.svg" alt=""></a>
+        src="{{ "images/recap/next.svg" | relURL }}" alt=""></a>
     {{ else }}
-    <a class="button previous" href="#"> <img src="/images/recap/previous.svg" alt=""></a>
-    <a class="button next" href="#"><img src="/images/recap/next.svg" alt=""></a>
+    <a class="button previous" href="#"> <img src="{{ "images/recap/previous.svg" | relURL }}" alt=""></a>
+    <a class="button next" href="#"><img src="{{ "images/recap/next.svg" | relURL }}" alt=""></a>
     {{ end }}
   </div>
 </div>

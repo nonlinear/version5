@@ -1,7 +1,7 @@
 {{ partial "html.html" . }}
 {{ partial "head.html" }}
 <body>
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ "css/bootstrap.min.css" | relURL }}">
   <article>
     <div class="about">
       <div class="content">
@@ -100,7 +100,7 @@
 </nav>
   </article>
 {{ partial "load-js.html" . }}
-<script src="/js/lib/bootstrap.bundle.min.js"></script>
+<script src="{{ "js/lib/bootstrap.bundle.min.js" | relURL }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/share.js/dist/js/share.min.js"></script>
 <script>
   var share = new Share('#share-btn', {

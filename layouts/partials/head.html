@@ -29,11 +29,11 @@
   <!-- Dynamically included fonts -->
   {{ with .Params.fonts }}
     {{ range . }}
-      <link rel="preload" as="font" href="{{ printf "/fonts/%s.woff2" . }}" type="font/woff2" crossorigin>
+      <link rel="preload" as="font" href="{{ printf "fonts/%s.woff2" . | relURL }}" type="font/woff2" crossorigin>
       <style>
         @font-face {
           font-family: '{{ . }}';
-          src: url('{{ printf "/fonts/%s.woff2" . }}') format('woff2');
+          src: url('{{ printf "fonts/%s.woff2" . | relURL }}') format('woff2');
           font-weight: 400;
           font-style: normal;
           font-display: swap;
@@ -127,7 +127,7 @@
   <meta property="og:description" content="{{ .Params.description }}" />
 
   <!-- Mermaid diagram support -->
-  <script src="/js/global/mermaid.min.js"></script>
+  <script src="{{ "js/global/mermaid.min.js" | relURL }}"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       mermaid.initialize({
